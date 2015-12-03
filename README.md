@@ -14,3 +14,29 @@ development branch for this purpose.
 
 The `master` branch is a frozen branch, only updated with releases of the
 project.
+
+# Workspace set-up
+First of all, you need to install `Play! Framework` into your machine. It is
+pretty well documented in their website, so please visit it for more info:
+[https://www.playframework.com/documentation/2.3.x/Installing](https://www.playframework.com/documentation/2.3.x/Installing)
+
+As the project is based on `Play! Framework`, you should install a plugin in
+your IDE. Whether you use Eclipse or IntelliJ, there are plugins that support
+it. Please visit this page for more info:
+[https://www.playframework.com/documentation/2.3.x/IDE](https://www.playframework.com/documentation/2.3.x/IDE)
+
+Then, import the project into your IDE, and voilà!
+
+# Running the application
+To run the application, browse your workspace to project's folder, open a shell
+and type:
+``
+activator run
+``
+It will open a port in your local machine (default is 9000), where you could
+test the application: open a browser and go to `http://localhost:9000`. It
+should display the default `Play! Framework` main page.
+
+To verify the business logic of the application, go to
+`http://localhost:9000/paradas`, that represents the endpoint of the service
+that calculates the closest bus stops to a specific point.
