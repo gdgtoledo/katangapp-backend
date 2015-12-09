@@ -7,8 +7,8 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import business.mocks.MockBusStopStore;
-
 import business.mocks.MockResultsController;
+
 import models.BusStop;
 import models.Point;
 import models.TestPointFactory;
