@@ -33,7 +33,23 @@ public class KatangappApplicationTest extends WithApplication {
 		String longitude = String.valueOf(puertaBisagra.getLongitude());
 		int radius = 1000;
 
-		MockResultsController.mockRequest();
+		MockResultsController.mockRequest(false);
+
+		Result result = KatangappApplication.index(latitude, longitude, radius);
+
+		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
+	public void testIndexWithPrettyPrint() {
+		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
+
+		String latitude = String.valueOf(puertaBisagra.getLatitude());
+		String longitude = String.valueOf(puertaBisagra.getLongitude());
+		int radius = 1000;
+
+		MockResultsController.mockRequest(true);
 
 		Result result = KatangappApplication.index(latitude, longitude, radius);
 
