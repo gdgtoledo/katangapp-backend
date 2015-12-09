@@ -22,7 +22,7 @@ import play.mvc.Result;
 /**
  * @author mdelapenya
  */
-public class Results extends Controller {
+public class KatangappApplication extends Controller {
 
     public static Result index(String lt, String ln, int r) {
         Finder busStopFinder = new BusStopsFinder();

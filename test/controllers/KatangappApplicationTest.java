@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * @author mdelapenya
  */
-public class ResultsTest extends WithApplication {
+public class KatangappApplicationTest extends WithApplication {
 
 	@Test
 	public void testIndex() {
@@ -35,7 +35,7 @@ public class ResultsTest extends WithApplication {
 
 		MockResultsController.mockRequest();
 
-		Result result = Results.index(latitude, longitude, radius);
+		Result result = KatangappApplication.index(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -50,7 +50,7 @@ public class ResultsTest extends WithApplication {
 
 			BusStop busStop = stopEntry.getValue();
 
-			Result result = Results.unauto(
+			Result result = KatangappApplication.unauto(
 				busStop.getIdl(), busStop.getIdp(), busStop.getIdo());
 
 			assertThat(status(result)).isEqualTo(OK);
