@@ -2,8 +2,9 @@ package business;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import business.geolocation.GeoLocator;
 import business.mocks.MockBusStopsFinder;
+
+import internal.business.geolocation.GeoLocator;
 
 import models.BusStopResult;
 import models.Point;

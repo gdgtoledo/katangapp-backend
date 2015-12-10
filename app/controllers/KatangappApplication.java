@@ -1,9 +1,10 @@
 package controllers;
 
-import business.BusStopsFinder;
 import business.Finder;
-import business.http.UnautoHttpService;
 import business.http.HttpService;
+
+import internal.business.BusStopsFinder;
+import internal.business.http.UnautoHttpService;
 
 import models.QueryResult;
 

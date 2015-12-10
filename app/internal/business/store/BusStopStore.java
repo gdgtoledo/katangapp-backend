@@ -1,4 +1,6 @@
-package business.store;
+package internal.business.store;
+
+import business.store.Store;
 
 import models.BusStop;
 

@@ -1,4 +1,4 @@
-package business.geolocation;
+package internal.business.geolocation;
 
 import static org.fest.assertions.Assertions.assertThat;
 

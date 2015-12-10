@@ -1,11 +1,14 @@
-package business;
+package internal.business;
 
-import business.geolocation.GeoLocator;
-import business.http.UnautoHttpService;
+import business.ClosestPointsAlgorithm;
+import business.Finder;
 import business.http.HttpService;
-import business.parser.HTMLParser;
-import business.store.BusStopStore;
 import business.store.Store;
+
+import internal.business.geolocation.GeoLocator;
+import internal.business.http.UnautoHttpService;
+import internal.business.parser.HTMLParser;
+import internal.business.store.BusStopStore;
 
 import models.BusStop;
 import models.BusStopResult;

@@ -1,7 +1,8 @@
-package business.http;
+package internal.business.http;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import business.http.HttpService;
 import business.mocks.MockHttpService;
 
 import org.junit.Test;

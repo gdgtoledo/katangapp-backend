@@ -2,7 +2,8 @@ package business.mocks;
 
 import business.IOTestUtils;
 import business.http.HttpService;
-import business.http.UnautoHttpService;
+
+import internal.business.http.UnautoHttpService;
 
 import org.mockito.Mockito;
 

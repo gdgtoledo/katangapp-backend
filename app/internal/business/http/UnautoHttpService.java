@@ -1,4 +1,6 @@
-package business.http;
+package internal.business.http;
+
+import business.http.HttpService;
 
 import java.text.MessageFormat;
 

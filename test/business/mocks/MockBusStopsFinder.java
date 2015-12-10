@@ -1,7 +1,9 @@
 package business.mocks;
 
-import business.BusStopsFinder;
 import business.Finder;
+
+import internal.business.BusStopsFinder;
+
 import org.mockito.Mockito;
 
 /**

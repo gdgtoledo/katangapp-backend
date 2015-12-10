@@ -1,4 +1,4 @@
-package business.parser;
+package internal.business.parser;
 
 import static org.fest.assertions.Assertions.assertThat;
 
