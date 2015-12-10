@@ -33,7 +33,9 @@ public class BusStopsFinder implements Finder {
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			getStore().values());
 
-		List<ReferenceablePoint> closestPoints = GeoLocator.closestPoints(
+		ClosestPointsAlgorithm algorithm = new GeoLocator();
+
+		List<ReferenceablePoint> closestPoints = algorithm.closestPoints(
 			currentLocation, dataSet, radius);
 
 		List<BusStopResult> busStopResults = new ArrayList<>();

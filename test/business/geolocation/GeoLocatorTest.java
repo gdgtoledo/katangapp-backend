@@ -42,7 +42,9 @@ public class GeoLocatorTest {
 
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(store.values());
 
-		List<ReferenceablePoint> referenceablePoints = GeoLocator.closestPoints(
+		GeoLocator geoLocator = new GeoLocator();
+
+		List<ReferenceablePoint> referenceablePoints = geoLocator.closestPoints(
 			current, points, radius, maxElements);
 
 		assertThat(referenceablePoints).hasSize(maxElements);

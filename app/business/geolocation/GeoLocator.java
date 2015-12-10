@@ -1,5 +1,7 @@
 package business.geolocation;
 
+import business.ClosestPointsAlgorithm;
+
 import models.ReferenceablePoint;
 import models.PolarSegment;
 
@@ -11,11 +13,11 @@ import java.util.Set;
 /**
  * @author mdelapenya
  */
-public class GeoLocator {
+public class GeoLocator implements ClosestPointsAlgorithm {
 
 	public static final int DEFAULT_MAX_ELEMENTS = 3;
 
-	public static List<ReferenceablePoint> closestPoints(
+	public List<ReferenceablePoint> closestPoints(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters) {
 
@@ -23,7 +25,7 @@ public class GeoLocator {
 			currentLocation, points, radiusMeters, DEFAULT_MAX_ELEMENTS);
 	}
 
-	public static List<ReferenceablePoint> closestPoints(
+	public List<ReferenceablePoint> closestPoints(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters, int maxElements) {
 
