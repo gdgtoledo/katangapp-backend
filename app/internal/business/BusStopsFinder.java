@@ -36,9 +36,7 @@ public class BusStopsFinder implements Finder {
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			getStore().values());
 
-		ClosestPointsAlgorithm algorithm = new GeoLocator();
-
-		List<ReferenceablePoint> closestPoints = algorithm.closestPoints(
+		List<ReferenceablePoint> closestPoints = getAlgorithm().closestPoints(
 			currentLocation, dataSet, radius);
 
 		List<BusStopResult> busStopResults = new ArrayList<>();
@@ -47,12 +45,10 @@ public class BusStopsFinder implements Finder {
 			return new QueryResult(busStopResults);
 		}
 
-		HttpService httpClient = new UnautoHttpService();
-
 		for (ReferenceablePoint closestPoint : closestPoints) {
 			BusStop busStop = (BusStop)closestPoint;
 
-			String responseHtml = httpClient.get(
+			String responseHtml = getHttpService().get(
 				busStop.getIdl(), busStop.getIdp(), busStop.getIdo());
 
 			List<RouteResult> routeResults = HTMLParser.parseResponse(
@@ -67,10 +63,20 @@ public class BusStopsFinder implements Finder {
 		return new QueryResult(busStopResults);
 	}
 
+	public ClosestPointsAlgorithm getAlgorithm() {
+		return algorithm;
+	}
+
 	public Store getStore() {
 		return busStopStore;
 	}
 
+	public HttpService getHttpService() {
+		return httpService;
+	}
+
+	private static ClosestPointsAlgorithm algorithm = new GeoLocator();
 	private static Store busStopStore = BusStopStore.getInstance();
+	private static HttpService httpService = new UnautoHttpService();
 
 }
