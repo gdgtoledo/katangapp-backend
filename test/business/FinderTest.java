@@ -20,7 +20,7 @@ import play.test.WithApplication;
 /**
  * @author mdelapenya
  */
-public class QueryFinderTest extends WithApplication{
+public class FinderTest extends WithApplication {
 
 	@Test
 	public void testFindRoutes() {
