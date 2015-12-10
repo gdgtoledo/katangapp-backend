@@ -3,28 +3,27 @@ package business.mocks;
 import business.IOTestUtils;
 import business.http.HttpService;
 
-import internal.business.http.UnautoHttpService;
-
-import org.mockito.Mockito;
-
 import java.io.IOException;
 
 /**
  * @author mdelapenya
  */
-public class MockHttpService {
+public class MockHttpService implements HttpService {
 
-	public static HttpService mockUnautoHttpService() throws IOException {
-		final HttpService spy = Mockito.spy(new UnautoHttpService());
-
-		String mockResponse = IOTestUtils.readFile("sample-P001.html");
-
-		Mockito.when(
-			spy.get(
-				Mockito.anyString(), Mockito.anyString(), Mockito.anyString())
-		).thenReturn(mockResponse);
-
-		return spy;
+	public MockHttpService(String idp) {
+		this.idp = idp;
 	}
+
+	@Override
+	public String get(String... arg) {
+		try {
+			return IOTestUtils.readFile("sample-" + idp + ".html");
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private String idp;
 
 }

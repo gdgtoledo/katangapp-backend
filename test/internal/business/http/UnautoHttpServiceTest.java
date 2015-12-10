@@ -20,7 +20,7 @@ public class UnautoHttpServiceTest extends WithApplication {
 		String idp = "P001";
 		String ido = "1.00000";
 
-		final HttpService httpService = MockHttpService.mockUnautoHttpService();
+		final HttpService httpService = new MockHttpService(idp);
 
 		String response = httpService.get(idl, idp, ido);
 

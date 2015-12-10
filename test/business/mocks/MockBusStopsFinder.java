@@ -16,6 +16,9 @@ public class MockBusStopsFinder {
 
 		Mockito.when(finder.getStore()).thenReturn(new MockBusStopStore());
 
+		Mockito.when(finder.getHttpService())
+			.thenReturn(new MockHttpService("P001"));
+
 		return finder;
 	}
 
