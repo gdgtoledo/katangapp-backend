@@ -7,7 +7,7 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import business.mocks.MockBusStopStore;
-import business.mocks.MockResultsController;
+import business.mocks.MockController;
 
 import models.BusStop;
 import models.Point;
@@ -33,7 +33,7 @@ public class KatangappApplicationTest extends WithApplication {
 		String longitude = String.valueOf(puertaBisagra.getLongitude());
 		int radius = 1000;
 
-		MockResultsController.mockRequest(false);
+		MockController.mockRequest(false);
 
 		Result result = KatangappApplication.index(latitude, longitude, radius);
 
@@ -49,7 +49,7 @@ public class KatangappApplicationTest extends WithApplication {
 		String longitude = String.valueOf(puertaBisagra.getLongitude());
 		int radius = 1000;
 
-		MockResultsController.mockRequest(true);
+		MockController.mockRequest(true);
 
 		Result result = KatangappApplication.index(latitude, longitude, radius);
 

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author mdelapenya
  */
-public class MockResultsController {
+public class MockController {
 
 	public static void mockRequest(boolean prettyPrint) {
 		Long id = 2L;
