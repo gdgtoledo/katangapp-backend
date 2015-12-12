@@ -2,9 +2,12 @@ package controllers;
 
 import business.Finder;
 import business.http.HttpService;
+import business.store.JsonStore;
 
 import internal.business.BusStopsFinder;
 import internal.business.http.UnautoHttpService;
+import internal.business.store.BusStopsJsonStore;
+import internal.business.store.RoutesJsonStore;
 
 import models.QueryResult;
 
@@ -24,6 +27,10 @@ import play.mvc.Result;
  * @author mdelapenya
  */
 public class KatangappApplication extends Controller {
+
+    public static Result busStops() {
+        return ok(busStops.getJson());
+    }
 
     public static Result index(String lt, String ln, int r) {
         Finder busStopFinder = new BusStopsFinder();
@@ -48,6 +55,10 @@ public class KatangappApplication extends Controller {
         }
 
         return ok(node);
+    }
+
+    public static Result routes() {
+        return ok(routes.getJson());
     }
 
     public static Result unauto(String idl, String idp, String ido) {
@@ -89,5 +100,8 @@ public class KatangappApplication extends Controller {
 
         return objectWriter.writeValueAsString(node);
     }
+
+    private static JsonStore busStops = new BusStopsJsonStore();
+    private static JsonStore routes = new RoutesJsonStore();
 
 }
