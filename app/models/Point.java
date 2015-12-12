@@ -18,8 +18,16 @@ public class Point implements ReferenceablePoint {
 		double latitude1 = this.getLatitude();
 		double longitude1 = this.getLongitude();
 
-		double latitude2 = to.getLatitude();
-		double longitude2 = to.getLongitude();
+		double latitude2;
+		double longitude2;
+
+		try {
+			latitude2 = to.getLatitude();
+			longitude2 = to.getLongitude();
+		}
+		catch (NullPointerException npe) {
+			throw new UnreferenceablePointException(to);
+		}
 
 		double earthRadiusMeters = 6371000;
 
