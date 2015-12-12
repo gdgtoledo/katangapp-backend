@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BusStop implements ReferenceablePoint {
 
 	public BusStop(
-		String routeId, String stopId, String orderId, double latitude,
+		String routeId, String id, String order, double latitude,
 		double longitude, String address) {
 
 		this.address = address;
-		this.idl = routeId;
-		this.ido = orderId;
-		this.idp = stopId;
+		this.routeId = routeId;
+		this.order = order;
+		this.id = id;
 		this.point = new Point(latitude, longitude);
 	}
 
@@ -27,16 +27,16 @@ public class BusStop implements ReferenceablePoint {
 		return address;
 	}
 
-	public String getIdl() {
-		return idl;
+	public String getRouteId() {
+		return routeId;
 	}
 
-	public String getIdo() {
-		return ido;
+	public String getOrder() {
+		return order;
 	}
 
-	public String getIdp() {
-		return idp;
+	public String getId() {
+		return id;
 	}
 
 	@Override
@@ -55,15 +55,15 @@ public class BusStop implements ReferenceablePoint {
 
 	@Override
 	public String toString() {
-		return "idl: " + idl + ", idp: " + idp + ", ido: " + ido + ", " +
-			point + ", address:" + address;
+		return "routeId: " + routeId + ", id: " + id + ", order: " + order +
+			", " + point + ", address:" + address;
 	}
 
-	private String idl;
+	private String routeId;
 
-	private String ido;
+	private String order;
 
-	private String idp;
+	private String id;
 
 	@JsonProperty("direccion")
 	private String address;

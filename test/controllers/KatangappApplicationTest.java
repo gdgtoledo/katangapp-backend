@@ -67,7 +67,7 @@ public class KatangappApplicationTest extends WithApplication {
 			BusStop busStop = stopEntry.getValue();
 
 			Result result = KatangappApplication.unauto(
-				busStop.getIdl(), busStop.getIdp(), busStop.getIdo());
+				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
 			assertThat(status(result)).isEqualTo(OK);
 			assertThat(contentType(result)).isEqualTo("text/plain");

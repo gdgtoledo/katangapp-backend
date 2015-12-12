@@ -49,10 +49,11 @@ public class BusStopsFinder implements Finder {
 			BusStop busStop = (BusStop)closestPoint;
 
 			String responseHtml = getHttpService().get(
-				busStop.getIdl(), busStop.getIdp(), busStop.getIdo());
+				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
 			List<RouteResult> routeResults = HTMLParser.parseResponse(
-				busStop.getIdl(), busStop.getIdp(), new Date(), responseHtml);
+				busStop.getRouteId(), busStop.getId(), new Date(),
+				responseHtml);
 
 			BusStopResult busStopResult = new BusStopResult(
 				busStop, routeResults);
