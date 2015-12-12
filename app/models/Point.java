@@ -1,5 +1,7 @@
 package models;
 
+import business.UnreferenceablePointException;
+
 /**
  * @author mdelapenya
  */
@@ -10,7 +12,9 @@ public class Point implements ReferenceablePoint {
 		this.longitude = longitude;
 	}
 
-	public double distanceTo(ReferenceablePoint to) {
+	public double distanceTo(ReferenceablePoint to)
+		throws UnreferenceablePointException {
+
 		double latitude1 = this.getLatitude();
 		double longitude1 = this.getLongitude();
 

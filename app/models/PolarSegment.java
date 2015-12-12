@@ -1,11 +1,15 @@
 package models;
 
+import business.UnreferenceablePointException;
+
 /**
  * @author mdelapenya
  */
 public class PolarSegment implements Comparable<PolarSegment> {
 
-	public PolarSegment(ReferenceablePoint from, ReferenceablePoint to) {
+	public PolarSegment(ReferenceablePoint from, ReferenceablePoint to)
+		throws UnreferenceablePointException {
+
 		this.from = from;
 		this.to = to;
 		this.distance = from.distanceTo(to);

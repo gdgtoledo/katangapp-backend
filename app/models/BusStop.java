@@ -1,5 +1,7 @@
 package models;
 
+import business.UnreferenceablePointException;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -21,7 +23,9 @@ public class BusStop implements ReferenceablePoint {
 		this.point = new Point(latitude, longitude);
 	}
 
-	public double distanceTo(ReferenceablePoint to) {
+	public double distanceTo(ReferenceablePoint to)
+		throws UnreferenceablePointException {
+
 		return point.distanceTo(to);
 	}
 
