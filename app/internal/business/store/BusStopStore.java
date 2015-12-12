@@ -5,10 +5,12 @@ import business.store.Store;
 
 import models.BusStop;
 import models.Route;
+import models.json.BusStopDeserializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.util.Collection;
 import java.util.List;
@@ -97,6 +99,40 @@ public final class BusStopStore implements Store {
 		store = new ConcurrentHashMap<>();
 
 		populateRoutesAndBusStops();
+		populateBusStopCoordinates();
+	}
+
+	private void populateBusStopCoordinates() {
+		JsonStore busStopsJsonStore = new BusStopsJsonStore();
+
+		final JsonNode busStops = busStopsJsonStore.getJson();
+
+		for (JsonNode busStopsArray : busStops) {
+			ObjectMapper mapper = new ObjectMapper();
+
+			SimpleModule module = new SimpleModule();
+
+			module.addDeserializer(BusStop.class, new BusStopDeserializer());
+
+			mapper.registerModule(module);
+
+			try {
+				BusStop[] busStopModels = mapper.treeToValue(
+					busStopsArray, BusStop[].class);
+
+				for (BusStop busStop : busStopModels) {
+					// update lat long from the bus stop
+
+					BusStop storedBusStop = store.get(busStop.getId());
+
+					storedBusStop.setCoordinates(
+						busStop.getLatitude(), busStop.getLongitude());
+				}
+			}
+			catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void populateRoutesAndBusStops() {
