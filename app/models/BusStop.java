@@ -62,6 +62,16 @@ public class BusStop implements ReferenceablePoint {
 			", " + point + ", address:" + address;
 	}
 
+	public void setCoordinates(double latitude, double longitude) {
+		if (point == null) {
+			point = new Point(latitude, longitude);
+		}
+		else {
+			point.setLatitude(latitude);
+			point.setLongitude(longitude);
+		}
+	}
+
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
 	}
