@@ -1,6 +1,7 @@
 package internal.business.geolocation;
 
 import business.ClosestPointsAlgorithm;
+import business.UnreferenceablePointException;
 
 import models.ReferenceablePoint;
 import models.PolarSegment;
@@ -36,8 +37,14 @@ public class GeoLocator implements ClosestPointsAlgorithm {
 		// each polar segment will internally store the distance between points
 
 		for (ReferenceablePoint point : points) {
-			PolarSegment polarSegment = new PolarSegment(
-				currentLocation, point);
+			PolarSegment polarSegment;
+
+			try {
+				polarSegment = new PolarSegment(currentLocation, point);
+			}
+			catch (UnreferenceablePointException e) {
+				continue;
+			}
 
 			if (polarSegment.getDistance() <= radiusMeters) {
 				polarSegments.add(polarSegment);
