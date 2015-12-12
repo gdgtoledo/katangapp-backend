@@ -1,10 +1,17 @@
 package internal.business.store;
 
+import business.store.JsonStore;
 import business.store.Store;
 
 import models.BusStop;
+import models.Route;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -88,6 +95,38 @@ public final class BusStopStore implements Store {
 
 	private BusStopStore() {
 		store = new ConcurrentHashMap<>();
+
+		populateRoutesAndBusStops();
+	}
+
+	private void populateRoutesAndBusStops() {
+		JsonStore routesJsonStore = new RoutesJsonStore();
+
+		final JsonNode routes = routesJsonStore.getJson();
+
+		for (JsonNode routesArray : routes) {
+			ObjectMapper mapper = new ObjectMapper();
+
+			try {
+				Route[] routeModels = mapper.treeToValue(
+					routesArray, Route[].class);
+
+				for (Route route : routeModels) {
+					final List<BusStop> busStops = route.getBusStops();
+
+					for (BusStop busStop : busStops) {
+						busStop.setRouteId(route.getId());
+
+						// add the bus stop to the Store
+
+						store.put(busStop.getId(), busStop);
+					}
+				}
+			}
+			catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private static Store instance;
