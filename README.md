@@ -48,6 +48,22 @@ following parameters to work:
 
 In example: `http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500`
 
+## Available Stores
+The application offers two endpoints to retrieve the data it uses, in JSON
+format, one for the bus routes, describing each route and its bus stops, and
+the other for the bus stops, describing each bus stop. The endpoints are:
+
+Routes endpoint:
+```
+http://localhost:9000/routes
+``
+
+Bus Stops endpoint:
+```
+http://localhst:9000/busStops
+```
+
+
 ## Backward compatibility
 To verify that the former system' business logic is working as expected, go to
 `http://localhost:9000/unauto`, that represents the endpoint of the former
