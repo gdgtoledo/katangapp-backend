@@ -7,12 +7,15 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import business.mocks.MockBusStopStore;
+import business.mocks.MockBusStopsFinder;
 import business.mocks.MockController;
+import business.mocks.MockHttpService;
 
 import models.BusStop;
 import models.Point;
 import models.TestPointFactory;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
@@ -24,6 +27,16 @@ import java.util.Map;
  * @author mdelapenya
  */
 public class KatangappApplicationTest extends WithApplication {
+
+	@Before
+	public void setUp() {
+		final MockHttpService mockHttpService = new MockHttpService("P001");
+
+		KatangappApplication.setBusStopFinder(
+			MockBusStopsFinder.mockFinder(mockHttpService));
+
+		KatangappApplication.setHttpService(mockHttpService);
+	}
 
 	@Test
 	public void testIndex() {
