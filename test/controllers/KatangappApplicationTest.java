@@ -41,6 +41,14 @@ public class KatangappApplicationTest extends WithApplication {
 	}
 
 	@Test
+	public void testBusStops() {
+		Result result = KatangappApplication.busStops();
+
+		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
 	public void testIndex() {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 
@@ -67,6 +75,14 @@ public class KatangappApplicationTest extends WithApplication {
 		MockController.mockRequest(true);
 
 		Result result = KatangappApplication.index(latitude, longitude, radius);
+
+		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
+	public void testRoutes() {
+		Result result = KatangappApplication.routes();
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
