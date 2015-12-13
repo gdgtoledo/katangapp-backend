@@ -2,7 +2,9 @@ package internal.business.geolocation;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import business.mocks.MockBusStopStore;
+import business.store.Store;
+
+import internal.business.store.BusStopStore;
 
 import models.BusStop;
 import models.ReferenceablePoint;
@@ -15,10 +17,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import play.test.WithApplication;
+
 /**
  * @author mdelapenya
  */
-public class KatangappAlgorithmTest {
+public class KatangappAlgorithmTest extends WithApplication {
 
 	@Test
 	public void testClosest() {
@@ -36,9 +40,9 @@ public class KatangappAlgorithmTest {
 
 		ReferenceablePoint current = TestPointFactory.getPuertaBisagra();
 
-		MockBusStopStore mockBusStopStore = new MockBusStopStore();
+		Store busStopStore = BusStopStore.getInstance();
 
-		Map<String, BusStop> store = mockBusStopStore.getStore();
+		Map<String, BusStop> store = busStopStore.getStore();
 
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(store.values());
 

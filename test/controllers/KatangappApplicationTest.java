@@ -6,10 +6,12 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import business.mocks.MockBusStopStore;
 import business.mocks.MockBusStopsFinder;
 import business.mocks.MockController;
 import business.mocks.MockHttpService;
+import business.store.Store;
+
+import internal.business.store.BusStopStore;
 
 import models.BusStop;
 import models.Point;
@@ -72,11 +74,9 @@ public class KatangappApplicationTest extends WithApplication {
 
 	@Test
 	public void testUnauto() {
-		MockBusStopStore mockBusStopStore = new MockBusStopStore();
+		Store busStopStore = BusStopStore.getInstance();
 
-		for (Map.Entry<String, BusStop> stopEntry :
-				mockBusStopStore.entrySet()) {
-
+		for (Map.Entry<String, BusStop> stopEntry : busStopStore.entrySet()) {
 			BusStop busStop = stopEntry.getValue();
 
 			Result result = KatangappApplication.unauto(
