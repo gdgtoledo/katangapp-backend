@@ -11,13 +11,10 @@ import org.mockito.Mockito;
  */
 public class MockBusStopsFinder {
 
-	public static Finder mockFinder() {
+	public static Finder mockFinder(MockHttpService mockHttpService) {
 		Finder finder = Mockito.spy(new BusStopsFinder());
 
-		Mockito.when(finder.getStore()).thenReturn(new MockBusStopStore());
-
-		Mockito.when(finder.getHttpService())
-			.thenReturn(new MockHttpService("P001"));
+		Mockito.when(finder.getHttpService()).thenReturn(mockHttpService);
 
 		return finder;
 	}
