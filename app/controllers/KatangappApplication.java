@@ -33,8 +33,6 @@ public class KatangappApplication extends Controller {
     }
 
     public static Result index(String lt, String ln, int r) {
-        Finder busStopFinder = new BusStopsFinder();
-
         double dLatitude = Double.parseDouble(lt);
         double dLongitude = Double.parseDouble(ln);
 
@@ -61,9 +59,15 @@ public class KatangappApplication extends Controller {
         return ok(routes.getJson());
     }
 
-    public static Result unauto(String idl, String idp, String ido) {
-        HttpService httpClient = new UnautoHttpService();
+    public static void setBusStopFinder(Finder finder) {
+        busStopFinder = finder;
+    }
 
+    public static void setHttpService(HttpService service) {
+        httpClient = service;
+    }
+
+    public static Result unauto(String idl, String idp, String ido) {
         String response = httpClient.get(idl, idp, ido);
 
         return ok(response);
@@ -102,6 +106,8 @@ public class KatangappApplication extends Controller {
     }
 
     private static JsonStore busStops = new BusStopsJsonStore();
+    private static Finder busStopFinder = new BusStopsFinder();
+    private static HttpService httpClient = new UnautoHttpService();
     private static JsonStore routes = new RoutesJsonStore();
 
 }
