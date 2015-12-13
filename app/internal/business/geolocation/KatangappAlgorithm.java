@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * @author mdelapenya
  */
-public class GeoLocator implements ClosestPointsAlgorithm {
+public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 
 	public static final int DEFAULT_MAX_ELEMENTS = 3;
 

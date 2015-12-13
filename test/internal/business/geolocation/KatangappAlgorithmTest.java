@@ -18,12 +18,12 @@ import java.util.Set;
 /**
  * @author mdelapenya
  */
-public class GeoLocatorTest {
+public class KatangappAlgorithmTest {
 
 	@Test
 	public void testClosest() {
 		testGetMaxElementsReturnedByClosestPoints(
-			GeoLocator.DEFAULT_MAX_ELEMENTS, 2000);
+			KatangappAlgorithm.DEFAULT_MAX_ELEMENTS, 2000);
 	}
 
 	@Test
@@ -42,10 +42,11 @@ public class GeoLocatorTest {
 
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(store.values());
 
-		GeoLocator geoLocator = new GeoLocator();
+		KatangappAlgorithm katangappAlgorithm = new KatangappAlgorithm();
 
-		List<ReferenceablePoint> referenceablePoints = geoLocator.closestPoints(
-			current, points, radius, maxElements);
+		List<ReferenceablePoint> referenceablePoints =
+			katangappAlgorithm.closestPoints(
+				current, points, radius, maxElements);
 
 		assertThat(referenceablePoints).hasSize(maxElements);
 	}

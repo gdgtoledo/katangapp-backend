@@ -5,7 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import business.mocks.MockBusStopsFinder;
 import business.mocks.MockHttpService;
 
-import internal.business.geolocation.GeoLocator;
+import internal.business.geolocation.KatangappAlgorithm;
 
 import models.BusStopResult;
 import models.Point;
@@ -40,7 +40,7 @@ public class FinderTest extends WithApplication {
 
 		List<BusStopResult> results = queryResult.getResults();
 
-		assertThat(results).hasSize(GeoLocator.DEFAULT_MAX_ELEMENTS);
+		assertThat(results).hasSize(KatangappAlgorithm.DEFAULT_MAX_ELEMENTS);
 	}
 
 	@Test

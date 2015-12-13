@@ -5,7 +5,7 @@ import business.Finder;
 import business.http.HttpService;
 import business.store.Store;
 
-import internal.business.geolocation.GeoLocator;
+import internal.business.geolocation.KatangappAlgorithm;
 import internal.business.http.UnautoHttpService;
 import internal.business.parser.HTMLParser;
 import internal.business.store.BusStopStore;
@@ -76,7 +76,7 @@ public class BusStopsFinder implements Finder {
 		return httpService;
 	}
 
-	private static ClosestPointsAlgorithm algorithm = new GeoLocator();
+	private static ClosestPointsAlgorithm algorithm = new KatangappAlgorithm();
 	private static Store busStopStore = BusStopStore.getInstance();
 	private static HttpService httpService = new UnautoHttpService();
 
