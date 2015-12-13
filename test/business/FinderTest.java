@@ -3,6 +3,7 @@ package business;
 import static org.fest.assertions.Assertions.assertThat;
 
 import business.mocks.MockBusStopsFinder;
+import business.mocks.MockHttpService;
 
 import internal.business.geolocation.GeoLocator;
 
@@ -13,6 +14,7 @@ import models.TestPointFactory;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import play.test.WithApplication;
@@ -22,10 +24,14 @@ import play.test.WithApplication;
  */
 public class FinderTest extends WithApplication {
 
+	@Before
+	public void setUp() {
+		busStopFinder = MockBusStopsFinder.mockFinder(
+			new MockHttpService("P001"));
+	}
+
 	@Test
 	public void testFindRoutes() {
-		Finder busStopFinder = MockBusStopsFinder.mockFinder();
-
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 2000;
 
@@ -39,8 +45,6 @@ public class FinderTest extends WithApplication {
 
 	@Test
 	public void testFindRoutesWithoutRadiusShouldNotReturnRoutes() {
-		Finder busStopFinder = MockBusStopsFinder.mockFinder();
-
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 0;
 
@@ -51,5 +55,7 @@ public class FinderTest extends WithApplication {
 
 		assertThat(results).hasSize(0);
 	}
+
+	private Finder busStopFinder;
 
 }
