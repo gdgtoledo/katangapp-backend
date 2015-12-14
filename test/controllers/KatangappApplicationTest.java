@@ -49,7 +49,7 @@ public class KatangappApplicationTest extends WithApplication {
 	}
 
 	@Test
-	public void testIndex() {
+	public void testMain() {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 
 		String latitude = String.valueOf(puertaBisagra.getLatitude());
@@ -58,14 +58,14 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(false);
 
-		Result result = KatangappApplication.index(latitude, longitude, radius);
+		Result result = KatangappApplication.main(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
 	}
 
 	@Test
-	public void testIndexWithPrettyPrint() {
+	public void testMainWithPrettyPrint() {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 
 		String latitude = String.valueOf(puertaBisagra.getLatitude());
@@ -74,7 +74,7 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(true);
 
-		Result result = KatangappApplication.index(latitude, longitude, radius);
+		Result result = KatangappApplication.main(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");

@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /paradas                    controllers.KatangappApplication.index(lt:String, ln:String, r:Integer)
+GET     /paradas                    controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 GET     /store/busStops               controllers.KatangappApplication.busStops()
 GET     /store/routes               controllers.KatangappApplication.routes()
 GET     /unauto                    controllers.KatangappApplication.unauto(idl:String, idp:String, ido:String)

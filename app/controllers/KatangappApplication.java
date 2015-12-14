@@ -32,7 +32,7 @@ public class KatangappApplication extends Controller {
         return ok(busStops.getJson());
     }
 
-    public static Result index(String lt, String ln, int r) {
+    public static Result main(String lt, String ln, int r) {
         double dLatitude = Double.parseDouble(lt);
         double dLongitude = Double.parseDouble(ln);
 
