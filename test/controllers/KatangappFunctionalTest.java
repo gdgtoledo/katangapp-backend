@@ -21,18 +21,32 @@ public class KatangappFunctionalTest {
 
     @Test
     public void testRootPath() {
+        int serverPort = 3333;
+
         running(
-            testServer(3333, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT, new Callback<TestBrowser>() {
-
-                public void invoke(TestBrowser browser) {
-                    browser.goTo("http://localhost:3333");
-
-                    assertThat(browser.pageSource())
-                        .isEqualTo("Don't try to hack the URI!");
-                }
-            }
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new FunctionalTestCallback(serverPort, "Don't try to hack the URI!")
         );
+    }
+
+    private static final class FunctionalTestCallback
+        implements Callback<TestBrowser> {
+
+        public FunctionalTestCallback(int serverPort, String message) {
+            this.serverPort = serverPort;
+            this.message = message;
+        }
+
+        @Override
+        public void invoke(TestBrowser browser) {
+            browser.goTo("http://localhost:" + serverPort);
+
+            assertThat(browser.pageSource()).isEqualTo(message);
+        }
+
+        private int serverPort;
+        private String message;
     }
 
 }
