@@ -18,7 +18,7 @@ import play.test.TestBrowser;
 public class IntegrationTest {
 
     @Test
-    public void test() {
+    public void testRootPath() {
         running(
             testServer(3333, fakeApplication(inMemoryDatabase())),
             HTMLUNIT, new Callback<TestBrowser>() {
