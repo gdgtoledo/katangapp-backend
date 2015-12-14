@@ -1,3 +1,5 @@
+package controllers;
+
 import static org.fest.assertions.Assertions.assertThat;
 
 import static play.test.Helpers.HTMLUNIT;
@@ -15,7 +17,7 @@ import play.test.TestBrowser;
 /**
  * @author mdelapenya
  */
-public class IntegrationTest {
+public class KatangappFunctionalTest {
 
     @Test
     public void testRootPath() {
