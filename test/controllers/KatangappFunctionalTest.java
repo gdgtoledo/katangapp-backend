@@ -20,6 +20,30 @@ import play.test.TestBrowser;
 public class KatangappFunctionalTest {
 
     @Test
+    public void testBusStops() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort, "/store/busStops", "{\"busStops\":[")
+        );
+    }
+
+    @Test
+    public void testNotFoundPath() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyEqualsTestCallback(
+                serverPort, "/notfound", "Don't try to hack the URI!")
+        );
+    }
+
+    @Test
     public void testRootPath() {
         int serverPort = 3333;
 
@@ -28,6 +52,18 @@ public class KatangappFunctionalTest {
             HTMLUNIT,
             new BodyEqualsTestCallback(
                 serverPort, "/", "Don't try to hack the URI!")
+        );
+    }
+
+    @Test
+    public void testRoutes() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort, "/store/routes", "{\"routes\":[")
         );
     }
 
