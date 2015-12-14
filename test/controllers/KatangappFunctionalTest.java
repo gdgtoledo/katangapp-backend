@@ -26,27 +26,49 @@ public class KatangappFunctionalTest {
         running(
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new FunctionalTestCallback(serverPort, "Don't try to hack the URI!")
+            new BodyEqualsTestCallback(
+                serverPort, "/", "Don't try to hack the URI!")
         );
     }
 
-    private static final class FunctionalTestCallback
+    private static class BodyEqualsTestCallback
         implements Callback<TestBrowser> {
 
-        public FunctionalTestCallback(int serverPort, String message) {
-            this.serverPort = serverPort;
+        public BodyEqualsTestCallback(
+            int serverPort, String endPoint, String message) {
+
+            this.endPoint = endPoint;
             this.message = message;
+            this.serverPort = serverPort;
         }
 
         @Override
         public void invoke(TestBrowser browser) {
-            browser.goTo("http://localhost:" + serverPort);
+            browser.goTo("http://localhost:" + serverPort + endPoint);
 
             assertThat(browser.pageSource()).isEqualTo(message);
         }
 
-        private int serverPort;
-        private String message;
+        protected String endPoint;
+        protected String message;
+        protected int serverPort;
+    }
+
+    private static final class BodyContainsTestCallback
+        extends BodyEqualsTestCallback {
+
+        public BodyContainsTestCallback(
+            int serverPort, String endPoint, String message) {
+
+            super(serverPort, endPoint, message);
+        }
+
+        @Override
+        public void invoke(TestBrowser browser) {
+            browser.goTo("http://localhost:" + serverPort + endPoint);
+
+            assertThat(browser.pageSource()).contains(message);
+        }
     }
 
 }
