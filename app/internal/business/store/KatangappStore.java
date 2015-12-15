@@ -21,11 +21,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author mdelapenya
  */
-public final class BusStopStore implements Store {
+public final class KatangappStore implements Store {
 
 	public static Store getInstance() {
 		if (instance == null) {
-			instance = new BusStopStore();
+			instance = new KatangappStore();
 		}
 
 		return instance;
@@ -95,7 +95,7 @@ public final class BusStopStore implements Store {
 		return busStopStore;
 	}
 
-	private BusStopStore() {
+	private KatangappStore() {
 		busStopStore = new ConcurrentHashMap<>();
 
 		populateRoutesAndBusStops();

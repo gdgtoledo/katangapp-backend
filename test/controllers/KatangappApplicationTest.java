@@ -11,7 +11,7 @@ import business.mocks.MockController;
 import business.mocks.MockHttpService;
 import business.store.Store;
 
-import internal.business.store.BusStopStore;
+import internal.business.store.KatangappStore;
 
 import models.BusStop;
 import models.Point;
@@ -90,7 +90,7 @@ public class KatangappApplicationTest extends WithApplication {
 
 	@Test
 	public void testUnauto() {
-		Store busStopStore = BusStopStore.getInstance();
+		Store busStopStore = KatangappStore.getInstance();
 
 		for (Map.Entry<String, BusStop> stopEntry : busStopStore.entrySet()) {
 			BusStop busStop = stopEntry.getValue();

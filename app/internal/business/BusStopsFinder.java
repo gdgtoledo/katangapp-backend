@@ -8,7 +8,7 @@ import business.store.Store;
 import internal.business.geolocation.KatangappAlgorithm;
 import internal.business.http.UnautoHttpService;
 import internal.business.parser.HTMLParser;
-import internal.business.store.BusStopStore;
+import internal.business.store.KatangappStore;
 
 import models.BusStop;
 import models.BusStopResult;
@@ -69,7 +69,7 @@ public class BusStopsFinder implements Finder {
 	}
 
 	public Store getStore() {
-		return busStopStore;
+		return katangappStore;
 	}
 
 	public HttpService getHttpService() {
@@ -77,7 +77,7 @@ public class BusStopsFinder implements Finder {
 	}
 
 	private static ClosestPointsAlgorithm algorithm = new KatangappAlgorithm();
-	private static Store busStopStore = BusStopStore.getInstance();
 	private static HttpService httpService = new UnautoHttpService();
+	private static Store katangappStore = KatangappStore.getInstance();
 
 }

@@ -4,7 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import business.store.Store;
 
-import internal.business.store.BusStopStore;
+import internal.business.store.KatangappStore;
 
 import models.BusStop;
 import models.ReferenceablePoint;
@@ -40,7 +40,7 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		ReferenceablePoint current = TestPointFactory.getPuertaBisagra();
 
-		Store busStopStore = BusStopStore.getInstance();
+		Store busStopStore = KatangappStore.getInstance();
 
 		Map<String, BusStop> store = busStopStore.getStore();
 
