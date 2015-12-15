@@ -40,9 +40,9 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		ReferenceablePoint current = TestPointFactory.getPuertaBisagra();
 
-		Store busStopStore = KatangappStore.getInstance();
+		Store katangappStore = KatangappStore.getInstance();
 
-		Map<String, BusStop> store = busStopStore.getStore();
+		Map<String, BusStop> store = katangappStore.getStore();
 
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(store.values());
 
