@@ -92,11 +92,11 @@ public final class BusStopStore implements Store {
 	}
 
 	public Map<String, BusStop> getStore() {
-		return store;
+		return busStopStore;
 	}
 
 	private BusStopStore() {
-		store = new ConcurrentHashMap<>();
+		busStopStore = new ConcurrentHashMap<>();
 
 		populateRoutesAndBusStops();
 		populateBusStopCoordinates();
@@ -123,7 +123,7 @@ public final class BusStopStore implements Store {
 				for (BusStop busStop : busStopModels) {
 					// update lat long from the bus stop
 
-					BusStop storedBusStop = store.get(busStop.getId());
+					BusStop storedBusStop = busStopStore.get(busStop.getId());
 
 					storedBusStop.setCoordinates(
 						busStop.getLatitude(), busStop.getLongitude());
@@ -155,7 +155,7 @@ public final class BusStopStore implements Store {
 
 						// add the bus stop to the Store
 
-						store.put(busStop.getId(), busStop);
+						busStopStore.put(busStop.getId(), busStop);
 					}
 				}
 			}
@@ -166,6 +166,6 @@ public final class BusStopStore implements Store {
 	}
 
 	private static Store instance;
-	private static Map<String, BusStop> store;
+	private static Map<String, BusStop> busStopStore;
 
 }
