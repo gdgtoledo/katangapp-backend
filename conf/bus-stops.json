@@ -1,4 +1,4 @@
-{ "busStops": [ 
+{ "busStops": [
 	{ "id": "294", "address": "Avda de Portugal - Ahorramas, Toledo, España", "lat": "39.873673", "long": "-4.038033" },
 	{ "id": "296", "address": ", Toledo, España", "lat": "39.876208", "long": "-4.033600" },
 	{ "id": "315", "address": "Via Tarpeya Rotonda, Toledo, España", "lat": "39.860675", "long": "-3.969087" },
@@ -47,7 +47,7 @@
 	{ "id": "P211", "address": "Rda. de Granadal (Est. Autobuses), Toledo, España", "lat": "39.863763", "long": "-4.020841" },
 	{ "id": "P217", "address": "Carrera (Fte muralla), Toledo, España", "lat": "39.863573", "long": "-4.022275" },
 	{ "id": "P230", "address": "Guadarrama (Banesto), Toledo, España", "lat": "39.863374", "long": "-3.943278" },
-	{ "id": "P231", "address": ", Toledo, España", "lat": "39.866641", "long": "-3.945042" }
+	{ "id": "P231", "address": ", Toledo, España", "lat": "39.866641", "long": "-3.945042" },
 	{ "id": "P255", "address": "Pza del Conde (Palacio Fuensalida), Toledo, España", "lat": "39.856182", "long": "-4.028232" },
 	{ "id": "P256", "address": "Plaza Barrio Nuevo, Toledo, España", "lat": "39.856448", "long": "-4.030335" },
 	{ "id": "P257", "address": ", Toledo, España", "lat": "39.857588", "long": "-4.031025" },
@@ -58,5 +58,5 @@
 	{ "id": "P343a", "address": "SESCAM, Toledo, España", "lat": "39.860301", "long": "-3.963263" },
 	{ "id": "P359", "address": "Convento, Toledo, España", "lat": "39.881565", "long": "-4.027802" },
 	{ "id": "P360", "address": "Plaza  Holanda, Toledo, España", "lat": "39.879323", "long": "-4.030383" },
-	{ "id": "P390", "address": "Fresnedoso (Kiosko Pepe), Toledo, España", "lat": "39.862283", "long": "-3.947177" },
+	{ "id": "P390", "address": "Fresnedoso (Kiosko Pepe), Toledo, España", "lat": "39.862283", "long": "-3.947177" }
 ]}
