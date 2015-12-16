@@ -23,10 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class KatangappStore implements Store {
 
 	public static Store getInstance() {
-		if (instance == null) {
-			instance = new KatangappStore();
-		}
-
 		return instance;
 	}
 
@@ -45,9 +41,6 @@ public final class KatangappStore implements Store {
 	}
 
 	private KatangappStore() {
-		busStopStore = new ConcurrentHashMap<>();
-		routeStore = new ConcurrentHashMap<>();
-
 		populateBusStops();
 		populateRoutes();
 	}
@@ -126,8 +119,9 @@ public final class KatangappStore implements Store {
 		route.setBusStops(purgedBusStops);
 	}
 
-	private static Store instance;
-	private static Map<String, BusStop> busStopStore;
-	private static Map<String, Route> routeStore;
+	private static Store instance = new KatangappStore();
+	private static Map<String, BusStop> busStopStore =
+		new ConcurrentHashMap<>();
+	private static Map<String, Route> routeStore = new ConcurrentHashMap<>();
 
 }
