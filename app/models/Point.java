@@ -42,6 +42,22 @@ public class Point implements ReferenceablePoint {
 	}
 
 	@Override
+	public boolean equals(final Object that) {
+		if (this == that) {
+			return true;
+		}
+
+		if (!(that instanceof Point)) {
+			return false;
+		}
+
+		Point thatPoint = (Point)that;
+
+		return ((this.latitude == thatPoint.latitude) &&
+			(this.longitude == thatPoint.longitude));
+	}
+
+	@Override
 	public double getLatitude() {
 		return latitude;
 	}

@@ -27,6 +27,22 @@ public class PolarSegment implements Comparable<PolarSegment> {
 		return 0;
 	}
 
+	@Override
+	public boolean equals(final Object that) {
+		if (this == that) {
+			return true;
+		}
+
+		if (!(that instanceof PolarSegment)) {
+			return false;
+		}
+
+		PolarSegment polarThat = (PolarSegment)that;
+
+		return((distance == polarThat.distance) &&
+			(from.equals(polarThat.from)) && (to.equals(polarThat.to)));
+	}
+
 	public double getDistance() {
 		return distance;
 	}

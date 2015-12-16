@@ -10,6 +10,14 @@ public class RouteResult implements Comparable<RouteResult> {
 		this.time = time;
 	}
 
+	/**
+	 * Note: this class has a natural ordering that is inconsistent with equals.
+	 *
+	 * If the time is equals, points will be ordered by Route ID (idl field)
+	 *
+	 * @param that
+	 * @return
+	 */
 	@Override
 	public int compareTo(RouteResult that) {
 		if (this.time < that.getTime()) {
@@ -21,6 +29,27 @@ public class RouteResult implements Comparable<RouteResult> {
 		else {
 			return idl.compareTo(that.getIdl());
 		}
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+
+		if (!(that instanceof RouteResult)) {
+			return false;
+		}
+
+		RouteResult routeResultThat = (RouteResult)that;
+
+		if ((this.time == routeResultThat.time) &&
+			(this.idl.equals(routeResultThat.idl))) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public String getIdl() {
