@@ -15,3 +15,5 @@ libraryDependencies ++= Seq(
 )
 
 findbugsSettings
+
+findbugsExcludeFilters := Some(scala.xml.XML.loadFile(baseDirectory.value / "findbugs-exclude-filters.xml"))
