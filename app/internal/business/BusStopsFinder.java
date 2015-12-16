@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,8 +36,10 @@ public class BusStopsFinder implements Finder {
 
 		ReferenceablePoint currentLocation = new Point(latitude, longitude);
 
+		Map<String, BusStop> busStopMap = getStore().getStore();
+
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
-			getStore().values());
+			busStopMap.values());
 
 		List<PolarSegment> polarSegments = getAlgorithm().closestSegments(
 			currentLocation, dataSet, radius);

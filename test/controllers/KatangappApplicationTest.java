@@ -125,7 +125,9 @@ public class KatangappApplicationTest extends WithApplication {
 	public void testUnauto() {
 		Store busStopStore = KatangappStore.getInstance();
 
-		for (Map.Entry<String, BusStop> stopEntry : busStopStore.entrySet()) {
+		Map<String, BusStop> busStopMap = busStopStore.getStore();
+
+		for (Map.Entry<String, BusStop> stopEntry : busStopMap.entrySet()) {
 			BusStop busStop = stopEntry.getValue();
 
 			Result result = KatangappApplication.unauto(

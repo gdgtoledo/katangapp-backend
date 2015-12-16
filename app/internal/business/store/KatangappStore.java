@@ -13,10 +13,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -33,73 +31,13 @@ public final class KatangappStore implements Store {
 	}
 
 	@Override
-	public int size() {
-		return getInstance().getStore().size();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return getInstance().getStore().isEmpty();
-	}
-
-	@Override
-	public boolean containsKey(Object key) {
-		return getInstance().getStore().containsKey(key);
-	}
-
-	@Override
-	public boolean containsValue(Object value) {
-		return getInstance().getStore().containsValue(value);
-	}
-
-	@Override
-	public BusStop get(Object key) {
-		return getInstance().getStore().get(key);
-	}
-
-	@Override
 	public BusStop getBusStop(String key) {
-		return get(key);
+		return getInstance().getStore().get(key);
 	}
 
 	@Override
 	public Route getRoute(String key) {
 		return routeStore.get(key);
-	}
-
-	@Override
-	public BusStop put(String key, BusStop value) {
-		return getInstance().getStore().put(key, value);
-	}
-
-	@Override
-	public BusStop remove(Object key) {
-		return getInstance().getStore().remove(key);
-	}
-
-	@Override
-	public void putAll(Map<? extends String, ? extends BusStop> m) {
-		getInstance().getStore().putAll(m);
-	}
-
-	@Override
-	public void clear() {
-		getInstance().getStore().clear();
-	}
-
-	@Override
-	public Set<String> keySet() {
-		return getInstance().getStore().keySet();
-	}
-
-	@Override
-	public Collection<BusStop> values() {
-		return getInstance().getStore().values();
-	}
-
-	@Override
-	public Set<Entry<String, BusStop>> entrySet() {
-		return getInstance().getStore().entrySet();
 	}
 
 	public Map<String, BusStop> getStore() {

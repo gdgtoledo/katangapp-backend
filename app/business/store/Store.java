@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author mdelapenya
  */
-public interface Store extends Map<String, BusStop> {
+public interface Store {
 
 	BusStop getBusStop(String id);
 
