@@ -12,11 +12,13 @@ import internal.business.store.RoutesJsonStore;
 
 import models.BusStop;
 import models.QueryResult;
+import models.Route;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.util.Map;
 
@@ -39,7 +41,7 @@ public class KatangappApplication extends Controller {
             return ok(Json.toJson(busStop));
         }
 
-        return notFound();
+        return notFound(NOT_FOUND_MESSAGE);
     }
 
     public static Result busStops() {
@@ -72,7 +74,13 @@ public class KatangappApplication extends Controller {
     public static Result route(String id) {
         Store store = busStopFinder.getStore();
 
-        return ok(Json.toJson(store.getRoute(id)));
+        Route route = store.getRoute(id);
+
+        if (route != null) {
+            return ok(Json.toJson(route));
+        }
+
+        return notFound(NOT_FOUND_MESSAGE);
     }
 
     public static Result routes() {
@@ -124,6 +132,9 @@ public class KatangappApplication extends Controller {
 
         return objectWriter.writeValueAsString(node);
     }
+
+    private static final JsonNode NOT_FOUND_MESSAGE =
+        Json.newObject().set("message", new TextNode("Not Found"));
 
     private static JsonStore busStops = new BusStopsJsonStore();
     private static Finder busStopFinder = new BusStopsFinder();

@@ -41,7 +41,7 @@ public class KatangappFunctionalTest {
             HTMLUNIT,
             new BodyContainsTestCallback(
                 serverPort,
-                "/store/busStops/notfound", "\"message\":\"Not Found\":")
+                "/store/busStops/notfound", "\"message\":\"Not Found\"")
         );
     }
 
@@ -102,7 +102,7 @@ public class KatangappFunctionalTest {
             HTMLUNIT,
             new BodyContainsTestCallback(
                 serverPort,
-                "/store/routes/notfound", "\"message\":\"Not Found\":")
+                "/store/routes/notfound", "\"message\":\"Not Found\"")
         );
     }
 
