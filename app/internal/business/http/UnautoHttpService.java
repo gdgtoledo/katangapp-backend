@@ -2,6 +2,7 @@ package internal.business.http;
 
 import business.http.HttpService;
 
+import java.nio.charset.Charset;
 import java.text.MessageFormat;
 
 import play.libs.ws.WS;
@@ -40,7 +41,7 @@ public class UnautoHttpService implements HttpService {
 				public String apply(WSResponse response) {
 					byte[] bytes = response.asByteArray();
 
-					return new String(bytes);
+					return new String(bytes, Charset.forName("UTF-8"));
 				}
 
 			}
