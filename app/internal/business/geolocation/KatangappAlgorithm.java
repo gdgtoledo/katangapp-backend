@@ -18,19 +18,17 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 
 	public static final int DEFAULT_MAX_ELEMENTS = 3;
 
-	public List<ReferenceablePoint> closestPoints(
+	public List<PolarSegment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters) {
 
-		return closestPoints(
+		return closestSegments(
 			currentLocation, points, radiusMeters, DEFAULT_MAX_ELEMENTS);
 	}
 
-	public List<ReferenceablePoint> closestPoints(
+	public List<PolarSegment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters, int maxElements) {
-
-		List<ReferenceablePoint> closestPoints = new ArrayList<>();
 
 		List<PolarSegment> polarSegments = new ArrayList<>();
 
@@ -54,20 +52,20 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 		// fail fast, avoiding sorting
 
 		if (polarSegments.isEmpty()) {
-			return closestPoints;
+			return polarSegments;
 		}
 
 		// sort polar segments using the distance field
 
 		Collections.sort(polarSegments);
 
-		for (int i = 0; i < maxElements; i++) {
-			PolarSegment polarSegment = polarSegments.get(i);
+		List<PolarSegment> result = new ArrayList<>();
 
-			closestPoints.add(polarSegment.getTo());
+		for (int i = 0; i < maxElements; i++) {
+			result.add(polarSegments.get(i));
 		}
 
-		return closestPoints;
+		return result;
 	}
 
 }

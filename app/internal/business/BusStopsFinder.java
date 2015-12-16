@@ -13,6 +13,7 @@ import internal.business.store.KatangappStore;
 import models.BusStop;
 import models.BusStopResult;
 import models.Point;
+import models.PolarSegment;
 import models.QueryResult;
 import models.ReferenceablePoint;
 import models.RouteResult;
@@ -37,17 +38,19 @@ public class BusStopsFinder implements Finder {
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			getStore().values());
 
-		List<ReferenceablePoint> closestPoints = getAlgorithm().closestPoints(
+		List<PolarSegment> polarSegments = getAlgorithm().closestSegments(
 			currentLocation, dataSet, radius);
 
 		List<BusStopResult> busStopResults = new ArrayList<>();
 
-		if (closestPoints.isEmpty()) {
+		if (polarSegments.isEmpty()) {
 			return new QueryResult(busStopResults);
 		}
 
-		for (ReferenceablePoint closestPoint : closestPoints) {
-			BusStop busStop = (BusStop)closestPoint;
+		for (PolarSegment polarSegment : polarSegments) {
+			ReferenceablePoint to = polarSegment.getTo();
+
+			BusStop busStop = (BusStop)to;
 
 			String responseHtml = getHttpService().get(
 				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
@@ -59,7 +62,7 @@ public class BusStopsFinder implements Finder {
 			Collections.sort(routeResults);
 
 			BusStopResult busStopResult = new BusStopResult(
-				busStop, routeResults);
+				polarSegment.getDistance(), busStop, routeResults);
 
 			busStopResults.add(busStopResult);
 		}

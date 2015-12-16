@@ -9,9 +9,11 @@ import java.util.List;
  */
 public class BusStopResult {
 
-	public BusStopResult(BusStop busStop, List<RouteResult> results) {
-		this.busStop = busStop;
+	public BusStopResult(
+		double distance, BusStop busStop, List<RouteResult> results) {
 
+		this.busStop = busStop;
+		this.distance = distance;
 		this.results = results;
 	}
 
@@ -19,9 +21,16 @@ public class BusStopResult {
 		return busStop;
 	}
 
+	public double getDistance() {
+		return distance;
+	}
+
 	public List<RouteResult> getResults() {
 		return results;
 	}
+
+	@JsonProperty("distancia")
+	private double distance;
 
 	@JsonProperty("parada")
 	private BusStop busStop;

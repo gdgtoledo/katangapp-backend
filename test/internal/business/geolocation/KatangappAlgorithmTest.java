@@ -7,6 +7,7 @@ import business.store.Store;
 import internal.business.store.KatangappStore;
 
 import models.BusStop;
+import models.PolarSegment;
 import models.ReferenceablePoint;
 import models.TestPointFactory;
 
@@ -26,16 +27,16 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 	@Test
 	public void testClosest() {
-		testGetMaxElementsReturnedByClosestPoints(
+		testGetMaxElementsReturnedByClosestSegments(
 			KatangappAlgorithm.DEFAULT_MAX_ELEMENTS, 2000);
 	}
 
 	@Test
 	public void testClosestShouldNotReturnDefaultMaxElements() {
-		testGetMaxElementsReturnedByClosestPoints(4, 2000);
+		testGetMaxElementsReturnedByClosestSegments(4, 2000);
 	}
 
-	private void testGetMaxElementsReturnedByClosestPoints(
+	private void testGetMaxElementsReturnedByClosestSegments(
 		int maxElements, int radius) {
 
 		ReferenceablePoint current = TestPointFactory.getPuertaBisagra();
@@ -48,8 +49,8 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		KatangappAlgorithm katangappAlgorithm = new KatangappAlgorithm();
 
-		List<ReferenceablePoint> referenceablePoints =
-			katangappAlgorithm.closestPoints(
+		List<PolarSegment> referenceablePoints =
+			katangappAlgorithm.closestSegments(
 				current, points, radius, maxElements);
 
 		assertThat(referenceablePoints).hasSize(maxElements);
