@@ -15,19 +15,15 @@ public class Point implements ReferenceablePoint {
 	public double distanceTo(ReferenceablePoint to)
 		throws UnreferenceablePointException {
 
+		if (to == null) {
+			throw new UnreferenceablePointException(to);
+		}
+
 		double latitude1 = this.getLatitude();
 		double longitude1 = this.getLongitude();
 
-		double latitude2;
-		double longitude2;
-
-		try {
-			latitude2 = to.getLatitude();
-			longitude2 = to.getLongitude();
-		}
-		catch (NullPointerException npe) {
-			throw new UnreferenceablePointException(to);
-		}
+		double latitude2 = to.getLatitude();
+		double longitude2 = to.getLongitude();
 
 		double earthRadiusMeters = 6371000;
 
