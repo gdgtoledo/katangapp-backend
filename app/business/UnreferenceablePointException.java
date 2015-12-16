@@ -1,14 +1,11 @@
 package business;
 
-import models.ReferenceablePoint;
-
 /**
  * @author mdelapenya
  */
-public class UnreferenceablePointException extends Exception{
+public class UnreferenceablePointException extends Exception {
 
-	public UnreferenceablePointException(ReferenceablePoint point) {
-		this("Cannot make a reference to the point " + point);
+	public UnreferenceablePointException() {
 	}
 
 	public UnreferenceablePointException(String message) {

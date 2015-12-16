@@ -16,7 +16,7 @@ public class Point implements ReferenceablePoint {
 		throws UnreferenceablePointException {
 
 		if (to == null) {
-			throw new UnreferenceablePointException(to);
+			throw new UnreferenceablePointException();
 		}
 
 		double latitude1 = this.getLatitude();
