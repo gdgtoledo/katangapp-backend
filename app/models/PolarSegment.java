@@ -56,6 +56,27 @@ public class PolarSegment implements Comparable<PolarSegment> {
 	}
 
 	@Override
+	public int hashCode() {
+		int hashCode = 31;
+
+		long l = Double.doubleToLongBits(distance);
+
+		int c = (int) (l ^ (l >>> 32));
+
+		hashCode = 37 * hashCode + c;
+
+		c = from.hashCode();
+
+		hashCode = 37 * hashCode + c;
+
+		c = to.hashCode();
+
+		hashCode = 37 * hashCode + c;
+
+		return hashCode;
+	}
+
+	@Override
 	public String toString() {
 		return "from: [" + from + "], to: [" + to + "], distance: " + distance;
 	}

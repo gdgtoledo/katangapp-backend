@@ -61,6 +61,23 @@ public class RouteResult implements Comparable<RouteResult> {
 	}
 
 	@Override
+	public int hashCode() {
+		int hashCode = 31;
+
+		long l = Double.doubleToLongBits(time);
+
+		int c = (int) (l ^ (l >>> 32));
+
+		hashCode = 37 * hashCode + c;
+
+		c = idl.hashCode();
+
+		hashCode = 37 * hashCode + c;
+
+		return hashCode;
+	}
+
+	@Override
 	public String toString() {
 		return "idl: " + idl + ", time: " + time;
 	}

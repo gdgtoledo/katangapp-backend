@@ -67,6 +67,25 @@ public class Point implements ReferenceablePoint {
 		return longitude;
 	}
 
+	@Override
+	public int hashCode() {
+		int hashCode = 31;
+
+		long l = Double.doubleToLongBits(latitude);
+
+		int c = (int) (l ^ (l >>> 32));
+
+		hashCode = 37 * hashCode + c;
+
+		l = Double.doubleToLongBits(longitude);
+
+		c = (int) (l ^ (l >>> 32));
+
+		hashCode = 37 * hashCode + c;
+
+		return hashCode;
+	}
+
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
