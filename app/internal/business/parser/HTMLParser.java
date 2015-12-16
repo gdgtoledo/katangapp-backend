@@ -95,6 +95,14 @@ public class HTMLParser {
 
 		int minutesLeft = minutesLeft(queryDate, to);
 
+		if (minutesLeft < 0) {
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+			to = calendar.getTime();
+
+			minutesLeft = minutesLeft(queryDate, to);
+		}
+
 		return new RouteResult(routeId, minutesLeft);
 	}
 
