@@ -119,9 +119,10 @@ public final class KatangappStore implements Store {
 		route.setBusStops(purgedBusStops);
 	}
 
-	private static Store instance = new KatangappStore();
 	private static Map<String, BusStop> busStopStore =
 		new ConcurrentHashMap<>();
 	private static Map<String, Route> routeStore = new ConcurrentHashMap<>();
+
+	private static Store instance = new KatangappStore();
 
 }
