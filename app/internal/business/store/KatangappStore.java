@@ -58,6 +58,16 @@ public final class KatangappStore implements Store {
 	}
 
 	@Override
+	public BusStop getBusStop(String key) {
+		return get(key);
+	}
+
+	@Override
+	public Route getRoute(String key) {
+		return routeStore.get(key);
+	}
+
+	@Override
 	public BusStop put(String key, BusStop value) {
 		return getInstance().getStore().put(key, value);
 	}
