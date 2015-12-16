@@ -25,8 +25,6 @@ public class Point implements ReferenceablePoint {
 		double latitude2 = to.getLatitude();
 		double longitude2 = to.getLongitude();
 
-		double earthRadiusMeters = 6371000;
-
 		double latitudeRadians = Math.toRadians(latitude2 - latitude1);
 
 		double longitudeRadians = Math.toRadians(longitude2 - longitude1);
@@ -40,7 +38,7 @@ public class Point implements ReferenceablePoint {
 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-		return (earthRadiusMeters * c);
+		return (Constants.EARTH_RADIUS_METERS * c);
 	}
 
 	@Override
