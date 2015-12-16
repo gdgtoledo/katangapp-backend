@@ -18,8 +18,9 @@ public class RouteResult implements Comparable<RouteResult> {
 		else if (this.time > that.time) {
 			return 1;
 		}
-
-		return 0;
+		else {
+			return idl.compareTo(that.getIdl());
+		}
 	}
 
 	public String getIdl() {
