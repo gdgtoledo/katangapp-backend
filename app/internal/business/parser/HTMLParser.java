@@ -25,10 +25,6 @@ public class HTMLParser {
 
 		List<RouteResult> results = new ArrayList<>();
 
-		Calendar calendar = Calendar.getInstance();
-
-		calendar.setTime(queryDate);
-
 		Document doc = Jsoup.parse(html);
 
 		Element busStopTitle = doc.getElementById("titparada");
@@ -40,7 +36,7 @@ public class HTMLParser {
 		String arrivalTime = matcher.group(1);
 
 		RouteResult mainRouteResult = parseRouteResult(
-			calendar, routeId, arrivalTime);
+			queryDate, routeId, arrivalTime);
 
 		results.add(mainRouteResult);
 
@@ -58,7 +54,7 @@ public class HTMLParser {
 				String connectionArrivalTime = matcher.group(2);
 
 				RouteResult connectionRouteResult = parseRouteResult(
-					calendar, connectionRouteId, connectionArrivalTime);
+					queryDate, connectionRouteId, connectionArrivalTime);
 
 				results.add(connectionRouteResult);
 			}
@@ -78,7 +74,7 @@ public class HTMLParser {
 	}
 
 	private static RouteResult parseRouteResult(
-		Calendar calendar, String routeId, String arrivalTime) {
+		Date queryDate, String routeId, String arrivalTime) {
 
 		int colonIndexOf = arrivalTime.indexOf(":");
 
@@ -92,10 +88,26 @@ public class HTMLParser {
 
 		int connectionMinutes = Integer.parseInt(strConnectionMinutes);
 
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(queryDate);
+
 		calendar.set(Calendar.HOUR_OF_DAY, connectionHour);
 		calendar.set(Calendar.MINUTE, connectionMinutes);
 
-		return new RouteResult(routeId, calendar.getTimeInMillis());
+		Date to = calendar.getTime();
+
+		int minutesLeft = minutesLeft(queryDate, to);
+
+		return new RouteResult(routeId, minutesLeft);
+	}
+
+	private static int minutesLeft(Date from, Date to) {
+		long diff = to.getTime() - from.getTime();
+
+		long minutesLeft = diff / (1000 * 60);
+
+		return (int) minutesLeft;
 	}
 
 	private static final String REGEXP_HOUR =
