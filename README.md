@@ -56,11 +56,13 @@ the other for the bus stops, describing each bus stop. The endpoints are:
 Routes endpoint:
 ```
 http://localhost:9000/routes
+http://localhost:9000/routes/:routeId
 ```
 
 Bus Stops endpoint:
 ```
 http://localhost:9000/busStops
+http://localhost:9000/busStops/:busStopId
 ```
 
 ## Backward compatibility
