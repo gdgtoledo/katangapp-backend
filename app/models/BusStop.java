@@ -75,6 +75,10 @@ public class BusStop implements ReferenceablePoint {
 		}
 	}
 
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
 	}

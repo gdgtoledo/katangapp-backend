@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -97,12 +98,13 @@ public final class KatangappStore implements Store {
 
 	private KatangappStore() {
 		busStopStore = new ConcurrentHashMap<>();
+		routeStore = new ConcurrentHashMap<>();
 
-		populateRoutesAndBusStops();
-		populateBusStopCoordinates();
+		populateBusStops();
+		populateRoutes();
 	}
 
-	private void populateBusStopCoordinates() {
+	private void populateBusStops() {
 		JsonStore busStopsJsonStore = new BusStopsJsonStore();
 
 		final JsonNode busStops = busStopsJsonStore.getJson();
@@ -121,12 +123,7 @@ public final class KatangappStore implements Store {
 					busStopsArray, BusStop[].class);
 
 				for (BusStop busStop : busStopModels) {
-					// update lat long from the bus stop
-
-					BusStop storedBusStop = busStopStore.get(busStop.getId());
-
-					storedBusStop.setCoordinates(
-						busStop.getLatitude(), busStop.getLongitude());
+					busStopStore.put(busStop.getId(), busStop);
 				}
 			}
 			catch (JsonProcessingException e) {
@@ -135,7 +132,7 @@ public final class KatangappStore implements Store {
 		}
 	}
 
-	private void populateRoutesAndBusStops() {
+	private void populateRoutes() {
 		JsonStore routesJsonStore = new RoutesJsonStore();
 
 		final JsonNode routes = routesJsonStore.getJson();
@@ -148,15 +145,9 @@ public final class KatangappStore implements Store {
 					routesArray, Route[].class);
 
 				for (Route route : routeModels) {
-					final List<BusStop> busStops = route.getBusStops();
+					purgeBusStopsWithoutCoordinates(route);
 
-					for (BusStop busStop : busStops) {
-						busStop.setRouteId(route.getId());
-
-						// add the bus stop to the Store
-
-						busStopStore.put(busStop.getId(), busStop);
-					}
+					routeStore.put(route.getId(), route);
 				}
 			}
 			catch (JsonProcessingException e) {
@@ -165,7 +156,30 @@ public final class KatangappStore implements Store {
 		}
 	}
 
+	private void purgeBusStopsWithoutCoordinates(Route route) {
+		List<BusStop> busStops = route.getBusStops();
+
+		List<BusStop> purgedBusStops = new ArrayList<>();
+
+		for (BusStop busStop : busStops) {
+			BusStop storedBusStop = busStopStore.get(
+				busStop.getId());
+
+			if (storedBusStop == null) {
+				continue;
+			}
+
+			storedBusStop.setRouteId(route.getId());
+			storedBusStop.setOrder(busStop.getOrder());
+
+			purgedBusStops.add(storedBusStop);
+		}
+
+		route.setBusStops(purgedBusStops);
+	}
+
 	private static Store instance;
 	private static Map<String, BusStop> busStopStore;
+	private static Map<String, Route> routeStore;
 
 }
