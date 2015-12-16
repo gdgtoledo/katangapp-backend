@@ -13,3 +13,5 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.jsoup" % "jsoup" % "1.8.3"
 )
+
+findbugsSettings
