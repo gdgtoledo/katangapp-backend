@@ -18,6 +18,7 @@ import models.ReferenceablePoint;
 import models.RouteResult;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -54,6 +55,8 @@ public class BusStopsFinder implements Finder {
 			List<RouteResult> routeResults = HTMLParser.parseResponse(
 				busStop.getRouteId(), busStop.getId(), new Date(),
 				responseHtml);
+
+			Collections.sort(routeResults);
 
 			BusStopResult busStopResult = new BusStopResult(
 				busStop, routeResults);
