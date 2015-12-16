@@ -27,8 +27,6 @@ public class HTMLParser {
 
 		Document doc = Jsoup.parse(html);
 
-		Element busStopTitle = doc.getElementById("titparada");
-
 		Element hour = doc.getElementById("hora");
 
 		Matcher matcher = captureGroup(hour.text(), REGEXP_HOUR);
@@ -39,8 +37,6 @@ public class HTMLParser {
 			queryDate, routeId, arrivalTime);
 
 		results.add(mainRouteResult);
-
-		String direction = matcher.group(2);
 
 		Elements connectionsUl = doc.getElementsByTag("ul");
 
