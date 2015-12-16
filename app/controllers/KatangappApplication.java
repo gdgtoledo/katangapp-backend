@@ -3,12 +3,14 @@ package controllers;
 import business.Finder;
 import business.http.HttpService;
 import business.store.JsonStore;
+import business.store.Store;
 
 import internal.business.BusStopsFinder;
 import internal.business.http.UnautoHttpService;
 import internal.business.store.BusStopsJsonStore;
 import internal.business.store.RoutesJsonStore;
 
+import models.BusStop;
 import models.QueryResult;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,6 +29,18 @@ import play.mvc.Result;
  * @author mdelapenya
  */
 public class KatangappApplication extends Controller {
+
+    public static Result busStop(String id) {
+        Store store = busStopFinder.getStore();
+
+        BusStop busStop = store.getBusStop(id);
+
+        if (busStop != null) {
+            return ok(Json.toJson(busStop));
+        }
+
+        return notFound();
+    }
 
     public static Result busStops() {
         return ok(busStops.getJson());
@@ -53,6 +67,12 @@ public class KatangappApplication extends Controller {
         }
 
         return ok(node);
+    }
+
+    public static Result route(String id) {
+        Store store = busStopFinder.getStore();
+
+        return ok(Json.toJson(store.getRoute(id)));
     }
 
     public static Result routes() {

@@ -5,7 +5,9 @@
 # Home page
 GET     /paradas                    controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 GET     /store/busStops               controllers.KatangappApplication.busStops()
+GET     /store/busStops/:id         controllers.KatangappApplication.busStop(id: String)
 GET     /store/routes               controllers.KatangappApplication.routes()
+GET     /store/routes/:id           controllers.KatangappApplication.route(id: String)
 GET     /unauto                    controllers.KatangappApplication.unauto(idl:String, idp:String, ido:String)
 
 # Map static resources from the /public folder to the /assets URL path

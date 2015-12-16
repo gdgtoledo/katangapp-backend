@@ -2,6 +2,7 @@ package controllers;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
@@ -41,6 +42,22 @@ public class KatangappApplicationTest extends WithApplication {
 	}
 
 	@Test
+	public void testBusStop() {
+		Result result = KatangappApplication.busStop("P003");
+
+		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
+	public void testBusStopNotFound() {
+		Result result = KatangappApplication.busStop("notfound");
+
+		assertThat(status(result)).isEqualTo(NOT_FOUND);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
 	public void testBusStops() {
 		Result result = KatangappApplication.busStops();
 
@@ -77,6 +94,22 @@ public class KatangappApplicationTest extends WithApplication {
 		Result result = KatangappApplication.main(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
+	public void testRoute() {
+		Result result = KatangappApplication.route("L02");
+
+		assertThat(status(result)).isEqualTo(OK);
+		assertThat(contentType(result)).isEqualTo("application/json");
+	}
+
+	@Test
+	public void testRouteNotFound() {
+		Result result = KatangappApplication.route("notfound");
+
+		assertThat(status(result)).isEqualTo(NOT_FOUND);
 		assertThat(contentType(result)).isEqualTo("application/json");
 	}
 

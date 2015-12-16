@@ -20,6 +20,32 @@ import play.test.TestBrowser;
 public class KatangappFunctionalTest {
 
     @Test
+    public void testBusStopById() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort,
+                "/store/busStops/P003", "\"id\":\"P003\",\"address\":")
+        );
+    }
+
+    @Test
+    public void testBusStopByIdNotFound() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort,
+                "/store/busStops/notfound", "\"message\":\"Not Found\":")
+        );
+    }
+
+    @Test
     public void testBusStops() {
         int serverPort = 3333;
 
@@ -52,6 +78,31 @@ public class KatangappFunctionalTest {
             HTMLUNIT,
             new BodyEqualsTestCallback(
                 serverPort, "/", "Don't try to hack the URI!")
+        );
+    }
+
+    @Test
+    public void testRouteById() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort, "/store/routes/L02", "\"routeId\":\"L02\"")
+        );
+    }
+
+    @Test
+    public void testRouteByIdNotFound() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort,
+                "/store/routes/notfound", "\"message\":\"Not Found\":")
         );
     }
 
