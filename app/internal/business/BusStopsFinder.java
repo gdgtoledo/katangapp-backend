@@ -59,8 +59,7 @@ public class BusStopsFinder implements Finder {
 				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
 			List<RouteResult> routeResults = HTMLParser.parseResponse(
-				busStop.getRouteId(), busStop.getId(), new Date(),
-				responseHtml);
+				busStop.getRouteId(), new Date(), responseHtml);
 
 			Collections.sort(routeResults);
 

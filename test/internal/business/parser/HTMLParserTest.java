@@ -23,7 +23,7 @@ public class HTMLParserTest {
 		Date now = new Date();
 
 		List<RouteResult> routeResults = HTMLParser.parseResponse(
-			"L92", "P01", now, html);
+			"L92", now, html);
 
 		assertThat(routeResults).hasSize(3);
 
@@ -39,7 +39,7 @@ public class HTMLParserTest {
 		Date now = new Date();
 
 		List<RouteResult> routeResults = HTMLParser.parseResponse(
-			"41", "P001", now, html);
+			"41", now, html);
 
 		assertThat(routeResults).hasSize(31);
 

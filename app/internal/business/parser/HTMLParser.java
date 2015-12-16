@@ -21,7 +21,7 @@ import org.jsoup.select.Elements;
 public class HTMLParser {
 
 	public static List<RouteResult> parseResponse(
-		String routeId, String busStopId, Date queryDate, String html) {
+		String routeId, Date queryDate, String html) {
 
 		List<RouteResult> results = new ArrayList<>();
 
