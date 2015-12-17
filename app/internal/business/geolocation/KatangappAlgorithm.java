@@ -26,7 +26,7 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 			currentLocation, points, radiusMeters, DEFAULT_MAX_ELEMENTS);
 	}
 
-	public List<PolarSegment> closestSegments(
+	protected List<PolarSegment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters, int maxElements) {
 
