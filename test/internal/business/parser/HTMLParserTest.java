@@ -3,6 +3,7 @@ package internal.business.parser;
 import static org.fest.assertions.Assertions.assertThat;
 
 import business.IOTestUtils;
+import business.parser.Parser;
 
 import models.RouteResult;
 
@@ -22,7 +23,9 @@ public class HTMLParserTest {
 
 		Date now = new Date();
 
-		List<RouteResult> routeResults = HTMLParser.parseResponse(
+		Parser htmlParser = new HTMLParser();
+
+		List<RouteResult> routeResults = htmlParser.parseResponse(
 			"L92", now, html);
 
 		assertThat(routeResults).hasSize(3);
@@ -38,7 +41,9 @@ public class HTMLParserTest {
 
 		Date now = new Date();
 
-		List<RouteResult> routeResults = HTMLParser.parseResponse(
+		Parser htmlParser = new HTMLParser();
+
+		List<RouteResult> routeResults = htmlParser.parseResponse(
 			"41", now, html);
 
 		assertThat(routeResults).hasSize(31);

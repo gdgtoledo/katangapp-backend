@@ -3,6 +3,7 @@ package internal.business;
 import business.ClosestPointsAlgorithm;
 import business.Finder;
 import business.http.HttpService;
+import business.parser.Parser;
 import business.store.Store;
 
 import internal.business.geolocation.KatangappAlgorithm;
@@ -58,7 +59,7 @@ public class BusStopsFinder implements Finder {
 			String responseHtml = getHttpService().get(
 				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
-			List<RouteResult> routeResults = HTMLParser.parseResponse(
+			List<RouteResult> routeResults = getParser().parseResponse(
 				busStop.getRouteId(), new Date(), responseHtml);
 
 			Collections.sort(routeResults);
@@ -76,16 +77,21 @@ public class BusStopsFinder implements Finder {
 		return algorithm;
 	}
 
-	public Store getStore() {
-		return katangappStore;
-	}
-
 	public HttpService getHttpService() {
 		return httpService;
 	}
 
+	public Parser getParser() {
+		return parser;
+	}
+
+	public Store getStore() {
+		return katangappStore;
+	}
+
 	private static ClosestPointsAlgorithm algorithm = new KatangappAlgorithm();
 	private static HttpService httpService = new UnautoHttpService();
+	private static Parser parser = new HTMLParser();
 	private static Store katangappStore = KatangappStore.getInstance();
 
 }

@@ -1,5 +1,7 @@
 package internal.business.parser;
 
+import business.parser.Parser;
+
 import models.RouteResult;
 
 import java.util.ArrayList;
@@ -18,9 +20,9 @@ import org.jsoup.select.Elements;
 /**
  * @author mdelapenya
  */
-public class HTMLParser {
+public class HTMLParser implements Parser {
 
-	public static List<RouteResult> parseResponse(
+	public List<RouteResult> parseResponse(
 		String routeId, Date queryDate, String html) {
 
 		List<RouteResult> results = new ArrayList<>();
