@@ -45,7 +45,8 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		Map<String, BusStop> store = katangappStore.getStore();
 
-		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(store.values());
+		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(
+			store.values());
 
 		KatangappAlgorithm katangappAlgorithm = new KatangappAlgorithm();
 
