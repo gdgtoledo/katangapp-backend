@@ -11,12 +11,12 @@ import models.PolarSegment;
 import models.ReferenceablePoint;
 import models.TestPointFactory;
 
-import org.junit.Test;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.junit.Test;
 
 import play.test.WithApplication;
 
