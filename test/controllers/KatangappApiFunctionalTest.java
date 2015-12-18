@@ -1,17 +1,14 @@
 package controllers;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import static play.test.Helpers.HTMLUNIT;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
-import org.junit.Test;
+import controllers.callbacks.BodyContainsTestCallback;
 
-import play.libs.F.Callback;
-import play.test.TestBrowser;
+import org.junit.Test;
 
 /**
  * @author mdelapenya
@@ -104,29 +101,6 @@ public class KatangappApiFunctionalTest {
             new BodyContainsTestCallback(
                 serverPort, "/api/routes", "{\"routes\":[")
         );
-    }
-
-    private static final class BodyContainsTestCallback
-        implements Callback<TestBrowser> {
-
-        public BodyContainsTestCallback(
-            int serverPort, String endPoint, String message) {
-
-            this.endPoint = endPoint;
-            this.message = message;
-            this.serverPort = serverPort;
-        }
-
-        @Override
-        public void invoke(TestBrowser browser) {
-            browser.goTo("http://localhost:" + serverPort + endPoint);
-
-            assertThat(browser.pageSource()).contains(message);
-        }
-
-        private String endPoint;
-        private String message;
-        private int serverPort;
     }
 
 }
