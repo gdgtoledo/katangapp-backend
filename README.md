@@ -49,20 +49,19 @@ following parameters to work:
 In example: `http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500`
 
 ## Available Stores
-The application offers two endpoints to retrieve the data it uses, in JSON
-format, one for the bus routes, describing each route and its bus stops, and
-the other for the bus stops, describing each bus stop. The endpoints are:
+The application offers four endpoints to retrieve the data it uses, in JSON
+format, two for the bus routes, describing each route and its bus stops, and
+the other two for the bus stops, describing each bus stop. The endpoints are:
 
-Routes endpoint:
+#### Routes endpoint:
 ```
-http://localhost:9000/routes
-http://localhost:9000/routes/:routeId
+http://localhost:9000/api/routes
+http://localhost:9000/api/routes/:routeId
 ```
-
-Bus Stops endpoint:
+#### Bus Stops endpoint:
 ```
-http://localhost:9000/busStops
-http://localhost:9000/busStops/:busStopId
+http://localhost:9000/api/busStops
+http://localhost:9000/api/busStops/:busStopId
 ```
 
 ## Backward compatibility

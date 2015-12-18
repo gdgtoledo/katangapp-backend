@@ -27,7 +27,8 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/busStops/P003", "\"id\":\"P003\",\"address\":")
+                serverPort,
+                "/api/busStops/P003", "\"id\":\"P003\",\"address\":")
         );
     }
 
@@ -39,7 +40,8 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/busStops/notfound", "\"message\":\"Not Found\"")
+                serverPort,
+                "/api/busStops/notfound", "\"message\":\"Not Found\"")
         );
     }
 
@@ -51,7 +53,7 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/busStops", "{\"busStops\":[")
+                serverPort, "/api/busStops", "{\"busStops\":[")
         );
     }
 
@@ -87,7 +89,7 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/routes/L02", "\"routeId\":\"L02\"")
+                serverPort, "/api/routes/L02", "\"routeId\":\"L02\"")
         );
     }
 
@@ -99,7 +101,8 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/routes/notfound", "\"message\":\"Not Found\"")
+                serverPort,
+                "/api/routes/notfound", "\"message\":\"Not Found\"")
         );
     }
 
@@ -110,7 +113,8 @@ public class KatangappFunctionalTest {
         running(
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback(serverPort, "/routes", "{\"routes\":[")
+            new BodyContainsTestCallback(
+                serverPort, "/api/routes", "{\"routes\":[")
         );
     }
 
