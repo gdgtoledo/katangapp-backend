@@ -20,44 +20,6 @@ import play.test.TestBrowser;
 public class KatangappFunctionalTest {
 
     @Test
-    public void testBusStopById() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort,
-                "/api/busStops/P003", "\"id\":\"P003\",\"address\":")
-        );
-    }
-
-    @Test
-    public void testBusStopByIdNotFound() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort,
-                "/api/busStops/notfound", "\"message\":\"Not Found\"")
-        );
-    }
-
-    @Test
-    public void testBusStops() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort, "/api/busStops", "{\"busStops\":[")
-        );
-    }
-
-    @Test
     public void testNotFoundPath() {
         int serverPort = 3333;
 
@@ -78,43 +40,6 @@ public class KatangappFunctionalTest {
             HTMLUNIT,
             new BodyEqualsTestCallback(
                 serverPort, "/", "Don't try to hack the URI!")
-        );
-    }
-
-    @Test
-    public void testRouteById() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort, "/api/routes/L02", "\"routeId\":\"L02\"")
-        );
-    }
-
-    @Test
-    public void testRouteByIdNotFound() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort,
-                "/api/routes/notfound", "\"message\":\"Not Found\"")
-        );
-    }
-
-    @Test
-    public void testRoutes() {
-        int serverPort = 3333;
-
-        running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
-            HTMLUNIT,
-            new BodyContainsTestCallback(
-                serverPort, "/api/routes", "{\"routes\":[")
         );
     }
 
@@ -139,23 +64,6 @@ public class KatangappFunctionalTest {
         protected String endPoint;
         protected String message;
         protected int serverPort;
-    }
-
-    private static final class BodyContainsTestCallback
-        extends BodyEqualsTestCallback {
-
-        public BodyContainsTestCallback(
-            int serverPort, String endPoint, String message) {
-
-            super(serverPort, endPoint, message);
-        }
-
-        @Override
-        public void invoke(TestBrowser browser) {
-            browser.goTo("http://localhost:" + serverPort + endPoint);
-
-            assertThat(browser.pageSource()).contains(message);
-        }
     }
 
 }
