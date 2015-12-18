@@ -8,10 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * This class offers methods to mock an HTTP request.
+ *
  * @author mdelapenya
  */
 public class MockController {
 
+	/**
+	 * Mocks an HTTP request adding a queryString parameter based on input
+	 * parameter.
+	 *
+	 * @param prettyPrint Whether a <code>prettyPrint</code> HTTP parameter is
+	 *                    added or not to the HTTP request.
+	 */
 	public static void mockRequest(boolean prettyPrint) {
 		Long id = 2L;
 
