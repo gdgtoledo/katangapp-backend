@@ -4,11 +4,10 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import play.test.TestBrowser;
 
-
 /**
- * @author Manuel de la Peña
+ * @author mdelapenya
  */
-public final class BodyContainsTestCallback extends BodyEqualsTestCallback {
+public final class BodyContainsTestCallback extends DefaultBodyTestCallback {
 
 	public BodyContainsTestCallback(
 		int serverPort, String endPoint, String message) {
@@ -17,9 +16,7 @@ public final class BodyContainsTestCallback extends BodyEqualsTestCallback {
 	}
 
 	@Override
-	public void invoke(TestBrowser browser) {
-		browser.goTo("http://localhost:" + serverPort + endPoint);
-
+	protected void verifyAssertion(TestBrowser browser) {
 		assertThat(browser.pageSource()).contains(message);
 	}
 
