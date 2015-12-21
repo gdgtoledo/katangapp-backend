@@ -7,10 +7,6 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import business.mocks.MockBusStopsFinder;
-import business.mocks.MockHttpService;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
@@ -20,14 +16,6 @@ import play.test.WithApplication;
  * @author mdelapenya
  */
 public class KatangappApiApplicationTest extends WithApplication {
-
-	@Before
-	public void setUp() {
-		final MockHttpService mockHttpService = new MockHttpService("P001");
-
-		KatangappApiApplication.setBusStopFinder(
-			MockBusStopsFinder.mockFinder(mockHttpService));
-	}
 
 	@Test
 	public void testBusStop() {

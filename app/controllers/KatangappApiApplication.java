@@ -1,11 +1,10 @@
 package controllers;
 
-import business.Finder;
 import business.store.JsonStore;
 import business.store.Store;
 
-import internal.business.BusStopsFinder;
 import internal.business.store.BusStopsJsonStore;
+import internal.business.store.KatangappStore;
 import internal.business.store.RoutesJsonStore;
 
 import models.BusStop;
@@ -24,8 +23,6 @@ import play.mvc.Result;
 public class KatangappApiApplication extends Controller {
 
     public static Result busStop(String id) {
-        Store store = busStopFinder.getStore();
-
         BusStop busStop = store.getBusStop(id);
 
         if (busStop != null) {
@@ -40,8 +37,6 @@ public class KatangappApiApplication extends Controller {
     }
 
     public static Result route(String id) {
-        Store store = busStopFinder.getStore();
-
         Route route = store.getRoute(id);
 
         if (route != null) {
@@ -55,15 +50,11 @@ public class KatangappApiApplication extends Controller {
         return ok(routes.getJson());
     }
 
-    public static void setBusStopFinder(Finder finder) {
-        busStopFinder = finder;
-    }
-
     private static final JsonNode NOT_FOUND_MESSAGE =
         Json.newObject().set("message", new TextNode("Not Found"));
 
     private static JsonStore busStops = new BusStopsJsonStore();
-    private static Finder busStopFinder = new BusStopsFinder();
     private static JsonStore routes = new RoutesJsonStore();
+    private static Store store = KatangappStore.getInstance();
 
 }
