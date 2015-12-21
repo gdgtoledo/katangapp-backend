@@ -16,4 +16,6 @@ public interface Store {
 
 	Route getRoute(String id);
 
+	Map<String, Route> getRouteStore();
+
 }

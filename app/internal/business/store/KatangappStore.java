@@ -40,7 +40,14 @@ public final class KatangappStore implements Store {
 
 	@Override
 	public Route getRoute(String key) {
+		Map<String, Route> routeStore = getInstance().getRouteStore();
+
 		return routeStore.get(key);
+	}
+
+	@Override
+	public Map<String, Route> getRouteStore() {
+		return routeStore;
 	}
 
 	private KatangappStore() {
