@@ -28,7 +28,9 @@ public final class KatangappStore implements Store {
 
 	@Override
 	public BusStop getBusStop(String key) {
-		return getInstance().getBusStopStore().get(key);
+		Map<String, BusStop> busStopStore = getInstance().getBusStopStore();
+
+		return busStopStore.get(key);
 	}
 
 	@Override
