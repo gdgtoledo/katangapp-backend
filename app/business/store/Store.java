@@ -12,7 +12,7 @@ public interface Store {
 
 	BusStop getBusStop(String id);
 
-	Map<String, BusStop> getStore();
+	Map<String, BusStop> getBusStopStore();
 
 	Route getRoute(String id);
 

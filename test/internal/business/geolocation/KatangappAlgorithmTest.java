@@ -43,7 +43,7 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		Store katangappStore = KatangappStore.getInstance();
 
-		Map<String, BusStop> store = katangappStore.getStore();
+		Map<String, BusStop> store = katangappStore.getBusStopStore();
 
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(
 			store.values());

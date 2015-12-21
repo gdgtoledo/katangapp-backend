@@ -28,7 +28,7 @@ public final class KatangappStore implements Store {
 
 	@Override
 	public BusStop getBusStop(String key) {
-		return getInstance().getStore().get(key);
+		return getInstance().getBusStopStore().get(key);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public final class KatangappStore implements Store {
 		return routeStore.get(key);
 	}
 
-	public Map<String, BusStop> getStore() {
+	public Map<String, BusStop> getBusStopStore() {
 		return busStopStore;
 	}
 

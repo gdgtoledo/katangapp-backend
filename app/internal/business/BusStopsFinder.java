@@ -37,7 +37,7 @@ public class BusStopsFinder implements Finder {
 
 		ReferenceablePoint currentLocation = new Point(latitude, longitude);
 
-		Map<String, BusStop> busStopMap = getStore().getStore();
+		Map<String, BusStop> busStopMap = getStore().getBusStopStore();
 
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			busStopMap.values());
