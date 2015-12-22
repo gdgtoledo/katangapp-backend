@@ -20,9 +20,9 @@ public class UnautoHttpService implements HttpService {
 
 	@Override
 	public String get(String... params) {
-		if (params == null || params.length == 0) {
+		if (params == null || params.length != 3) {
 			throw new IllegalArgumentException(
-				"Cannot invoke the service without parameters");
+				"Cannot invoke the service " + params.length + " parameters");
 		}
 
 		String idl = params[0];
