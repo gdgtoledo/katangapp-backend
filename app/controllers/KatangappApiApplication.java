@@ -1,5 +1,6 @@
 package controllers;
 
+import business.JsonNodeFactory;
 import business.store.JsonStore;
 import business.store.Store;
 
@@ -11,7 +12,6 @@ import models.BusStop;
 import models.Route;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 
 import play.libs.Json;
 import play.mvc.Controller;
@@ -51,7 +51,7 @@ public class KatangappApiApplication extends Controller {
     }
 
     private static final JsonNode NOT_FOUND_MESSAGE =
-        Json.newObject().set("message", new TextNode("Not Found"));
+        JsonNodeFactory.getTextNode("message", "Not Found");
 
     private static JsonStore busStops = new BusStopsJsonStore();
     private static JsonStore routes = new RoutesJsonStore();
