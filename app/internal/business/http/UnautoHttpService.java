@@ -19,11 +19,16 @@ public class UnautoHttpService implements HttpService {
 	}
 
 	@Override
-	public String get(String... params) {
+	public void validate(String... params) {
 		if (params == null || params.length != 3) {
 			throw new IllegalArgumentException(
-				"Cannot invoke the service " + params.length + " parameters");
+				"Wrong service invocation: it only accepts three parameters");
 		}
+	}
+
+	@Override
+	public String get(String... params) {
+		validate(params);
 
 		String idl = params[0];
 		String idp = params[1];

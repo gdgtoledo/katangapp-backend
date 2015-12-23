@@ -1,7 +1,8 @@
 package business.mocks;
 
 import business.IOTestUtils;
-import business.http.HttpService;
+
+import internal.business.http.UnautoHttpService;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
  *
  * @author mdelapenya
  */
-public class MockHttpService implements HttpService {
+public class MockHttpService extends UnautoHttpService {
 
 	/**
 	 * Create a mock implementation of the HTTP service, defining a bus stops id
@@ -39,6 +40,8 @@ public class MockHttpService implements HttpService {
 	 */
 	@Override
 	public String get(String... arg) {
+		validate(arg);
+
 		try {
 			return IOTestUtils.readFile("sample-" + idp + ".html");
 		}
