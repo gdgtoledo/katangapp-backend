@@ -27,6 +27,17 @@ public final class KatangappStore implements Store {
 		return instance;
 	}
 
+	/**
+	 * This method retrieves a bus stop identified by the <code>key</code> param
+	 * from the store.
+	 *
+	 * @param key the identifier of the bus stop
+	 *
+	 * @return the bus stop identified by the key
+	 *
+	 * @throws NotFoundException when no bus stop exists in the store with
+	 *                           provided key
+	 */
 	@Override
 	public BusStop getBusStop(String key) throws NotFoundException {
 		Map<String, BusStop> busStopStore = getInstance().getBusStopStore();
@@ -45,6 +56,17 @@ public final class KatangappStore implements Store {
 		return busStopStore;
 	}
 
+	/**
+	 * This method retrieves a route identified by the <code>key</code> param
+	 * from the store.
+	 *
+	 * @param key the identifier of the route
+	 *
+	 * @return the route identified by the key
+	 *
+	 * @throws NotFoundException when no route exists in the store with provided
+	 *                           key
+	 */
 	@Override
 	public Route getRoute(String key) throws NotFoundException {
 		Map<String, Route> routeStore = getInstance().getRouteStore();
