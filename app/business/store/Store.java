@@ -1,6 +1,6 @@
 package business.store;
 
-import business.exception.NotFoundException;
+import business.exception.APIElementNotFoundException;
 
 import models.BusStop;
 import models.Route;
@@ -20,10 +20,10 @@ public interface Store {
 	 *
 	 * @return the bus stop identified by the id
 	 * 
-	 * @throws NotFoundException when no bus stop exists in the store with
-	 *                           provided id
+	 * @throws APIElementNotFoundException when no bus stop exists in the store
+	 *                           with provided id
 	 */
-	BusStop getBusStop(String id) throws NotFoundException;
+	BusStop getBusStop(String id) throws APIElementNotFoundException;
 
 	Map<String, BusStop> getBusStopStore();
 
@@ -35,10 +35,10 @@ public interface Store {
 	 *
 	 * @return the route identified by the id
 	 *
-	 * @throws NotFoundException when no route exists in the store with provided
-	 *                           id
+	 * @throws APIElementNotFoundException when no route exists in the store
+	 *                           with provided id
 	 */
-	Route getRoute(String id) throws NotFoundException;
+	Route getRoute(String id) throws APIElementNotFoundException;
 
 	Map<String, Route> getRouteStore();
 

@@ -1,6 +1,6 @@
 package internal.business.store;
 
-import business.exception.NotFoundException;
+import business.exception.APIElementNotFoundException;
 import business.store.JsonStore;
 import business.store.Store;
 
@@ -35,17 +35,17 @@ public final class KatangappStore implements Store {
 	 *
 	 * @return the bus stop identified by the key
 	 *
-	 * @throws NotFoundException when no bus stop exists in the store with
-	 *                           provided key
+	 * @throws APIElementNotFoundException when no bus stop exists in the store
+	 *                           with provided key
 	 */
 	@Override
-	public BusStop getBusStop(String key) throws NotFoundException {
+	public BusStop getBusStop(String key) throws APIElementNotFoundException {
 		Map<String, BusStop> busStopStore = getInstance().getBusStopStore();
 
 		BusStop busStop = busStopStore.get(key);
 
 		if (busStop == null) {
-			throw new NotFoundException();
+			throw new APIElementNotFoundException();
 		}
 
 		return busStop;
@@ -64,17 +64,17 @@ public final class KatangappStore implements Store {
 	 *
 	 * @return the route identified by the key
 	 *
-	 * @throws NotFoundException when no route exists in the store with provided
-	 *                           key
+	 * @throws APIElementNotFoundException when no route exists in the store
+	 *                           with provided key
 	 */
 	@Override
-	public Route getRoute(String key) throws NotFoundException {
+	public Route getRoute(String key) throws APIElementNotFoundException {
 		Map<String, Route> routeStore = getInstance().getRouteStore();
 
 		Route route = routeStore.get(key);
 
 		if (route == null) {
-			throw new NotFoundException();
+			throw new APIElementNotFoundException();
 		}
 
 		return route;

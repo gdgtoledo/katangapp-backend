@@ -1,6 +1,6 @@
 package internal.business.store;
 
-import business.exception.NotFoundException;
+import business.exception.APIElementNotFoundException;
 import business.store.Store;
 
 import org.junit.Before;
@@ -23,14 +23,14 @@ public class KatangappStoreTest {
 
 	@Test
 	public void testGetBusStopNotFound() throws Exception {
-		thrownException.expect(NotFoundException.class);
+		thrownException.expect(APIElementNotFoundException.class);
 
 		store.getBusStop("notfound");
 	}
 
 	@Test
 	public void testGetRouteNotFound() throws Exception {
-		thrownException.expect(NotFoundException.class);
+		thrownException.expect(APIElementNotFoundException.class);
 
 		store.getRoute("notfound");
 	}
