@@ -1,6 +1,6 @@
 package controllers;
 
-import business.exception.APIException;
+import business.exception.NotFoundException;
 import business.store.JsonStore;
 import business.store.Store;
 
@@ -26,7 +26,7 @@ public class KatangappApiApplication extends Controller {
 
             return ok(Json.toJson(busStop));
         }
-        catch (APIException e) {
+        catch (NotFoundException e) {
             return notFound(e.getApiError());
         }
     }
@@ -41,7 +41,7 @@ public class KatangappApiApplication extends Controller {
 
             return ok(Json.toJson(route));
         }
-        catch (APIException e){
+        catch (NotFoundException e){
             return notFound(e.getApiError());
         }
     }

@@ -1,6 +1,6 @@
 package internal.business.store;
 
-import business.exception.APIException;
+import business.exception.NotFoundException;
 import business.store.JsonStore;
 import business.store.Store;
 
@@ -28,13 +28,13 @@ public final class KatangappStore implements Store {
 	}
 
 	@Override
-	public BusStop getBusStop(String key) throws APIException {
+	public BusStop getBusStop(String key) throws NotFoundException {
 		Map<String, BusStop> busStopStore = getInstance().getBusStopStore();
 
 		BusStop busStop = busStopStore.get(key);
 
 		if (busStop == null) {
-			throw new APIException("Not Found");
+			throw new NotFoundException();
 		}
 
 		return busStop;
@@ -46,13 +46,13 @@ public final class KatangappStore implements Store {
 	}
 
 	@Override
-	public Route getRoute(String key) throws APIException {
+	public Route getRoute(String key) throws NotFoundException {
 		Map<String, Route> routeStore = getInstance().getRouteStore();
 
 		Route route = routeStore.get(key);
 
 		if (route == null) {
-			throw new APIException("Not Found");
+			throw new NotFoundException();
 		}
 
 		return route;

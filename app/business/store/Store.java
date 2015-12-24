@@ -1,6 +1,6 @@
 package business.store;
 
-import business.exception.APIException;
+import business.exception.NotFoundException;
 
 import models.BusStop;
 import models.Route;
@@ -12,11 +12,11 @@ import java.util.Map;
  */
 public interface Store {
 
-	BusStop getBusStop(String id) throws APIException;
+	BusStop getBusStop(String id) throws NotFoundException;
 
 	Map<String, BusStop> getBusStopStore();
 
-	Route getRoute(String id) throws APIException;
+	Route getRoute(String id) throws NotFoundException;
 
 	Map<String, Route> getRouteStore();
 
