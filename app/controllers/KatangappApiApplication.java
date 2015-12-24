@@ -1,6 +1,6 @@
 package controllers;
 
-import business.JsonNodeFactory;
+import business.exception.APIException;
 import business.store.JsonStore;
 import business.store.Store;
 
@@ -10,8 +10,6 @@ import internal.business.store.RoutesJsonStore;
 
 import models.BusStop;
 import models.Route;
-
-import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
 import play.mvc.Controller;
@@ -23,13 +21,14 @@ import play.mvc.Result;
 public class KatangappApiApplication extends Controller {
 
     public static Result busStop(String id) {
-        BusStop busStop = store.getBusStop(id);
+        try {
+            BusStop busStop = store.getBusStop(id);
 
-        if (busStop != null) {
             return ok(Json.toJson(busStop));
         }
-
-        return notFound(NOT_FOUND_MESSAGE);
+        catch (APIException e) {
+            return notFound(e.getApiError());
+        }
     }
 
     public static Result busStops() {
@@ -37,21 +36,19 @@ public class KatangappApiApplication extends Controller {
     }
 
     public static Result route(String id) {
-        Route route = store.getRoute(id);
+        try {
+            Route route = store.getRoute(id);
 
-        if (route != null) {
             return ok(Json.toJson(route));
         }
-
-        return notFound(NOT_FOUND_MESSAGE);
+        catch (APIException e){
+            return notFound(e.getApiError());
+        }
     }
 
     public static Result routes() {
         return ok(routes.getJson());
     }
-
-    private static final JsonNode NOT_FOUND_MESSAGE =
-        JsonNodeFactory.getTextNode("message", "Not Found");
 
     private static JsonStore busStops = new BusStopsJsonStore();
     private static JsonStore routes = new RoutesJsonStore();
