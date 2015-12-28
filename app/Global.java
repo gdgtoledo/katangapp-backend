@@ -1,3 +1,6 @@
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import play.*;
 import play.mvc.*;
 import play.mvc.Http.*;
@@ -21,5 +24,16 @@ public class Global extends GlobalSettings {
 	private Results.Status createBadRequest() {
 		return badRequest("Don't try to hack the URI!");
 	}
+
+	public void onStart(Application application) {
+		injector = Guice.createInjector();
+	}
+
+	@Override
+	public <A> A getControllerInstance(Class<A> controllerClass) throws Exception {
+		return injector.getInstance(controllerClass);
+	}
+
+	private Injector injector;
 
 }
