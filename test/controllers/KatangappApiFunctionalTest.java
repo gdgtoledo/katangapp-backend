@@ -30,6 +30,19 @@ public class KatangappApiFunctionalTest {
     }
 
     @Test
+    public void testBusStopByIdPrettified() {
+        int serverPort = 3333;
+
+        running(
+            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            HTMLUNIT,
+            new BodyContainsTestCallback(
+                serverPort, "/api/busStops/P001?prettyPrint=1",
+                SpecsContants.BUS_STOP_PRETTIFIED_JSON)
+        );
+    }
+
+    @Test
     public void testBusStopByIdNotFound() {
         int serverPort = 3333;
 
