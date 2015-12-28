@@ -20,8 +20,10 @@ public class MockController {
 	 *
 	 * @param prettyPrint Whether a <code>prettyPrint</code> HTTP parameter is
 	 *                    added or not to the HTTP request.
+	 *
+	 * @return the mocked request
 	 */
-	public static void mockRequest(boolean prettyPrint) {
+	public static Http.Request mockRequest(boolean prettyPrint) {
 		Long id = 2L;
 
 		play.api.mvc.RequestHeader header = Mockito.mock(
@@ -44,6 +46,8 @@ public class MockController {
 			id, header, request, flashData, flashData, argData);
 
 		Http.Context.current.set(context);
+
+		return request;
 	}
 
 }
