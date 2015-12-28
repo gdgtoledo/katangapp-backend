@@ -8,12 +8,7 @@ import internal.business.http.UnautoHttpService;
 
 import models.QueryResult;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Map;
 
 import play.libs.Json;
 
@@ -32,20 +27,12 @@ public class KatangappApplication extends Controller {
         QueryResult queryResult = busStopFinder.findRoutes(
             dLatitude, dLongitude, r);
 
-        boolean isPrettyPrint = isPrettyPrint();
-
         JsonNode node = Json.toJson(queryResult);
 
-        if (isPrettyPrint) {
-            try {
-                return ok(prettyPrint(node)).as("application/json");
-            }
-            catch (JsonProcessingException e) {
-                // fall back to default JSON print
-            }
-        }
+        JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+            request(), node);
 
-        return ok(node);
+        return prettyPrinter.prettyPrintWhenNeeded();
     }
 
     public void setBusStopFinder(Finder finder) {
@@ -60,38 +47,6 @@ public class KatangappApplication extends Controller {
         String response = httpClient.get(idl, idp, ido);
 
         return ok(response);
-    }
-
-    private boolean isPrettyPrint() {
-        Map<String, String[]> queryStringParametersMap =
-            request().queryString();
-
-        boolean isPrettyPrint = queryStringParametersMap.containsKey(
-            "prettyPrint");
-
-        if (isPrettyPrint) {
-            final String[] pretties = queryStringParametersMap.get(
-                "prettyPrint");
-
-            if (pretties[0].equalsIgnoreCase("true") ||
-                pretties[0].equalsIgnoreCase("1")) {
-
-               return true;
-            }
-        }
-
-        return false;
-    }
-
-    private String prettyPrint(JsonNode node)
-        throws JsonProcessingException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        final ObjectWriter objectWriter =
-            mapper.writerWithDefaultPrettyPrinter();
-
-        return objectWriter.writeValueAsString(node);
     }
 
     private static Finder busStopFinder = new BusStopsFinder();
