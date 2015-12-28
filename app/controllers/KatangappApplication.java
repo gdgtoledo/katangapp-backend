@@ -25,7 +25,7 @@ import play.mvc.Result;
  */
 public class KatangappApplication extends Controller {
 
-    public static Result main(String lt, String ln, int r) {
+    public Result main(String lt, String ln, int r) {
         double dLatitude = Double.parseDouble(lt);
         double dLongitude = Double.parseDouble(ln);
 
@@ -48,21 +48,21 @@ public class KatangappApplication extends Controller {
         return ok(node);
     }
 
-    public static void setBusStopFinder(Finder finder) {
+    public void setBusStopFinder(Finder finder) {
         busStopFinder = finder;
     }
 
-    public static void setHttpService(HttpService service) {
+    public void setHttpService(HttpService service) {
         httpClient = service;
     }
 
-    public static Result unauto(String idl, String idp, String ido) {
+    public Result unauto(String idl, String idp, String ido) {
         String response = httpClient.get(idl, idp, ido);
 
         return ok(response);
     }
 
-    private static boolean isPrettyPrint() {
+    private boolean isPrettyPrint() {
         Map<String, String[]> queryStringParametersMap =
             request().queryString();
 
@@ -83,7 +83,7 @@ public class KatangappApplication extends Controller {
         return false;
     }
 
-    private static String prettyPrint(JsonNode node)
+    private String prettyPrint(JsonNode node)
         throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();

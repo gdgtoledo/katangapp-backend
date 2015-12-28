@@ -32,12 +32,15 @@ public class KatangappApplicationTest extends WithApplication {
 
 	@Before
 	public void setUp() {
+		katangappApplication = new KatangappApplication();
+
 		final MockHttpService mockHttpService = new MockHttpService("P001");
 
-		KatangappApplication.setBusStopFinder(
+		katangappApplication.setBusStopFinder(
 			MockBusStopsFinder.mockFinder(mockHttpService));
 
-		KatangappApplication.setHttpService(mockHttpService);
+		katangappApplication.setHttpService(mockHttpService);
+
 	}
 
 	@Test
@@ -50,7 +53,7 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(false);
 
-		Result result = KatangappApplication.main(latitude, longitude, radius);
+		Result result = katangappApplication.main(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -66,7 +69,7 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(true);
 
-		Result result = KatangappApplication.main(latitude, longitude, radius);
+		Result result = katangappApplication.main(latitude, longitude, radius);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -81,7 +84,7 @@ public class KatangappApplicationTest extends WithApplication {
 		for (Map.Entry<String, BusStop> stopEntry : busStopMap.entrySet()) {
 			BusStop busStop = stopEntry.getValue();
 
-			Result result = KatangappApplication.unauto(
+			Result result = katangappApplication.unauto(
 				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
 			assertThat(status(result)).isEqualTo(OK);
@@ -90,5 +93,7 @@ public class KatangappApplicationTest extends WithApplication {
 			break;
 		}
 	}
+
+	private KatangappApplication katangappApplication;
 
 }
