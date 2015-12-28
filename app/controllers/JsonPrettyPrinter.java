@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import play.mvc.Http;
@@ -31,7 +32,7 @@ public class JsonPrettyPrinter {
 			try {
 				String prettyPrint = objectWriter.writeValueAsString(jsonNode);
 
-				return Results.ok(prettyPrint).as("application/json");
+				return Results.ok(prettyPrint).as(CONTENT_TYPE);
 			}
 			catch (JsonProcessingException e) {
 				// fall back to default JSON print
@@ -63,5 +64,8 @@ public class JsonPrettyPrinter {
 
 	private final Http.Request request;
 	private final JsonNode jsonNode;
+
+	private static final String CONTENT_TYPE =
+		"application/json; charset=" + Charset.forName("UTF-8");
 
 }
