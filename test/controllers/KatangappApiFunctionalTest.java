@@ -8,6 +8,8 @@ import static play.test.Helpers.testServer;
 
 import controllers.callbacks.BodyContainsTestCallback;
 
+import internal.test.SpecsContants;
+
 import org.junit.Test;
 
 /**
@@ -19,17 +21,11 @@ public class KatangappApiFunctionalTest {
     public void testBusStopById() {
         int serverPort = 3333;
 
-        String expectedResult =
-            "{\"address\":\"Corralillo de San Miguel, Toledo, España\"," +
-                "\"id\":\"P001\",\"latitude\":39.858966," +
-                "\"longitude\":-4.020902,\"order\":\"208.00000\"," +
-                "\"routeId\":\"L94\"}";
-
         running(
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                serverPort, "/api/busStops/P001", expectedResult)
+                serverPort, "/api/busStops/P001", SpecsContants.BUS_STOP_JSON)
         );
     }
 

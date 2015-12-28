@@ -10,6 +10,7 @@ import static play.test.Helpers.status;
 import business.mocks.MockController;
 
 import internal.business.store.KatangappStore;
+import internal.test.SpecsContants;
 
 import models.BusStop;
 
@@ -38,13 +39,8 @@ public class JsonPrettyPrinterTest {
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
 
-		String expectedResult =
-			"{\"address\":\"Corralillo de San Miguel, Toledo, España\"," +
-				"\"id\":\"P001\",\"latitude\":39.858966," +
-				"\"longitude\":-4.020902,\"order\":\"208.00000\"," +
-				"\"routeId\":\"L94\"}";
-
-		assertThat(contentAsString(result)).isEqualTo(expectedResult);
+		assertThat(contentAsString(result)).
+			isEqualTo(SpecsContants.BUS_STOP_JSON);
 	}
 
 	@Test
@@ -61,16 +57,8 @@ public class JsonPrettyPrinterTest {
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
 
-		String expectedResult = "{\n" +
-			"  \"address\" : \"Corralillo de San Miguel, Toledo, España\",\n" +
-			"  \"id\" : \"P001\",\n" +
-			"  \"latitude\" : 39.858966,\n" +
-			"  \"longitude\" : -4.020902,\n" +
-			"  \"order\" : \"208.00000\",\n" +
-			"  \"routeId\" : \"L94\"\n" +
-			"}";
-
-		assertThat(contentAsString(result)).isEqualTo(expectedResult);
+		assertThat(contentAsString(result)).
+			isEqualTo(SpecsContants.BUS_STOP_PRETTIFIED_JSON);
 	}
 
 }
