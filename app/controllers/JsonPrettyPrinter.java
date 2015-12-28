@@ -31,7 +31,7 @@ public class JsonPrettyPrinter {
 			try {
 				String prettyPrint = objectWriter.writeValueAsString(jsonNode);
 
-				return Results.ok(prettyPrint).as("application/json");
+				return Results.ok(prettyPrint);
 			}
 			catch (JsonProcessingException e) {
 				// fall back to default JSON print
