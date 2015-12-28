@@ -40,16 +40,16 @@ public class KatangappApplication extends Controller {
     }
 
     public void setHttpService(HttpService service) {
-        httpClient = service;
+        httpService = service;
     }
 
     public Result unauto(String idl, String idp, String ido) {
-        String response = httpClient.get(idl, idp, ido);
+        String response = httpService.get(idl, idp, ido);
 
         return ok(response);
     }
 
     private static Finder busStopFinder = new BusStopsFinder();
-    private static HttpService httpClient = new UnautoHttpService();
+    private static HttpService httpService = new UnautoHttpService();
 
 }
