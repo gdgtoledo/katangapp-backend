@@ -2,9 +2,12 @@ package models;
 
 import business.UnreferenceablePointException;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * @author mdelapenya
  */
+@JsonPropertyOrder(alphabetic = true)
 public class Point implements ReferenceablePoint {
 
 	public Point(double latitude, double longitude) {

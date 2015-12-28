@@ -3,10 +3,12 @@ package models;
 import business.UnreferenceablePointException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * @author mdelapenya
  */
+@JsonPropertyOrder(alphabetic = true)
 public class BusStop implements ReferenceablePoint {
 
 	public BusStop() {
