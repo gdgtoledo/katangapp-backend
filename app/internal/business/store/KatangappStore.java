@@ -51,6 +51,10 @@ public final class KatangappStore implements Store {
 		return busStop;
 	}
 
+	public JsonStore getBusStopsJsonStore() {
+		return busStopsJsonStore;
+	}
+
 	@Override
 	public Map<String, BusStop> getBusStopStore() {
 		return busStopStore;
@@ -80,6 +84,10 @@ public final class KatangappStore implements Store {
 		return route;
 	}
 
+	public JsonStore getRoutesJsonStore() {
+		return routesJsonStore;
+	}
+
 	@Override
 	public Map<String, Route> getRouteStore() {
 		return routeStore;
@@ -91,8 +99,6 @@ public final class KatangappStore implements Store {
 	}
 
 	private void populateBusStops() {
-		JsonStore busStopsJsonStore = new BusStopsJsonStore();
-
 		final JsonNode busStops = busStopsJsonStore.getJson();
 
 		for (JsonNode busStopsArray : busStops) {
@@ -119,8 +125,6 @@ public final class KatangappStore implements Store {
 	}
 
 	private void populateRoutes() {
-		JsonStore routesJsonStore = new RoutesJsonStore();
-
 		final JsonNode routes = routesJsonStore.getJson();
 
 		for (JsonNode routesArray : routes) {
@@ -168,6 +172,8 @@ public final class KatangappStore implements Store {
 		new ConcurrentHashMap<>();
 	private static Map<String, Route> routeStore = new ConcurrentHashMap<>();
 
-	private static Store instance = new KatangappStore();
+	private static JsonStore busStopsJsonStore = new BusStopsJsonStore();
+	private static JsonStore routesJsonStore = new RoutesJsonStore();
 
+	private static Store instance = new KatangappStore();
 }

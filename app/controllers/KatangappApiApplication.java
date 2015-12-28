@@ -4,9 +4,7 @@ import business.exception.APIElementNotFoundException;
 import business.store.JsonStore;
 import business.store.Store;
 
-import internal.business.store.BusStopsJsonStore;
 import internal.business.store.KatangappStore;
-import internal.business.store.RoutesJsonStore;
 
 import models.BusStop;
 import models.Route;
@@ -50,8 +48,9 @@ public class KatangappApiApplication extends Controller {
         return ok(routes.getJson());
     }
 
-    private static JsonStore busStops = new BusStopsJsonStore();
-    private static JsonStore routes = new RoutesJsonStore();
     private static Store store = KatangappStore.getInstance();
+
+    private static JsonStore busStops = store.getBusStopsJsonStore();
+    private static JsonStore routes = store.getRoutesJsonStore();
 
 }
