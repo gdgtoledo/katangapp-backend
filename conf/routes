@@ -4,10 +4,10 @@
 
 # Home page
 GET     /paradas                    @controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
-GET     /api/busStops               controllers.KatangappApiApplication.busStops()
-GET     /api/busStops/:id           controllers.KatangappApiApplication.busStop(id: String)
-GET     /api/routes                 controllers.KatangappApiApplication.routes()
-GET     /api/routes/:id             controllers.KatangappApiApplication.route(id: String)
+GET     /api/busStops               @controllers.KatangappApiApplication.busStops()
+GET     /api/busStops/:id           @controllers.KatangappApiApplication.busStop(id: String)
+GET     /api/routes                 @controllers.KatangappApiApplication.routes()
+GET     /api/routes/:id             @controllers.KatangappApiApplication.route(id: String)
 GET     /unauto                     @controllers.KatangappApplication.unauto(idl:String, idp:String, ido:String)
 
 # Map static resources from the /public folder to the /assets URL path

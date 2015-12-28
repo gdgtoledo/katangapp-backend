@@ -7,6 +7,7 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
@@ -17,9 +18,14 @@ import play.test.WithApplication;
  */
 public class KatangappApiApplicationTest extends WithApplication {
 
+	@Before
+	public void setUp() {
+		katangappApiApplication = new KatangappApiApplication();
+	}
+
 	@Test
 	public void testBusStop() {
-		Result result = KatangappApiApplication.busStop("P003");
+		Result result = katangappApiApplication.busStop("P003");
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -27,7 +33,7 @@ public class KatangappApiApplicationTest extends WithApplication {
 
 	@Test
 	public void testBusStopNotFound() {
-		Result result = KatangappApiApplication.busStop("notfound");
+		Result result = katangappApiApplication.busStop("notfound");
 
 		assertThat(status(result)).isEqualTo(NOT_FOUND);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -35,7 +41,7 @@ public class KatangappApiApplicationTest extends WithApplication {
 
 	@Test
 	public void testBusStops() {
-		Result result = KatangappApiApplication.busStops();
+		Result result = katangappApiApplication.busStops();
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -43,7 +49,7 @@ public class KatangappApiApplicationTest extends WithApplication {
 
 	@Test
 	public void testRoute() {
-		Result result = KatangappApiApplication.route("L02");
+		Result result = katangappApiApplication.route("L02");
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -51,7 +57,7 @@ public class KatangappApiApplicationTest extends WithApplication {
 
 	@Test
 	public void testRouteNotFound() {
-		Result result = KatangappApiApplication.route("notfound");
+		Result result = katangappApiApplication.route("notfound");
 
 		assertThat(status(result)).isEqualTo(NOT_FOUND);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -59,10 +65,12 @@ public class KatangappApiApplicationTest extends WithApplication {
 
 	@Test
 	public void testRoutes() {
-		Result result = KatangappApiApplication.routes();
+		Result result = katangappApiApplication.routes();
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
 	}
+
+	private KatangappApiApplication katangappApiApplication;
 
 }

@@ -20,7 +20,7 @@ import play.mvc.Result;
  */
 public class KatangappApiApplication extends Controller {
 
-    public static Result busStop(String id) {
+    public Result busStop(String id) {
         try {
             BusStop busStop = store.getBusStop(id);
 
@@ -31,11 +31,11 @@ public class KatangappApiApplication extends Controller {
         }
     }
 
-    public static Result busStops() {
+    public Result busStops() {
         return ok(busStops.getJson());
     }
 
-    public static Result route(String id) {
+    public Result route(String id) {
         try {
             Route route = store.getRoute(id);
 
@@ -46,7 +46,7 @@ public class KatangappApiApplication extends Controller {
         }
     }
 
-    public static Result routes() {
+    public Result routes() {
         return ok(routes.getJson());
     }
 
