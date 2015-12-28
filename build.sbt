@@ -11,6 +11,7 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   javaWs,
+  "com.google.inject" % "guice" % "4.0",
   "org.jsoup" % "jsoup" % "1.8.3"
 )
 
