@@ -64,6 +64,19 @@ http://localhost:9000/api/busStops
 http://localhost:9000/api/busStops/:busStopId
 ```
 
+### Pretty Printing JSON output
+
+Adding the parameter `prettyPrint` with value `true` or `1`, will return a
+prettified JSON.
+
+```
+http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500?prettyPrint=1
+http://localhost:9000/api/routes?prettyPrint=1
+http://localhost:9000/api/routes/:routeId?prettyPrint=true
+http://localhost:9000/api/busStops?prettyPrint=1
+http://localhost:9000/api/busStops/:busStopId?prettyPrint=true
+```
+
 ## Backward compatibility
 To verify that the former system' business logic is working as expected, go to
 `http://localhost:9000/unauto`, that represents the endpoint of the former
