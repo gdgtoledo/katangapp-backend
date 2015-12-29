@@ -2,6 +2,7 @@ package internal.business.parser;
 
 import business.parser.Parser;
 
+import models.Constants;
 import models.RouteResult;
 
 import java.util.ArrayList;
@@ -89,6 +90,7 @@ public class HTMLParser implements Parser {
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.setTime(queryDate);
+		calendar.setTimeZone(Constants.TZ_TOLEDO);
 
 		calendar.set(Calendar.HOUR_OF_DAY, connectionHour);
 		calendar.set(Calendar.MINUTE, connectionMinutes);

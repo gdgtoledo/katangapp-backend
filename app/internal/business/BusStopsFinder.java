@@ -13,6 +13,7 @@ import internal.business.store.KatangappStore;
 
 import models.BusStop;
 import models.BusStopResult;
+import models.Constants;
 import models.Point;
 import models.PolarSegment;
 import models.QueryResult;
@@ -20,8 +21,8 @@ import models.ReferenceablePoint;
 import models.RouteResult;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +60,12 @@ public class BusStopsFinder implements Finder {
 			String responseHtml = getHttpService().get(
 				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
+			Calendar calendar = Calendar.getInstance();
+
+			calendar.setTimeZone(Constants.TZ_TOLEDO);
+
 			List<RouteResult> routeResults = getParser().parseResponse(
-				busStop.getRouteId(), new Date(), responseHtml);
+				busStop.getRouteId(), calendar.getTime(), responseHtml);
 
 			Collections.sort(routeResults);
 
