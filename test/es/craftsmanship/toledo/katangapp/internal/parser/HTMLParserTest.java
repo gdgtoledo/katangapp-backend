@@ -4,7 +4,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import es.craftsmanship.toledo.katangapp.business.IOTestUtils;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
-
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
 import java.util.Date;

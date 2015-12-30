@@ -1,11 +1,12 @@
 package es.craftsmanship.toledo.katangapp.mocks;
 
-import org.mockito.Mockito;
-import play.mvc.Http;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.mockito.Mockito;
+
+import play.mvc.Http;
 
 /**
  * This class offers methods to mock an HTTP request.

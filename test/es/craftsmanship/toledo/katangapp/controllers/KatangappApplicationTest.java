@@ -3,28 +3,27 @@ package es.craftsmanship.toledo.katangapp.controllers;
 import static org.fest.assertions.Assertions.assertThat;
 
 import static play.mvc.Http.Status.OK;
+
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.controllers.KatangappApplication;
 import es.craftsmanship.toledo.katangapp.mocks.MockBusStopsFinder;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
-
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
+
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
-import play.test.WithApplication;
 
-import java.util.Map;
+import play.test.WithApplication;
 
 /**
  * @author mdelapenya

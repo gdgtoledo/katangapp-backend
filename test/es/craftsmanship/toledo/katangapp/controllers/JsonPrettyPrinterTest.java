@@ -3,21 +3,20 @@ package es.craftsmanship.toledo.katangapp.controllers;
 import static org.fest.assertions.Assertions.assertThat;
 
 import static play.mvc.Http.Status.OK;
+
 import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
-
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 
 import org.junit.Test;
 
 import play.libs.Json;
+
 import play.mvc.Http;
 import play.mvc.Result;
 

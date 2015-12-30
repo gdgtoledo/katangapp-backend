@@ -7,7 +7,6 @@ import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
 import es.craftsmanship.toledo.katangapp.controllers.callbacks.BodyContainsTestCallback;
-
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;

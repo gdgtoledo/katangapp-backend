@@ -1,14 +1,12 @@
 package es.craftsmanship.toledo.katangapp.controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
-
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.http.UnautoHttpService;
-
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
-
-import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
 

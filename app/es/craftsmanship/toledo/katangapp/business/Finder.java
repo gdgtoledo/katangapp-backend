@@ -2,7 +2,6 @@ package es.craftsmanship.toledo.katangapp.business;
 
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
-
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 /**

@@ -2,11 +2,11 @@ package es.craftsmanship.toledo.katangapp.models;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Test;
 
 /**
  * @author mdelapenya

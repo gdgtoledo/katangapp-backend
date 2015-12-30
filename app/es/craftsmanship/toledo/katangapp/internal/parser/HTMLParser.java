@@ -1,7 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.parser;
 
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
-
 import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
@@ -16,7 +15,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 
 /**
  * @author mdelapenya

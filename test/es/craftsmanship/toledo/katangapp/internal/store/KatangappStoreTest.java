@@ -3,7 +3,6 @@ package es.craftsmanship.toledo.katangapp.internal.store;
 import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
 
-import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

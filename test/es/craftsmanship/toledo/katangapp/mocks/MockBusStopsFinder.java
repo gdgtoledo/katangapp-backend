@@ -1,7 +1,6 @@
 package es.craftsmanship.toledo.katangapp.mocks;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
-
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 
 import org.mockito.Mockito;

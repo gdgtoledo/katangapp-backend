@@ -4,9 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import es.craftsmanship.toledo.katangapp.mocks.MockBusStopsFinder;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
-
 import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
-
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;

@@ -1,7 +1,6 @@
 package es.craftsmanship.toledo.katangapp.business.store;
 
 import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
 

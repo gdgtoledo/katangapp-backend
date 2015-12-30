@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.internal.http;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 
 import java.nio.charset.Charset;
+
 import java.text.MessageFormat;
 
 import play.libs.ws.WS;

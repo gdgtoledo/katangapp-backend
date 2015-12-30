@@ -4,16 +4,17 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.OK;
+
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
+
 import play.test.WithApplication;
 
 /**

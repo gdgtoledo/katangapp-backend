@@ -1,8 +1,8 @@
 package es.craftsmanship.toledo.katangapp.models;
 
-import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
-
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 
 /**
  * @author mdelapenya

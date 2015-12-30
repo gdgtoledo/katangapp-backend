@@ -5,12 +5,10 @@ import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
-
 import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.http.UnautoHttpService;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.Constants;

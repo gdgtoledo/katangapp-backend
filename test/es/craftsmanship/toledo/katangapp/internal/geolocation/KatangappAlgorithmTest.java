@@ -3,9 +3,7 @@ package es.craftsmanship.toledo.katangapp.internal.geolocation;
 import static org.fest.assertions.Assertions.assertThat;
 
 import es.craftsmanship.toledo.katangapp.business.store.Store;
-
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
-
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.PolarSegment;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;

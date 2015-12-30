@@ -1,12 +1,16 @@
 package es.craftsmanship.toledo.katangapp.internal.store;
 
-import es.craftsmanship.toledo.katangapp.business.store.JsonStore;
 import com.fasterxml.jackson.databind.JsonNode;
-import play.api.Play;
-import play.libs.Json;
-import scala.Option;
+
+import es.craftsmanship.toledo.katangapp.business.store.JsonStore;
 
 import java.io.InputStream;
+
+import play.api.Play;
+
+import play.libs.Json;
+
+import scala.Option;
 
 /**
  * @author mdelapenya
