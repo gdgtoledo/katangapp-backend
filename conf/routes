@@ -2,12 +2,13 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /paradas                    @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 GET     /api/busStops               @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.busStops()
 GET     /api/busStops/:id           @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.busStop(id: String)
 GET     /api/routes                 @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.routes()
 GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.route(id: String)
+
+GET     /paradas                    @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
+
 GET     /unauto                     @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.unauto(idl:String, idp:String, ido:String)
 
 # Map static resources from the /public folder to the /assets URL path
