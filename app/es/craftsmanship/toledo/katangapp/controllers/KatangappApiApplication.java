@@ -36,7 +36,9 @@ public class KatangappApiApplication extends Controller {
     }
 
     public Result busStops() {
-        JsonNode jsonNode = busStops.getJson();
+        JsonStore busStopsJsonStore = store.getBusStopsJsonStore();
+
+        JsonNode jsonNode = busStopsJsonStore.getJson();
 
         JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
@@ -61,7 +63,9 @@ public class KatangappApiApplication extends Controller {
     }
 
     public Result routes() {
-        JsonNode jsonNode = routes.getJson();
+        JsonStore routesJsonStore = store.getRoutesJsonStore();
+
+        JsonNode jsonNode = routesJsonStore.getJson();
 
         JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
@@ -70,8 +74,5 @@ public class KatangappApiApplication extends Controller {
     }
 
     private static Store store = KatangappStore.getInstance();
-
-    private static JsonStore busStops = store.getBusStopsJsonStore();
-    private static JsonStore routes = store.getRoutesJsonStore();
 
 }
