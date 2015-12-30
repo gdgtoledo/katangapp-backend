@@ -1,5 +1,4 @@
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import es.craftsmanship.toledo.katangapp.guice.GuiceInjector;
 
 import play.*;
 import play.mvc.*;
@@ -26,14 +25,16 @@ public class Global extends GlobalSettings {
 	}
 
 	public void onStart(Application application) {
-		injector = Guice.createInjector();
+		guiceInjector = GuiceInjector.getInstance();
 	}
 
 	@Override
-	public <A> A getControllerInstance(Class<A> controllerClass) throws Exception {
-		return injector.getInstance(controllerClass);
+	public <A> A getControllerInstance(Class<A> controllerClass)
+		throws Exception {
+
+		return guiceInjector.getInjectedInstance(controllerClass);
 	}
 
-	private Injector injector;
+	private GuiceInjector guiceInjector;
 
 }
