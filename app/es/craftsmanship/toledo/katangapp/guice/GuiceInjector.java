@@ -17,7 +17,9 @@ public class GuiceInjector {
 	}
 
 	private GuiceInjector() {
-		injector = Guice.createInjector(new FinderModule(), new ParserModule());
+		injector = Guice.createInjector(
+			new ClosestPointAlgorithmModule(), new FinderModule(),
+			new ParserModule());
 	}
 
 	private static GuiceInjector instance = new GuiceInjector();
