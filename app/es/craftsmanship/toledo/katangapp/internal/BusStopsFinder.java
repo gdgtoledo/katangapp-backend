@@ -7,7 +7,6 @@ import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
-import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
@@ -32,7 +31,11 @@ import java.util.Set;
 public class BusStopsFinder implements Finder {
 
 	@Inject
-	public BusStopsFinder(Parser parser, HttpService httpService) {
+	public BusStopsFinder(
+		ClosestPointsAlgorithm closestPointsAlgorithm, Parser parser,
+		HttpService httpService) {
+
+		this.algorithm = closestPointsAlgorithm;
 		this.httpService = httpService;
 		this.parser = parser;
 	}
@@ -47,7 +50,7 @@ public class BusStopsFinder implements Finder {
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			busStopMap.values());
 
-		List<PolarSegment> polarSegments = getAlgorithm().closestSegments(
+		List<PolarSegment> polarSegments = algorithm.closestSegments(
 			currentLocation, dataSet, radius);
 
 		List<BusStopResult> busStopResults = new ArrayList<>();
@@ -82,10 +85,6 @@ public class BusStopsFinder implements Finder {
 		return new QueryResult(busStopResults);
 	}
 
-	public ClosestPointsAlgorithm getAlgorithm() {
-		return algorithm;
-	}
-
 	public HttpService getHttpService() {
 		return httpService;
 	}
@@ -94,9 +93,9 @@ public class BusStopsFinder implements Finder {
 		return katangappStore;
 	}
 
-	private static ClosestPointsAlgorithm algorithm = new KatangappAlgorithm();
 	private static Store katangappStore = KatangappStore.getInstance();
 
+	private ClosestPointsAlgorithm algorithm;
 	private HttpService httpService;
 	private Parser parser;
 

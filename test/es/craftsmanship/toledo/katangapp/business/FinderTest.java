@@ -26,7 +26,8 @@ public class FinderTest extends WithApplication {
 	@Before
 	public void setUp() {
 		busStopFinder = new BusStopsFinder(
-			new HTMLParser(), new MockHttpService("P001"));
+			new KatangappAlgorithm(), new HTMLParser(),
+			new MockHttpService("P001"));
 	}
 
 	@Test
