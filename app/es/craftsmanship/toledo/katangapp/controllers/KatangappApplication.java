@@ -2,10 +2,10 @@ package es.craftsmanship.toledo.katangapp.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import com.google.inject.Inject;
+
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
-import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
-import es.craftsmanship.toledo.katangapp.internal.http.UnautoHttpService;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import play.libs.Json;
@@ -17,6 +17,11 @@ import play.mvc.Result;
  * @author mdelapenya
  */
 public class KatangappApplication extends Controller {
+
+    @Inject
+    public KatangappApplication(Finder busStopFinder) {
+        this.busStopFinder = busStopFinder;
+    }
 
     public Result main(String lt, String ln, int r) {
         double dLatitude = Double.parseDouble(lt);
@@ -33,10 +38,6 @@ public class KatangappApplication extends Controller {
         return prettyPrinter.prettyPrintWhenNeeded();
     }
 
-    public void setBusStopFinder(Finder finder) {
-        busStopFinder = finder;
-    }
-
     public Result unauto(String idl, String idp, String ido) {
         HttpService httpService = busStopFinder.getHttpService();
 
@@ -45,7 +46,6 @@ public class KatangappApplication extends Controller {
         return ok(response);
     }
 
-    private static Finder busStopFinder = new BusStopsFinder(
-        new UnautoHttpService());
+    private Finder busStopFinder;
 
 }

@@ -8,11 +8,11 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.business.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
+import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
-import es.craftsmanship.toledo.katangapp.business.store.Store;
-import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
@@ -33,14 +33,11 @@ public class KatangappApplicationTest extends WithApplication {
 
 	@Before
 	public void setUp() {
-		katangappApplication = new KatangappApplication();
-
 		final MockHttpService mockHttpService = new MockHttpService("P001");
 
 		Finder busStopFinder = new BusStopsFinder(mockHttpService);
 
-		katangappApplication.setBusStopFinder(busStopFinder);
-
+		katangappApplication = new KatangappApplication(busStopFinder);
 	}
 
 	@Test

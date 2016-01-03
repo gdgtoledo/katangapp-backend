@@ -1,5 +1,7 @@
 package es.craftsmanship.toledo.katangapp.internal;
 
+import com.google.inject.Inject;
+
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
@@ -30,6 +32,7 @@ import java.util.Set;
  */
 public class BusStopsFinder implements Finder {
 
+	@Inject
 	public BusStopsFinder(HttpService httpService) {
 		this.httpService = httpService;
 	}
