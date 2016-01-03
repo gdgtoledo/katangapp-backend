@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import play.libs.Json;
@@ -19,9 +18,8 @@ import play.mvc.Result;
 public class KatangappApplication extends Controller {
 
     @Inject
-    public KatangappApplication(Finder busStopFinder, HttpService httpService) {
+    public KatangappApplication(Finder busStopFinder) {
         this.busStopFinder = busStopFinder;
-        this.httpService = httpService;
     }
 
     public Result main(String lt, String ln, int r) {
@@ -39,13 +37,6 @@ public class KatangappApplication extends Controller {
         return prettyPrinter.prettyPrintWhenNeeded();
     }
 
-    public Result unauto(String idl, String idp, String ido) {
-        String response = httpService.get(idl, idp, ido);
-
-        return ok(response);
-    }
-
     private Finder busStopFinder;
-    private HttpService httpService;
 
 }

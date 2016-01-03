@@ -13,7 +13,7 @@ import org.junit.Test;
 /**
  * @author mdelapenya
  */
-public class KatangappFunctionalTest {
+public class UnautoFunctionalTest {
 
     @Test
     public void testNotFoundPath() {

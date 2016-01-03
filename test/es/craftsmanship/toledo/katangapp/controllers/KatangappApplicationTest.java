@@ -8,18 +8,13 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
-import es.craftsmanship.toledo.katangapp.business.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
-import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
-import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
-
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,8 +35,7 @@ public class KatangappApplicationTest extends WithApplication {
 		Finder busStopFinder = new BusStopsFinder(
 			new KatangappAlgorithm(), new HTMLParser(), mockHttpService);
 
-		katangappApplication = new KatangappApplication(
-			busStopFinder, mockHttpService);
+		katangappApplication = new KatangappApplication(busStopFinder);
 	}
 
 	@Test
@@ -74,25 +68,6 @@ public class KatangappApplicationTest extends WithApplication {
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
-	}
-
-	@Test
-	public void testUnauto() {
-		Store busStopStore = KatangappStore.getInstance();
-
-		Map<String, BusStop> busStopMap = busStopStore.getBusStopStore();
-
-		for (Map.Entry<String, BusStop> stopEntry : busStopMap.entrySet()) {
-			BusStop busStop = stopEntry.getValue();
-
-			Result result = katangappApplication.unauto(
-				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
-
-			assertThat(status(result)).isEqualTo(OK);
-			assertThat(contentType(result)).isEqualTo("text/plain");
-
-			break;
-		}
 	}
 
 	private KatangappApplication katangappApplication;
