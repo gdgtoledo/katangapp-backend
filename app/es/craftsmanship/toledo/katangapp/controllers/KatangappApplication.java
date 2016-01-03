@@ -37,17 +37,15 @@ public class KatangappApplication extends Controller {
         busStopFinder = finder;
     }
 
-    public void setHttpService(HttpService service) {
-        httpService = service;
-    }
-
     public Result unauto(String idl, String idp, String ido) {
+        HttpService httpService = busStopFinder.getHttpService();
+
         String response = httpService.get(idl, idp, ido);
 
         return ok(response);
     }
 
-    private static Finder busStopFinder = new BusStopsFinder();
-    private static HttpService httpService = new UnautoHttpService();
+    private static Finder busStopFinder = new BusStopsFinder(
+        new UnautoHttpService());
 
 }

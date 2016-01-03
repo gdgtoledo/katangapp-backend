@@ -2,7 +2,7 @@ package es.craftsmanship.toledo.katangapp.business;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import es.craftsmanship.toledo.katangapp.mocks.MockBusStopsFinder;
+import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
@@ -24,8 +24,7 @@ public class FinderTest extends WithApplication {
 
 	@Before
 	public void setUp() {
-		busStopFinder = MockBusStopsFinder.mockFinder(
-			new MockHttpService("P001"));
+		busStopFinder = new BusStopsFinder(new MockHttpService("P001"));
 	}
 
 	@Test

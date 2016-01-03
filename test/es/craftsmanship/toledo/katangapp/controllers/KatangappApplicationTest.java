@@ -7,7 +7,8 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.mocks.MockBusStopsFinder;
+import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
@@ -36,10 +37,9 @@ public class KatangappApplicationTest extends WithApplication {
 
 		final MockHttpService mockHttpService = new MockHttpService("P001");
 
-		katangappApplication.setBusStopFinder(
-			MockBusStopsFinder.mockFinder(mockHttpService));
+		Finder busStopFinder = new BusStopsFinder(mockHttpService);
 
-		katangappApplication.setHttpService(mockHttpService);
+		katangappApplication.setBusStopFinder(busStopFinder);
 
 	}
 
