@@ -8,7 +8,6 @@ import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
-import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
@@ -33,8 +32,9 @@ import java.util.Set;
 public class BusStopsFinder implements Finder {
 
 	@Inject
-	public BusStopsFinder(HttpService httpService) {
+	public BusStopsFinder(Parser parser, HttpService httpService) {
 		this.httpService = httpService;
+		this.parser = parser;
 	}
 
 	public QueryResult findRoutes(
@@ -68,7 +68,7 @@ public class BusStopsFinder implements Finder {
 
 			calendar.setTimeZone(Constants.TZ_TOLEDO);
 
-			List<RouteResult> routeResults = getParser().parseResponse(
+			List<RouteResult> routeResults = parser.parseResponse(
 				busStop.getRouteId(), calendar.getTime(), responseHtml);
 
 			Collections.sort(routeResults);
@@ -90,18 +90,14 @@ public class BusStopsFinder implements Finder {
 		return httpService;
 	}
 
-	public Parser getParser() {
-		return parser;
-	}
-
 	public Store getStore() {
 		return katangappStore;
 	}
 
 	private static ClosestPointsAlgorithm algorithm = new KatangappAlgorithm();
-	private static Parser parser = new HTMLParser();
 	private static Store katangappStore = KatangappStore.getInstance();
 
 	private HttpService httpService;
+	private Parser parser;
 
 }
