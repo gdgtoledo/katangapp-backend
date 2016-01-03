@@ -40,7 +40,8 @@ public class KatangappApplicationTest extends WithApplication {
 		Finder busStopFinder = new BusStopsFinder(
 			new KatangappAlgorithm(), new HTMLParser(), mockHttpService);
 
-		katangappApplication = new KatangappApplication(busStopFinder);
+		katangappApplication = new KatangappApplication(
+			busStopFinder, mockHttpService);
 	}
 
 	@Test

@@ -1,6 +1,5 @@
 package es.craftsmanship.toledo.katangapp.business;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 /**
@@ -9,7 +8,5 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
 public interface Finder {
 
 	QueryResult findRoutes(double latitude, double longitude, int radius);
-
-	HttpService getHttpService();
 
 }

@@ -85,10 +85,6 @@ public class BusStopsFinder implements Finder {
 		return new QueryResult(busStopResults);
 	}
 
-	public HttpService getHttpService() {
-		return httpService;
-	}
-
 	private static Store katangappStore = KatangappStore.getInstance();
 
 	private ClosestPointsAlgorithm algorithm;
