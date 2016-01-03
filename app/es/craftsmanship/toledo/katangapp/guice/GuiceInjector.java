@@ -17,7 +17,7 @@ public class GuiceInjector {
 	}
 
 	private GuiceInjector() {
-		injector = Guice.createInjector();
+		injector = Guice.createInjector(new FinderModule());
 	}
 
 	private static GuiceInjector instance = new GuiceInjector();
