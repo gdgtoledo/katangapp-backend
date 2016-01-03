@@ -45,7 +45,7 @@ public class BusStopsFinder implements Finder {
 
 		ReferenceablePoint currentLocation = new Point(latitude, longitude);
 
-		Map<String, BusStop> busStopMap = getStore().getBusStopStore();
+		Map<String, BusStop> busStopMap = katangappStore.getBusStopStore();
 
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			busStopMap.values());
@@ -87,10 +87,6 @@ public class BusStopsFinder implements Finder {
 
 	public HttpService getHttpService() {
 		return httpService;
-	}
-
-	public Store getStore() {
-		return katangappStore;
 	}
 
 	private static Store katangappStore = KatangappStore.getInstance();
