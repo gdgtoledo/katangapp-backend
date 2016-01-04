@@ -20,10 +20,12 @@ import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 
+import play.test.WithApplication;
+
 /**
  * @author mdelapenya
  */
-public class JsonPrettyPrinterTest {
+public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testDoNotPrettyPrint() throws Exception {
