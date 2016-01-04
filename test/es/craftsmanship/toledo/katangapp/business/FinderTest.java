@@ -4,7 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
-import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
+import es.craftsmanship.toledo.katangapp.internal.algorithm.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.Point;

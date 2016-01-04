@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.internal.geolocation;
+package es.craftsmanship.toledo.katangapp.internal.algorithm;
 
 import static org.fest.assertions.Assertions.assertThat;
 

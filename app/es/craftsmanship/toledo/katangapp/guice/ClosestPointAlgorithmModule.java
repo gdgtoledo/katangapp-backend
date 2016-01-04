@@ -3,7 +3,7 @@ package es.craftsmanship.toledo.katangapp.guice;
 import com.google.inject.AbstractModule;
 
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
-import es.craftsmanship.toledo.katangapp.internal.geolocation.KatangappAlgorithm;
+import es.craftsmanship.toledo.katangapp.internal.algorithm.KatangappAlgorithm;
 
 /**
  * @author mdelapenya

@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.internal.geolocation;
+package es.craftsmanship.toledo.katangapp.internal.algorithm;
 
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
