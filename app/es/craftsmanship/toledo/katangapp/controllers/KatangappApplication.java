@@ -32,8 +32,7 @@ public class KatangappApplication extends Controller {
 
         JsonNode node = Json.toJson(queryResult);
 
-        JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
-            request(), node);
+        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(request(), node);
 
         return prettyPrinter.prettyPrint();
     }

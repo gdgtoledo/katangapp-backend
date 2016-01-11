@@ -26,7 +26,7 @@ public class KatangappApiApplication extends Controller {
 
             JsonNode jsonNode = Json.toJson(busStop);
 
-            JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+            PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
                 request(), jsonNode);
 
             return prettyPrinter.prettyPrint();
@@ -41,7 +41,7 @@ public class KatangappApiApplication extends Controller {
 
         JsonNode jsonNode = busStopsJsonStore.getJson();
 
-        JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
 
         return prettyPrinter.prettyPrint();
@@ -53,7 +53,7 @@ public class KatangappApiApplication extends Controller {
 
             JsonNode jsonNode = Json.toJson(route);
 
-            JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+            PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
                 request(), jsonNode);
 
             return prettyPrinter.prettyPrint();
@@ -68,7 +68,7 @@ public class KatangappApiApplication extends Controller {
 
         JsonNode jsonNode = routesJsonStore.getJson();
 
-        JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
 
         return prettyPrinter.prettyPrint();

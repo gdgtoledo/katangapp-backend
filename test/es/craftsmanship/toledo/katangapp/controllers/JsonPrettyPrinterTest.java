@@ -34,7 +34,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
-		JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+		PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
 			request, Json.toJson(busStop));
 
 		Result result = prettyPrinter.prettyPrint();
@@ -52,7 +52,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
-		JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+		PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
 			request, Json.toJson(busStop));
 
 		Result result = prettyPrinter.prettyPrint();
