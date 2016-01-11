@@ -1,6 +1,9 @@
 package es.craftsmanship.toledo.katangapp.models;
 
 /**
+ * This class represents the time needed for a bus of a route, identified by the
+ * field <code>idl</code>, to arrive to a specific bus stop.
+ * 
  * @author mdelapenya
  */
 public class RouteResult implements Comparable<RouteResult> {
@@ -82,7 +85,15 @@ public class RouteResult implements Comparable<RouteResult> {
 		return "idl: " + idl + ", time: " + time;
 	}
 
+	/**
+	 * Identifier of the route arriving to a specific bus stop.
+	 */
 	private String idl;
+
+	/**
+	 * Time in minutes for a bus stop of a route to arrive to a specific bus
+	 * stop.
+	 */
 	private long time;
 
 }
