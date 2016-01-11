@@ -1,9 +1,11 @@
-package es.craftsmanship.toledo.katangapp.controllers;
+package es.craftsmanship.toledo.katangapp.internal.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+
+import es.craftsmanship.toledo.katangapp.controllers.PrettyPrinter;
 
 import java.nio.charset.Charset;
 
@@ -16,14 +18,15 @@ import play.mvc.Results;
 /**
  * @author mdelapenya
  */
-public class JsonPrettyPrinter {
+public class JsonPrettyPrinter implements PrettyPrinter {
 
 	public JsonPrettyPrinter(Http.Request request, JsonNode jsonNode) {
 		this.request = request;
 		this.jsonNode = jsonNode;
 	}
 
-	public Result prettyPrintWhenNeeded() {
+	@Override
+	public Result prettyPrint() {
 		if (isPrettyPrint()) {
 			ObjectMapper mapper = new ObjectMapper();
 

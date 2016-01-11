@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
 import es.craftsmanship.toledo.katangapp.business.store.JsonStore;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
@@ -28,7 +29,7 @@ public class KatangappApiApplication extends Controller {
             JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
                 request(), jsonNode);
 
-            return prettyPrinter.prettyPrintWhenNeeded();
+            return prettyPrinter.prettyPrint();
         }
         catch (APIElementNotFoundException e) {
             return notFound(e.getApiError());
@@ -43,7 +44,7 @@ public class KatangappApiApplication extends Controller {
         JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
 
-        return prettyPrinter.prettyPrintWhenNeeded();
+        return prettyPrinter.prettyPrint();
     }
 
     public Result route(String id) {
@@ -55,7 +56,7 @@ public class KatangappApiApplication extends Controller {
             JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
                 request(), jsonNode);
 
-            return prettyPrinter.prettyPrintWhenNeeded();
+            return prettyPrinter.prettyPrint();
         }
         catch (APIElementNotFoundException e){
             return notFound(e.getApiError());
@@ -70,7 +71,7 @@ public class KatangappApiApplication extends Controller {
         JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), jsonNode);
 
-        return prettyPrinter.prettyPrintWhenNeeded();
+        return prettyPrinter.prettyPrint();
     }
 
     private static Store store = KatangappStore.getInstance();

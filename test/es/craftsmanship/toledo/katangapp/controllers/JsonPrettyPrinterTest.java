@@ -8,6 +8,7 @@ import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
+import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
@@ -36,7 +37,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 		JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
 			request, Json.toJson(busStop));
 
-		Result result = prettyPrinter.prettyPrintWhenNeeded();
+		Result result = prettyPrinter.prettyPrint();
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -54,7 +55,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 		JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
 			request, Json.toJson(busStop));
 
-		Result result = prettyPrinter.prettyPrintWhenNeeded();
+		Result result = prettyPrinter.prettyPrint();
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");

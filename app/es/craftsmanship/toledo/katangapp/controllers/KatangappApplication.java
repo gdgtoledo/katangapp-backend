@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import play.libs.Json;
@@ -34,7 +35,7 @@ public class KatangappApplication extends Controller {
         JsonPrettyPrinter prettyPrinter = new JsonPrettyPrinter(
             request(), node);
 
-        return prettyPrinter.prettyPrintWhenNeeded();
+        return prettyPrinter.prettyPrint();
     }
 
     private Finder busStopFinder;
