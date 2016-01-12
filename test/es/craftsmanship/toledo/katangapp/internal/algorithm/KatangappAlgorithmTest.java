@@ -5,8 +5,8 @@ import static org.fest.assertions.Assertions.assertThat;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
-import es.craftsmanship.toledo.katangapp.models.PolarSegment;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
+import es.craftsmanship.toledo.katangapp.models.Segment;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
 
 import java.util.HashSet;
@@ -53,7 +53,7 @@ public class KatangappAlgorithmTest extends WithApplication {
 
 		KatangappAlgorithm katangappAlgorithm = new KatangappAlgorithm();
 
-		List<PolarSegment> referenceablePoints =
+		List<Segment> referenceablePoints =
 			katangappAlgorithm.closestSegments(
 				current, points, radius, maxElements);
 

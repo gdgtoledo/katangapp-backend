@@ -13,7 +13,7 @@ import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
  *
  * @see ReferenceablePoint
  */
-public class PolarSegment implements Comparable<PolarSegment> {
+public class Segment implements Comparable<Segment> {
 
 	/**
 	 * Creates the segment object defined by the two points passed in as
@@ -25,7 +25,7 @@ public class PolarSegment implements Comparable<PolarSegment> {
 	 * @throws UnreferenceablePointException when any point is not referenced or
 	 *                                       is null.
 	 */
-	public PolarSegment(ReferenceablePoint from, ReferenceablePoint to)
+	public Segment(ReferenceablePoint from, ReferenceablePoint to)
 		throws UnreferenceablePointException {
 
 		this.from = from;
@@ -34,7 +34,7 @@ public class PolarSegment implements Comparable<PolarSegment> {
 	}
 
 	@Override
-	public int compareTo(PolarSegment that) {
+	public int compareTo(Segment that) {
 		if (distance < that.distance) {
 			return -1;
 		}
@@ -51,14 +51,14 @@ public class PolarSegment implements Comparable<PolarSegment> {
 			return true;
 		}
 
-		if (!(that instanceof PolarSegment)) {
+		if (!(that instanceof Segment)) {
 			return false;
 		}
 
-		PolarSegment polarThat = (PolarSegment)that;
+		Segment segmentThat = (Segment)that;
 
-		return((distance == polarThat.distance) &&
-			(from.equals(polarThat.from)) && (to.equals(polarThat.to)));
+		return((distance == segmentThat.distance) &&
+			(from.equals(segmentThat.from)) && (to.equals(segmentThat.to)));
 	}
 
 	public double getDistance() {

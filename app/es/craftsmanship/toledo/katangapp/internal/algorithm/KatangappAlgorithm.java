@@ -3,7 +3,7 @@ package es.craftsmanship.toledo.katangapp.internal.algorithm;
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
-import es.craftsmanship.toledo.katangapp.models.PolarSegment;
+import es.craftsmanship.toledo.katangapp.models.Segment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 
 	public static final int DEFAULT_MAX_ELEMENTS = 3;
 
-	public List<PolarSegment> closestSegments(
+	public List<Segment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters) {
 
@@ -25,43 +25,43 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 			currentLocation, points, radiusMeters, DEFAULT_MAX_ELEMENTS);
 	}
 
-	protected List<PolarSegment> closestSegments(
+	protected List<Segment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters, int maxElements) {
 
-		List<PolarSegment> polarSegments = new ArrayList<>();
+		List<Segment> segments = new ArrayList<>();
 
-		// each polar segment will internally store the distance between points
+		// each segment will internally store the distance between points
 
 		for (ReferenceablePoint point : points) {
-			PolarSegment polarSegment;
+			Segment segment;
 
 			try {
-				polarSegment = new PolarSegment(currentLocation, point);
+				segment = new Segment(currentLocation, point);
 			}
 			catch (UnreferenceablePointException e) {
 				continue;
 			}
 
-			if (polarSegment.getDistance() <= radiusMeters) {
-				polarSegments.add(polarSegment);
+			if (segment.getDistance() <= radiusMeters) {
+				segments.add(segment);
 			}
 		}
 
 		// fail fast, avoiding sorting
 
-		if (polarSegments.isEmpty()) {
-			return polarSegments;
+		if (segments.isEmpty()) {
+			return segments;
 		}
 
-		// sort polar segments using the distance field
+		// sort segments using the distance field
 
-		Collections.sort(polarSegments);
+		Collections.sort(segments);
 
-		List<PolarSegment> result = new ArrayList<>();
+		List<Segment> result = new ArrayList<>();
 
 		for (int i = 0; i < maxElements; i++) {
-			result.add(polarSegments.get(i));
+			result.add(segments.get(i));
 		}
 
 		return result;

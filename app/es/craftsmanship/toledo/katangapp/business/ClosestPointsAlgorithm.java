@@ -1,7 +1,7 @@
 package es.craftsmanship.toledo.katangapp.business;
 
-import es.craftsmanship.toledo.katangapp.models.PolarSegment;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
+import es.craftsmanship.toledo.katangapp.models.Segment;
 
 import java.util.List;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public interface ClosestPointsAlgorithm {
 
-	List<PolarSegment> closestSegments(
+	List<Segment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
 		int radiusMeters);
 

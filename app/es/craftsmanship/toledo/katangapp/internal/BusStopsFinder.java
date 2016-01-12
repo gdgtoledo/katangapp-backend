@@ -12,10 +12,10 @@ import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.Point;
-import es.craftsmanship.toledo.katangapp.models.PolarSegment;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
+import es.craftsmanship.toledo.katangapp.models.Segment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,17 +50,17 @@ public class BusStopsFinder implements Finder {
 		Set<ReferenceablePoint> dataSet = new HashSet<ReferenceablePoint>(
 			busStopMap.values());
 
-		List<PolarSegment> polarSegments = algorithm.closestSegments(
+		List<Segment> segments = algorithm.closestSegments(
 			currentLocation, dataSet, radius);
 
 		List<BusStopResult> busStopResults = new ArrayList<>();
 
-		if (polarSegments.isEmpty()) {
+		if (segments.isEmpty()) {
 			return new QueryResult(busStopResults);
 		}
 
-		for (PolarSegment polarSegment : polarSegments) {
-			ReferenceablePoint to = polarSegment.getTo();
+		for (Segment segment : segments) {
+			ReferenceablePoint to = segment.getTo();
 
 			BusStop busStop = (BusStop)to;
 
@@ -77,7 +77,7 @@ public class BusStopsFinder implements Finder {
 			Collections.sort(routeResults);
 
 			BusStopResult busStopResult = new BusStopResult(
-				polarSegment.getDistance(), busStop, routeResults);
+				segment.getDistance(), busStop, routeResults);
 
 			busStopResults.add(busStopResult);
 		}
