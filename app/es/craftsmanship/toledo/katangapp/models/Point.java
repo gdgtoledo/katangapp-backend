@@ -5,6 +5,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 
 /**
+ * This class represents a point in the surface of the Earth, identified by its
+ * latitude and longitude coordinates.
+ *
+ * As it is on Earth surface, it's possible to calculate the distance to another
+ * point in meters using trigonometry, as the Earth's radius is a well-known
+ * constant.
+ *
  * @author mdelapenya
  */
 @JsonPropertyOrder(alphabetic = true)
@@ -15,6 +22,17 @@ public class Point implements ReferenceablePoint {
 		this.longitude = longitude;
 	}
 
+	/**
+	 * Calculates the distance from this point to the point passed as argument,
+	 * using Earth's radius and trigonometry.
+	 *
+	 * @param to
+	 *
+	 * @return the distance in meters to the <code>to</code> point.
+	 *
+	 * @throws UnreferenceablePointException when the <code>to</code> point is
+	 *                                       not referenced or is null.
+	 */
 	public double distanceTo(ReferenceablePoint to)
 		throws UnreferenceablePointException {
 
