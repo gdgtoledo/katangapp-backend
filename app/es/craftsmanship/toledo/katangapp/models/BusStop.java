@@ -6,7 +6,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 
 /**
+ * This class represents a bus stop, identified by the route which it belongs,
+ * the order of the bus stop in the route, its latitude and longitude
+ * coordinates, and its human address.
+ *
+ * Latitude and Longitude coordinates will represent the <code>Point</code>
+ * object of the application model.
+ *
+ * When serializing to JSON, it will ignore the Point representing the bus stop,
+ * and will order the fields alphabetically.
+ *
  * @author mdelapenya
+ *
+ * @see Point
  */
 @JsonPropertyOrder(alphabetic = true)
 public class BusStop implements ReferenceablePoint {
@@ -25,6 +37,16 @@ public class BusStop implements ReferenceablePoint {
 		this.point = new Point(latitude, longitude);
 	}
 
+	/**
+	 * Delegates the distance calculation to the point.
+	 *
+	 * @param to the Point to calculate the distance
+	 *
+	 * @return the distance in meters
+	 *
+	 * @throws UnreferenceablePointException when the <code>to</code> point is
+	 *                                       not referenced or is null.
+	 */
 	public double distanceTo(ReferenceablePoint to)
 		throws UnreferenceablePointException {
 

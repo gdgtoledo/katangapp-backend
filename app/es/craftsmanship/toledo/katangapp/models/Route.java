@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * This class represents a route of buses, identified by <code>id</code> and
+ * <code>name</code>, containing an ordered list of bus stops.
+ * 
  * @author mdelapenya
  */
 public class Route {

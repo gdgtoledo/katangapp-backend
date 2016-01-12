@@ -3,10 +3,28 @@ package es.craftsmanship.toledo.katangapp.models;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 
 /**
+ * This class represent the segment between two points.
+ *
+ * In terms of the application, it will represent the segment between user's
+ * current location and any bus stop's location, calculating the distance
+ * between those two point on its constructor.
+ *
  * @author mdelapenya
+ *
+ * @see ReferenceablePoint
  */
 public class PolarSegment implements Comparable<PolarSegment> {
 
+	/**
+	 * Creates the segment object defined by the two points passed in as
+	 * arguments.
+	 *
+	 * @param from Start point of the segment
+	 * @param to End point of the segment
+	 *
+	 * @throws UnreferenceablePointException when any point is not referenced or
+	 *                                       is null.
+	 */
 	public PolarSegment(ReferenceablePoint from, ReferenceablePoint to)
 		throws UnreferenceablePointException {
 
