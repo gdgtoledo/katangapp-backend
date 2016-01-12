@@ -28,6 +28,10 @@ public class Segment implements Comparable<Segment> {
 	public Segment(ReferenceablePoint from, ReferenceablePoint to)
 		throws UnreferenceablePointException {
 
+		if (from == null) {
+			throw new UnreferenceablePointException();
+		}
+
 		this.from = from;
 		this.to = to;
 		this.distance = from.distanceTo(to);
