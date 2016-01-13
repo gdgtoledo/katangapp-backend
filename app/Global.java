@@ -1,3 +1,4 @@
+import es.craftsmanship.toledo.katangapp.business.exception.APIException;
 import es.craftsmanship.toledo.katangapp.guice.GuiceInjector;
 
 import play.*;
@@ -21,7 +22,10 @@ public class Global extends GlobalSettings {
 	}
 
 	private Results.Status createBadRequest() {
-		return badRequest("Don't try to hack the URI!");
+		APIException badRequest = new APIException(
+			"Don't try to hack the URI!");
+
+		return badRequest(badRequest.getApiError());
 	}
 
 	public void onStart(Application application) {

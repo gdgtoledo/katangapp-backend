@@ -23,7 +23,8 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/notfound", "Don't try to hack the URI!")
+                serverPort, "/notfound",
+                "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
@@ -35,7 +36,7 @@ public class KatangappFunctionalTest {
             testServer(serverPort, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/", "Don't try to hack the URI!")
+                serverPort, "/", "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 

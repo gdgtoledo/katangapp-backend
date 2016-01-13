@@ -75,7 +75,7 @@ public class KatangappApiFunctionalTest {
             HTMLUNIT,
             new BodyContainsTestCallback(
                 serverPort,
-                "/api/notfound", "Don't try to hack the URI!")
+                "/api/notfound", "\"message\":\"Don't try to hack the URI!\"")
         );
     }
 
