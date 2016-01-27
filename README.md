@@ -25,10 +25,10 @@ your IDE. Whether you use Eclipse or IntelliJ, there are plugins that support
 it. Please visit this page for more info:
 [https://www.playframework.com/documentation/2.3.x/IDE](https://www.playframework.com/documentation/2.3.x/IDE)
 
-We have a dependency on a non-published-in-maven library, which is hosted here: 
-[https://github.com/craftsmanship-toledo/katangapp-api](https://github.com/craftsmanship-toledo/katangapp-api).
-Please clone that repository and install it in your Local Maven repository with
-`mvn clean install` so that the build system has access to that dependency.
+## Managed dependencies
+The dependency on `katangapp-api` project is directly fetched from Github, using
+[https://jitpack.io](https://jitpack.io) service, which translates Github tags
+into managed dependencies.
 
 Then, import the project into your IDE, and voilà!
 
