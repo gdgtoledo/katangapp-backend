@@ -1,10 +1,12 @@
+import play.PlayJava
+
 name := """katangapp-backend"""
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
-resolvers += Resolver.mavenLocal
+resolvers += "jitpack" at "https://jitpack.io"
 
 scalaVersion := "2.11.1"
 
@@ -14,7 +16,7 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   "com.google.inject" % "guice" % "4.0",
-  "es.craftsmanship.toledo" % "katanga-api" % "1.0",
+  "com.github.craftsmanship-toledo" % "katangapp-api" % "katangapp-api-1.0",
   "org.jsoup" % "jsoup" % "1.8.3"
 )
 
