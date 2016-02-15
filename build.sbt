@@ -6,6 +6,8 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
+resolvers += "Maven Local Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository"
+
 resolvers += "jitpack" at "https://jitpack.io"
 
 scalaVersion := "2.11.1"
