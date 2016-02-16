@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   "com.google.inject" % "guice" % "4.0",
-  "com.github.craftsmanship-toledo" % "katangapp-api" % "katangapp-api-1.2",
+  "com.github.craftsmanship-toledo" % "katangapp-api" % "katangapp-api-1.3",
   "org.jsoup" % "jsoup" % "1.8.3"
 )
 
