@@ -3,6 +3,8 @@ This is your new Play application
 
 This file will be packaged with your application, when using `activator dist`.
 
+[![Build Status](https://travis-ci.org/craftsmanship-toledo/katangapp-backend.svg?branch=master)](https://travis-ci.org/craftsmanship-toledo/katangapp-backend)
+
 # Contributing
 In order to contribute to the project, please fork the repository, add the
 functionality you want, or fix any bug you like, and send a pull request to the
