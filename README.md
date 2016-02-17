@@ -1,7 +1,4 @@
-This is your new Play application
-=================================
-
-This file will be packaged with your application, when using `activator dist`.
+# Katanga Backend Application
 
 [![Build Status](https://travis-ci.org/craftsmanship-toledo/katangapp-backend.svg?branch=master)](https://travis-ci.org/craftsmanship-toledo/katangapp-backend)
 
