@@ -1,0 +1,5 @@
+{
+  "name": "Katangapp Backend",
+  "description": "The dockerized backend for Katanga",
+  "image": "heroku/scala"
+}
