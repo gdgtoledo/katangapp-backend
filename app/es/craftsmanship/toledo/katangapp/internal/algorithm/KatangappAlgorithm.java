@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 
-	public static final int DEFAULT_MAX_ELEMENTS = 3;
+	public static final int DEFAULT_MAX_ELEMENTS = 5;
 
 	public List<Segment> closestSegments(
 		ReferenceablePoint currentLocation, Set<ReferenceablePoint> points,
