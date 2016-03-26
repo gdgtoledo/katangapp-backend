@@ -31,7 +31,7 @@ public class FinderTest extends WithApplication {
 	}
 
 	@Test
-	public void testFindRoutes() {
+	public void testFindRoutes() throws Exception {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 2000;
 
@@ -44,7 +44,9 @@ public class FinderTest extends WithApplication {
 	}
 
 	@Test
-	public void testFindRoutesWithoutRadiusShouldNotReturnRoutes() {
+	public void testFindRoutesWithoutRadiusShouldNotReturnRoutes()
+		throws Exception {
+
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 0;
 

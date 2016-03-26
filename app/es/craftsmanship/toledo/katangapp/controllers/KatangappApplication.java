@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.business.exception.APIException;
 import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
@@ -27,14 +28,23 @@ public class KatangappApplication extends Controller {
         double dLatitude = Double.parseDouble(lt);
         double dLongitude = Double.parseDouble(ln);
 
-        QueryResult queryResult = busStopFinder.findRoutes(
-            dLatitude, dLongitude, r);
+        try {
+            QueryResult queryResult = busStopFinder.findRoutes(
+                dLatitude, dLongitude, r);
 
-        JsonNode node = Json.toJson(queryResult);
+            JsonNode node = Json.toJson(queryResult);
 
-        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(request(), node);
+            PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+                request(), node);
 
-        return prettyPrinter.prettyPrint();
+            return prettyPrinter.prettyPrint();
+        }
+        catch (InterruptedException ie) {
+            APIException apiException = new APIException(ie.getMessage());
+
+            return notFound(apiException.getApiError());
+        }
+            
     }
 
     private Finder busStopFinder;

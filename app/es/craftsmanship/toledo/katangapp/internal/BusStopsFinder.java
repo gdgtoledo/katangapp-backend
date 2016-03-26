@@ -7,23 +7,20 @@ import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.internal.async.HttpServiceRunnable;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;
-import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
-import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.models.Segment;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author mdelapenya
@@ -41,7 +38,8 @@ public class BusStopsFinder implements Finder {
 	}
 
 	public QueryResult findRoutes(
-		double latitude, double longitude, int radius) {
+			double latitude, double longitude, int radius)
+		throws InterruptedException {
 
 		ReferenceablePoint currentLocation = new Point(latitude, longitude);
 
@@ -53,33 +51,20 @@ public class BusStopsFinder implements Finder {
 		List<Segment> segments = algorithm.closestSegments(
 			currentLocation, dataSet, radius);
 
-		List<BusStopResult> busStopResults = new ArrayList<>();
+		List<BusStopResult> busStopResults = new CopyOnWriteArrayList<>();
 
 		if (segments.isEmpty()) {
 			return new QueryResult(busStopResults);
 		}
 
 		for (Segment segment : segments) {
-			ReferenceablePoint to = segment.getTo();
+			Thread httpThread = new Thread(
+				new HttpServiceRunnable(
+					busStopResults, httpService, parser, segment));
 
-			BusStop busStop = (BusStop)to;
+			httpThread.start();
 
-			String responseHtml = httpService.get(
-				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
-
-			Calendar calendar = Calendar.getInstance();
-
-			calendar.setTimeZone(Constants.TZ_TOLEDO);
-
-			List<RouteResult> routeResults = parser.parseResponse(
-				busStop.getRouteId(), calendar.getTime(), responseHtml);
-
-			Collections.sort(routeResults);
-
-			BusStopResult busStopResult = new BusStopResult(
-				segment.getDistance(), busStop, routeResults);
-
-			busStopResults.add(busStopResult);
+			httpThread.join();
 		}
 
 		return new QueryResult(busStopResults);

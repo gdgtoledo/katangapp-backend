@@ -7,6 +7,7 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
  */
 public interface Finder {
 
-	QueryResult findRoutes(double latitude, double longitude, int radius);
+	QueryResult findRoutes(double latitude, double longitude, int radius)
+		throws InterruptedException;
 
 }
