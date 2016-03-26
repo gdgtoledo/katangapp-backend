@@ -72,7 +72,7 @@ public class UnautoHttpService implements HttpService {
 	/**
 	 * Invokes the former system, which always returns HTML, so that's why this
 	 * method returns a String. It will invoke the former system within a
-	 * promise with a timeout of 5000 milliseconds.
+	 * promise with a timeout of 7500 milliseconds.
 	 *
 	 * @param idl the routeId of the bus stop
 	 * @param idp the id of the bus stop
@@ -101,6 +101,6 @@ public class UnautoHttpService implements HttpService {
 	private static final String ENDPOINT =
 		"http://unauto.twa.es/code/getparadas.php?idl={0}&idp={1}&ido={2}";
 
-	private static final long TIMEOUT = 5000;
+	private static final long TIMEOUT = 7500;
 
 }
