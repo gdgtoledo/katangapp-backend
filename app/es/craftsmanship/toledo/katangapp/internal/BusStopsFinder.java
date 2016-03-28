@@ -16,6 +16,7 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
 import es.craftsmanship.toledo.katangapp.models.Segment;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -51,11 +52,11 @@ public class BusStopsFinder implements Finder {
 		List<Segment> segments = algorithm.closestSegments(
 			currentLocation, dataSet, radius);
 
-		List<BusStopResult> busStopResults = new CopyOnWriteArrayList<>();
-
 		if (segments.isEmpty()) {
-			return new QueryResult(busStopResults);
+			return new QueryResult(Collections.<BusStopResult>emptyList());
 		}
+
+		List<BusStopResult> busStopResults = new CopyOnWriteArrayList<>();
 
 		for (Segment segment : segments) {
 			Thread httpThread = new Thread(
