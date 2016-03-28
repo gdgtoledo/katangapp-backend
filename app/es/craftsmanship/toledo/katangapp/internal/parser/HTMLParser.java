@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.parser;
 
+import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
@@ -16,17 +17,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import play.libs.F.Promise;
+
 /**
  * @author mdelapenya
  */
 public class HTMLParser implements Parser {
 
 	public List<RouteResult> parseResponse(
-		String routeId, Date queryDate, String html) {
+		String routeId, Date queryDate, Promise<String> html) {
 
 		List<RouteResult> results = new ArrayList<>();
 
-		Document doc = Jsoup.parse(html);
+		Document doc = Jsoup.parse(html.get(HttpService.TIMEOUT));
 
 		Element hour = doc.getElementById("hora");
 

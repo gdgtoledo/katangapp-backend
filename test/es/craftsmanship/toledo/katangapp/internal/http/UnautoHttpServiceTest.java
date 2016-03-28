@@ -9,6 +9,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import play.libs.F.Promise;
+
 import play.test.WithApplication;
 
 /**
@@ -27,9 +29,9 @@ public class UnautoHttpServiceTest extends WithApplication {
 
 		final HttpService httpService = new MockHttpService(idp);
 
-		String response = httpService.get(idl, idp, ido);
+		Promise<String> response = httpService.get(idl, idp, ido);
 
-		assertThat(response).isNotEmpty();
+		assertThat(response.get(HttpService.TIMEOUT)).isNotEmpty();
 	}
 
 	@Test

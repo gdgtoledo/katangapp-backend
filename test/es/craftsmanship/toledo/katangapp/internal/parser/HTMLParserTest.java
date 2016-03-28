@@ -6,10 +6,15 @@ import es.craftsmanship.toledo.katangapp.business.IOTestUtils;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
+import java.io.IOException;
+
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+
+import play.libs.F.Function0;
+import play.libs.F.Promise;
 
 /**
  * @author mdelapenya
@@ -18,14 +23,14 @@ public class HTMLParserTest {
 
 	@Test
 	public void testParseResponse() throws Exception {
-		String html = IOTestUtils.readFile("sample.html");
+		Promise<String> htmlPromise = getPromise("sample.html");
 
 		Date now = new Date();
 
 		Parser htmlParser = new HTMLParser();
 
 		List<RouteResult> routeResults = htmlParser.parseResponse(
-			"L92", now, html);
+			"L92", now, htmlPromise);
 
 		assertThat(routeResults).hasSize(3);
 
@@ -36,14 +41,14 @@ public class HTMLParserTest {
 
 	@Test
 	public void testParseResponseForP001() throws Exception {
-		String html = IOTestUtils.readFile("sample-P001.html");
+		Promise<String> htmlPromise = getPromise("sample-P001.html");
 
 		Date now = new Date();
 
 		Parser htmlParser = new HTMLParser();
 
 		List<RouteResult> routeResults = htmlParser.parseResponse(
-			"41", now, html);
+			"41", now, htmlPromise);
 
 		assertThat(routeResults).hasSize(31);
 
@@ -78,6 +83,18 @@ public class HTMLParserTest {
 		assertThat(routeResults.get(28).getIdl()).isEqualTo("L72b");
 		assertThat(routeResults.get(29).getIdl()).isEqualTo("L94");
 		assertThat(routeResults.get(30).getIdl()).isEqualTo("L94");
+	}
+
+	private Promise<String> getPromise(final String file) {
+		return Promise.promise(
+			new Function0<String>() {
+
+				public String apply() throws IOException {
+					return IOTestUtils.readFile(file);
+				}
+
+			}
+		);
 	}
 
 }

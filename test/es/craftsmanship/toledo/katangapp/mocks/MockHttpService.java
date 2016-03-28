@@ -3,7 +3,8 @@ package es.craftsmanship.toledo.katangapp.mocks;
 import es.craftsmanship.toledo.katangapp.business.IOTestUtils;
 import es.craftsmanship.toledo.katangapp.internal.http.UnautoHttpService;
 
-import java.io.IOException;
+import play.libs.F.Promise;
+import play.libs.F.Function0;
 
 /**
  * This class mocks the original Http service from Unauto, returning always a
@@ -38,15 +39,17 @@ public class MockHttpService extends UnautoHttpService {
 	 * @return the string representation of the HTTP service.
 	 */
 	@Override
-	public String get(String... arg) {
+	public Promise<String> get(String... arg) {
 		validate(arg);
 
-		try {
-			return IOTestUtils.readFile("sample-" + idp + ".html");
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		return Promise.promise(new Function0<String>() {
+
+			@Override
+			public String apply() throws Throwable {
+				return IOTestUtils.readFile("sample-" + idp + ".html");
+			}
+
+		});
 	}
 
 	private String idp;

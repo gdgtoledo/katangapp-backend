@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import java.text.MessageFormat;
 
 import play.libs.ws.WS;
+import play.libs.ws.WSRequestHolder;
 import play.libs.ws.WSResponse;
 import play.libs.F.Function;
 import play.libs.F.Promise;
@@ -59,7 +60,7 @@ public class UnautoHttpService implements HttpService {
 	 * @return the response of the former system in HTML format
 	 */
 	@Override
-	public String get(String... params) {
+	public Promise<String> get(String... params) {
 		validate(params);
 
 		String idl = params[0];
@@ -80,10 +81,16 @@ public class UnautoHttpService implements HttpService {
 	 *
 	 * @return the response of the former system in HTML format
 	 */
-	private String get(String idl, String idp, String ido) {
+	private Promise<String> get(String idl, String idp, String ido) {
 		String url = MessageFormat.format(ENDPOINT, idl, idp, ido);
 
-		Promise<String> documentPromise = WS.url(url).get().map(
+		WSRequestHolder wsRequestHolder = WS.url(url);
+
+		wsRequestHolder.setTimeout(HttpService.TIMEOUT);
+
+		Promise<WSResponse> responsePromise = wsRequestHolder.get();
+
+		Promise<String> documentPromise = responsePromise.map(
 			new Function<WSResponse, String>() {
 
 				public String apply(WSResponse response) {
@@ -95,12 +102,10 @@ public class UnautoHttpService implements HttpService {
 			}
 		);
 
-		return documentPromise.get(TIMEOUT);
+		return documentPromise;
 	}
 
 	private static final String ENDPOINT =
 		"http://unauto.twa.es/code/getparadas.php?idl={0}&idp={1}&ido={2}";
-
-	private static final long TIMEOUT = 7500;
 
 }

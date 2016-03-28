@@ -13,6 +13,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import play.libs.F.Promise;
+
 /**
  * @author Manuel de la Peña
  */
@@ -34,7 +36,7 @@ public class HttpServiceRunnable implements Runnable {
 
 		BusStop busStop = (BusStop) to;
 
-		String responseHtml = _httpService.get(
+		Promise<String> responseHtml = _httpService.get(
 			busStop.getRouteId(), busStop.getId(), busStop.getOrder());
 
 		Calendar calendar = Calendar.getInstance();

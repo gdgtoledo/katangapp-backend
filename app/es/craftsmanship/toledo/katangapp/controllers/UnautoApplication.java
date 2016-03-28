@@ -4,6 +4,9 @@ import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 
+import play.libs.F.Function;
+import play.libs.F.Promise;
+
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -17,10 +20,20 @@ public class UnautoApplication extends Controller {
         this.httpService = httpService;
     }
 
-    public Result unauto(String idl, String idp, String ido) {
-        String response = httpService.get(idl, idp, ido);
+    public Promise<Result> unauto(String idl, String idp, String ido) {
+        Promise<String> httpPromise = httpService.get(idl, idp, ido);
 
-        return ok(response);
+        Promise<Result> promiseOfResult = httpPromise.map(
+            new Function<String, Result>() {
+
+                public Result apply(String result) {
+                    return ok(result);
+                }
+
+            }
+        );
+
+        return promiseOfResult;
     }
 
     private HttpService httpService;
