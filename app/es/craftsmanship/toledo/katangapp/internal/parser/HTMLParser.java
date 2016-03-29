@@ -1,6 +1,5 @@
 package es.craftsmanship.toledo.katangapp.internal.parser;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
@@ -17,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import play.libs.F.Function;
 import play.libs.F.Promise;
 
 /**
@@ -24,43 +24,57 @@ import play.libs.F.Promise;
  */
 public class HTMLParser implements Parser {
 
-	public List<RouteResult> parseResponse(
-		String routeId, Date queryDate, Promise<String> html) {
+	public Promise<List<RouteResult>> parseResponse(
+		final String routeId, final Date queryDate, Promise<String> html) {
 
-		List<RouteResult> results = new ArrayList<>();
+		final List<RouteResult> results = new ArrayList<>();
 
-		Document doc = Jsoup.parse(html.get(HttpService.TIMEOUT));
+		Promise<List<RouteResult>> promiseOfRoutesResult = html.map(
+			new Function<String, List<RouteResult>>() {
 
-		Element hour = doc.getElementById("hora");
+				public List<RouteResult> apply(String html) {
+					Document doc = Jsoup.parse(html);
 
-		Matcher matcher = captureGroup(hour.text(), REGEXP_HOUR);
+					Element hour = doc.getElementById("hora");
 
-		String arrivalTime = matcher.group(1);
+					Matcher matcher = captureGroup(hour.text(), REGEXP_HOUR);
 
-		RouteResult mainRouteResult = parseRouteResult(
-			queryDate, routeId, arrivalTime);
+					String arrivalTime = matcher.group(1);
 
-		results.add(mainRouteResult);
+					RouteResult mainRouteResult = parseRouteResult(
+						queryDate, routeId, arrivalTime);
 
-		Elements connectionsUl = doc.getElementsByTag("ul");
+					results.add(mainRouteResult);
 
-		for (Element connectionUl : connectionsUl) {
-			Elements connectionsLi = connectionUl.getElementsByTag("li");
+					Elements connectionsUl = doc.getElementsByTag("ul");
 
-			for (Element connectionLi : connectionsLi) {
-				matcher = captureGroup(connectionLi.text(), REGEXP_CONNECTIONS);
+					for (Element connectionUl : connectionsUl) {
+						Elements connectionsLi = connectionUl.getElementsByTag(
+							"li");
 
-				String connectionRouteId = matcher.group(1);
-				String connectionArrivalTime = matcher.group(2);
+						for (Element connectionLi : connectionsLi) {
+							matcher = captureGroup(
+								connectionLi.text(), REGEXP_CONNECTIONS);
 
-				RouteResult connectionRouteResult = parseRouteResult(
-					queryDate, connectionRouteId, connectionArrivalTime);
+							String connectionRouteId = matcher.group(1);
+							String connectionArrivalTime = matcher.group(2);
 
-				results.add(connectionRouteResult);
+							RouteResult connectionRouteResult =
+								parseRouteResult(
+									queryDate, connectionRouteId,
+									connectionArrivalTime);
+
+							results.add(connectionRouteResult);
+						}
+					}
+
+					return results;
+				}
+
 			}
-		}
+		);
 
-		return results;
+		return promiseOfRoutesResult;
 	}
 
 	private static Matcher captureGroup(String text, String regexp) {

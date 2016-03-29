@@ -2,6 +2,7 @@ package es.craftsmanship.toledo.katangapp.business;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.KatangappAlgorithm;
@@ -15,6 +16,8 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import play.libs.F.Promise;
 
 import play.test.WithApplication;
 
@@ -35,8 +38,10 @@ public class FinderTest extends WithApplication {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 2000;
 
-		QueryResult queryResult = busStopFinder.findRoutes(
+		Promise<QueryResult> queryResultPromise = busStopFinder.findRoutes(
 			puertaBisagra.getLatitude(), puertaBisagra.getLongitude(), radius);
+
+		QueryResult queryResult = queryResultPromise.get(HttpService.TIMEOUT);
 
 		List<BusStopResult> results = queryResult.getResults();
 
@@ -50,8 +55,10 @@ public class FinderTest extends WithApplication {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 		int radius = 0;
 
-		QueryResult queryResult = busStopFinder.findRoutes(
+		Promise<QueryResult> queryResultPromise = busStopFinder.findRoutes(
 			puertaBisagra.getLatitude(), puertaBisagra.getLongitude(), radius);
+
+		QueryResult queryResult = queryResultPromise.get(HttpService.TIMEOUT);
 
 		List<BusStopResult> results = queryResult.getResults();
 

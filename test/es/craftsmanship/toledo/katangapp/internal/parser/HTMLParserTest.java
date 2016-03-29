@@ -3,6 +3,7 @@ package es.craftsmanship.toledo.katangapp.internal.parser;
 import static org.fest.assertions.Assertions.assertThat;
 
 import es.craftsmanship.toledo.katangapp.business.IOTestUtils;
+import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 
@@ -29,8 +30,11 @@ public class HTMLParserTest {
 
 		Parser htmlParser = new HTMLParser();
 
-		List<RouteResult> routeResults = htmlParser.parseResponse(
-			"L92", now, htmlPromise);
+		Promise<List<RouteResult>> routeResultsPromise =
+			htmlParser.parseResponse("L92", now, htmlPromise);
+
+		List<RouteResult> routeResults = routeResultsPromise.get(
+			HttpService.TIMEOUT);
 
 		assertThat(routeResults).hasSize(3);
 
@@ -47,8 +51,11 @@ public class HTMLParserTest {
 
 		Parser htmlParser = new HTMLParser();
 
-		List<RouteResult> routeResults = htmlParser.parseResponse(
-			"41", now, htmlPromise);
+		Promise<List<RouteResult>> routeResultsPromise =
+			htmlParser.parseResponse("41", now, htmlPromise);
+
+		List<RouteResult> routeResults = routeResultsPromise.get(
+			HttpService.TIMEOUT);
 
 		assertThat(routeResults).hasSize(31);
 

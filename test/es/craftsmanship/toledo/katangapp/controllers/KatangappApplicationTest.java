@@ -8,6 +8,7 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.KatangappAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
@@ -18,6 +19,8 @@ import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import play.libs.F.Promise;
 
 import play.mvc.Result;
 
@@ -48,7 +51,10 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(false);
 
-		Result result = katangappApplication.main(latitude, longitude, radius);
+		Promise<Result> resultPromise = katangappApplication.main(
+			latitude, longitude, radius);
+
+		Result result = resultPromise.get(HttpService.TIMEOUT);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
@@ -64,7 +70,10 @@ public class KatangappApplicationTest extends WithApplication {
 
 		MockController.mockRequest(true);
 
-		Result result = katangappApplication.main(latitude, longitude, radius);
+		Promise<Result> resultPromise = katangappApplication.main(
+			latitude, longitude, radius);
+
+		Result result = resultPromise.get(HttpService.TIMEOUT);
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");

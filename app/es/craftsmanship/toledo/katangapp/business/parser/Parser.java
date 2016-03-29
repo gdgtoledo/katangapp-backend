@@ -12,7 +12,7 @@ import play.libs.F.Promise;
  */
 public interface Parser {
 
-	List<RouteResult> parseResponse(
+	Promise<List<RouteResult>> parseResponse(
 		String routeId, Date queryDate, Promise<String> html);
 
 }

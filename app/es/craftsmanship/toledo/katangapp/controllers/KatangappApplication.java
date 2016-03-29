@@ -9,6 +9,9 @@ import es.craftsmanship.toledo.katangapp.business.exception.APIException;
 import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
+import play.libs.F.Function;
+import play.libs.F.Function0;
+import play.libs.F.Promise;
 import play.libs.Json;
 
 import play.mvc.Controller;
@@ -24,27 +27,46 @@ public class KatangappApplication extends Controller {
         this.busStopFinder = busStopFinder;
     }
 
-    public Result main(String lt, String ln, int r) {
-        double dLatitude = Double.parseDouble(lt);
-        double dLongitude = Double.parseDouble(ln);
+    public Promise<Result> main(
+        final String lt, final String ln, final int r) {
+        
+        final double dLatitude = Double.parseDouble(lt);
+        final double dLongitude = Double.parseDouble(ln);
 
         try {
-            QueryResult queryResult = busStopFinder.findRoutes(
+            Promise<QueryResult> queryResultPromise = busStopFinder.findRoutes(
                 dLatitude, dLongitude, r);
 
-            JsonNode node = Json.toJson(queryResult);
+            Promise<Result> resultPromise = queryResultPromise.map(
+                new Function<QueryResult, Result>() {
 
-            PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
-                request(), node);
+                    @Override
+                    public Result apply(QueryResult queryResult)
+                        throws Throwable {
 
-            return prettyPrinter.prettyPrint();
+                        JsonNode node = Json.toJson(queryResult);
+
+                        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+                            request(), node);
+
+                        return prettyPrinter.prettyPrint();
+                    }
+                });
+
+            return resultPromise;
         }
         catch (InterruptedException ie) {
-            APIException apiException = new APIException(ie.getMessage());
+            final APIException apiException = new APIException(ie.getMessage());
 
-            return notFound(apiException.getApiError());
+            return Promise.promise(new Function0<Result>() {
+
+                @Override
+                public Result apply() throws Throwable {
+                    return notFound(apiException.getApiError());
+                }
+
+            });
         }
-            
     }
 
     private Finder busStopFinder;
