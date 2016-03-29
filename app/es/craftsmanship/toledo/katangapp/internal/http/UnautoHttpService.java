@@ -86,8 +86,6 @@ public class UnautoHttpService implements HttpService {
 
 		WSRequestHolder wsRequestHolder = WS.url(url);
 
-		wsRequestHolder.setTimeout(HttpService.TIMEOUT);
-
 		Promise<WSResponse> responsePromise = wsRequestHolder.get();
 
 		Promise<String> documentPromise = responsePromise.map(

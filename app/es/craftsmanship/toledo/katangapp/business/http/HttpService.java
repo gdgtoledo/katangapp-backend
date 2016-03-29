@@ -7,8 +7,6 @@ import play.libs.F.Promise;
  */
 public interface HttpService {
 
-	int TIMEOUT = 7500;
-
 	Promise<String> get(String... params);
 
 	void validate(String... params);

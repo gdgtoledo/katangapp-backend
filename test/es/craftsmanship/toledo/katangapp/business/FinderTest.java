@@ -2,7 +2,6 @@ package es.craftsmanship.toledo.katangapp.business;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.KatangappAlgorithm;
@@ -11,6 +10,7 @@ import es.craftsmanship.toledo.katangapp.models.BusStopResult;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
+import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class FinderTest extends WithApplication {
 		Promise<QueryResult> queryResultPromise = busStopFinder.findRoutes(
 			puertaBisagra.getLatitude(), puertaBisagra.getLongitude(), radius);
 
-		QueryResult queryResult = queryResultPromise.get(HttpService.TIMEOUT);
+		QueryResult queryResult = queryResultPromise.get(SpecsContants.TIMEOUT);
 
 		List<BusStopResult> results = queryResult.getResults();
 
@@ -58,7 +58,7 @@ public class FinderTest extends WithApplication {
 		Promise<QueryResult> queryResultPromise = busStopFinder.findRoutes(
 			puertaBisagra.getLatitude(), puertaBisagra.getLongitude(), radius);
 
-		QueryResult queryResult = queryResultPromise.get(HttpService.TIMEOUT);
+		QueryResult queryResult = queryResultPromise.get(SpecsContants.TIMEOUT);
 
 		List<BusStopResult> results = queryResult.getResults();
 
