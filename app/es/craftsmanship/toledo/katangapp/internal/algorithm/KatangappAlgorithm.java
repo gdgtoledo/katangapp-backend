@@ -60,7 +60,13 @@ public class KatangappAlgorithm implements ClosestPointsAlgorithm {
 
 		List<Segment> result = new ArrayList<>();
 
-		for (int i = 0; i < maxElements; i++) {
+		int limit = maxElements;
+
+		if (segments.size() < maxElements) {
+			limit = segments.size();
+		}
+
+		for (int i = 0; i < limit; i++) {
 			result.add(segments.get(i));
 		}
 

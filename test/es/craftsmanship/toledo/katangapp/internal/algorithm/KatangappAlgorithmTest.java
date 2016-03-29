@@ -35,6 +35,11 @@ public class KatangappAlgorithmTest extends WithApplication {
 	}
 
 	@Test
+	public void testClosestAreLessThanDefault() {
+		testGetMaxElementsReturnedByClosestSegments(3, 100);
+	}
+
+	@Test
 	public void testClosestShouldNotReturnDefaultMaxElements() {
 		testGetMaxElementsReturnedByClosestSegments(4, 2000);
 	}
