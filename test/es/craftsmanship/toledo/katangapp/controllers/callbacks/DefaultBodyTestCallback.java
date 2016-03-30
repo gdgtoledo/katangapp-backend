@@ -13,7 +13,15 @@ public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser>
 		int serverPort, String endPoint, String message) {
 
 		this.endPoint = endPoint;
-		this.message = message;
+		this.messages = new String[] {message};
+		this.serverPort = serverPort;
+	}
+
+	public DefaultBodyTestCallback(
+		int serverPort, String endPoint, String[] messages) {
+
+		this.endPoint = endPoint;
+		this.messages = messages;
 		this.serverPort = serverPort;
 	}
 
@@ -27,7 +35,7 @@ public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser>
 	protected abstract void verifyAssertion(TestBrowser browser);
 
 	protected String endPoint;
-	protected String message;
+	protected String[] messages;
 	protected int serverPort;
 
 }
