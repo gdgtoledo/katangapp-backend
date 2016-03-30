@@ -19,6 +19,7 @@ import org.junit.Test;
 import play.libs.F.Promise;
 
 import play.mvc.Result;
+
 import play.test.WithApplication;
 
 /**
