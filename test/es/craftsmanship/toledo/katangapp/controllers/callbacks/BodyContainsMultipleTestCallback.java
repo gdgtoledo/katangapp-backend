@@ -11,9 +11,9 @@ public final class BodyContainsMultipleTestCallback
 	extends DefaultBodyTestCallback {
 
 	public BodyContainsMultipleTestCallback(
-		int serverPort, String endPoint, String[] messages) {
+		String endPoint, String[] messages) {
 
-		super(serverPort, endPoint, messages);
+		super(endPoint, messages);
 	}
 
 	@Override

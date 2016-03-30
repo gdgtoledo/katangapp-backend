@@ -23,8 +23,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/busStops/P001",
-                SpecsContants.BUS_STOP_JSON)
+                "/api/busStops/P001", SpecsContants.BUS_STOP_JSON)
         );
     }
 
@@ -35,7 +34,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/busStops/P001?prettyPrint=1",
+                "/api/busStops/P001?prettyPrint=1",
                 SpecsContants.BUS_STOP_PRETTIFIED_JSON)
         );
     }
@@ -47,8 +46,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/busStops/notfound",
-                "\"message\":\"Not Found\"")
+                "/api/busStops/notfound", "\"message\":\"Not Found\"")
         );
     }
 
@@ -58,8 +56,7 @@ public class KatangappApiFunctionalTest {
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/busStops", "{\"busStops\":[")
+            new BodyContainsTestCallback("/api/busStops", "{\"busStops\":[")
         );
     }
 
@@ -70,8 +67,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/notfound",
-                "\"message\":\"Don't try to hack the URI!\"")
+                "/api/notfound", "\"message\":\"Don't try to hack the URI!\"")
         );
     }
 
@@ -82,8 +78,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/routes/L02",
-                "\"routeId\":\"L02\"")
+                "/api/routes/L02", "\"routeId\":\"L02\"")
         );
     }
 
@@ -94,8 +89,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/routes/notfound",
-                "\"message\":\"Not Found\"")
+                "/api/routes/notfound", "\"message\":\"Not Found\"")
         );
     }
 
@@ -105,8 +99,7 @@ public class KatangappApiFunctionalTest {
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback(
-                SpecsContants.SERVER_PORT, "/api/routes", "{\"routes\":[")
+            new BodyContainsTestCallback("/api/routes", "{\"routes\":[")
         );
     }
 

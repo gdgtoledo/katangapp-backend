@@ -23,8 +23,7 @@ public class UnautoFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                SpecsContants.SERVER_PORT, "/notfound",
-                "{\"message\":\"Don't try to hack the URI!\"}")
+                "/notfound", "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
@@ -35,8 +34,7 @@ public class UnautoFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                SpecsContants.SERVER_PORT, "/",
-                "{\"message\":\"Don't try to hack the URI!\"}")
+                "/", "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 

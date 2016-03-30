@@ -9,10 +9,8 @@ import play.test.TestBrowser;
  */
 public final class BodyContainsTestCallback extends DefaultBodyTestCallback {
 
-	public BodyContainsTestCallback(
-		int serverPort, String endPoint, String message) {
-
-		super(serverPort, endPoint, message);
+	public BodyContainsTestCallback(String endPoint, String message) {
+		super(endPoint, message);
 	}
 
 	@Override

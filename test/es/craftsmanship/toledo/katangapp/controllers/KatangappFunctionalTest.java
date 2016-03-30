@@ -34,8 +34,7 @@ public class KatangappFunctionalTest {
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsMultipleTestCallback(
-                SpecsContants.SERVER_PORT, url, expectedMessages)
+            new BodyContainsMultipleTestCallback(url, expectedMessages)
         );
     }
 
@@ -46,8 +45,7 @@ public class KatangappFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                SpecsContants.SERVER_PORT, "/notfound",
-                "{\"message\":\"Don't try to hack the URI!\"}")
+                "/notfound", "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
@@ -58,8 +56,7 @@ public class KatangappFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                SpecsContants.SERVER_PORT, "/",
-                "{\"message\":\"Don't try to hack the URI!\"}")
+                "/", "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 

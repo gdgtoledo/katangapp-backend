@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.controllers.callbacks;
 
+import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 import play.libs.F;
 
 import play.test.TestBrowser;
@@ -9,25 +10,20 @@ import play.test.TestBrowser;
  */
 public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser> {
 
-	public DefaultBodyTestCallback(
-		int serverPort, String endPoint, String message) {
-
+	public DefaultBodyTestCallback(String endPoint, String message) {
 		this.endPoint = endPoint;
 		this.messages = new String[] {message};
-		this.serverPort = serverPort;
 	}
 
-	public DefaultBodyTestCallback(
-		int serverPort, String endPoint, String[] messages) {
-
+	public DefaultBodyTestCallback(String endPoint, String[] messages) {
 		this.endPoint = endPoint;
 		this.messages = messages;
-		this.serverPort = serverPort;
 	}
 
 	@Override
 	public void invoke(TestBrowser browser) {
-		browser.goTo("http://localhost:" + serverPort + endPoint);
+		browser.goTo(
+			"http://localhost:" + SpecsContants.SERVER_PORT + endPoint);
 
 		verifyAssertion(browser);
 	}
@@ -36,6 +32,5 @@ public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser>
 
 	protected String endPoint;
 	protected String[] messages;
-	protected int serverPort;
 
 }
