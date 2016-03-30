@@ -20,6 +20,8 @@ public class SpecsContants {
 		"  \"routeId\" : \"L94\"\n" +
 		"}";
 
+	public static final int SERVER_PORT = 3333;
+
 	public static final int TIMEOUT = 10000;
 
 }

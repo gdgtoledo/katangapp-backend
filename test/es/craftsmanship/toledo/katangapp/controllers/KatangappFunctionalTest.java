@@ -10,6 +10,7 @@ import es.craftsmanship.toledo.katangapp.controllers.callbacks.BodyContainsMulti
 import es.craftsmanship.toledo.katangapp.controllers.callbacks.BodyEqualsTestCallback;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
+import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;
 
@@ -20,8 +21,6 @@ public class KatangappFunctionalTest {
 
     @Test
     public void testMainEndPoint() {
-        int serverPort = 3333;
-
         Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 
         String url =
@@ -32,35 +31,35 @@ public class KatangappFunctionalTest {
             "distancia", "parada", "latitude", "longitude"};
 
         running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            testServer(
+                SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyContainsMultipleTestCallback(
-                serverPort, url, expectedMessages)
+                SpecsContants.SERVER_PORT, url, expectedMessages)
         );
     }
 
     @Test
     public void testNotFoundPath() {
-        int serverPort = 3333;
-
         running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            testServer(
+                SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/notfound",
+                SpecsContants.SERVER_PORT, "/notfound",
                 "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
     @Test
     public void testRootPath() {
-        int serverPort = 3333;
-
         running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            testServer(
+                SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/", "{\"message\":\"Don't try to hack the URI!\"}")
+                SpecsContants.SERVER_PORT, "/",
+                "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 

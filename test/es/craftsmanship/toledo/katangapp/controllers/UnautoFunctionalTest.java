@@ -7,6 +7,7 @@ import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
 import es.craftsmanship.toledo.katangapp.controllers.callbacks.BodyEqualsTestCallback;
+import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;
 
@@ -17,26 +18,25 @@ public class UnautoFunctionalTest {
 
     @Test
     public void testNotFoundPath() {
-        int serverPort = 3333;
-
         running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            testServer(
+                SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/notfound",
+                SpecsContants.SERVER_PORT, "/notfound",
                 "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
     @Test
     public void testRootPath() {
-        int serverPort = 3333;
-
         running(
-            testServer(serverPort, fakeApplication(inMemoryDatabase())),
+            testServer(
+                SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyEqualsTestCallback(
-                serverPort, "/", "{\"message\":\"Don't try to hack the URI!\"}")
+                SpecsContants.SERVER_PORT, "/",
+                "{\"message\":\"Don't try to hack the URI!\"}")
         );
     }
 
