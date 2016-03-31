@@ -7,6 +7,8 @@ GET     /api/busStops/:id           @es.craftsmanship.toledo.katangapp.controlle
 GET     /api/routes                 @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.routes()
 GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.route(id: String)
 
+GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.ico")
+
 GET     /paradas                    @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 
 GET     /unauto                     @es.craftsmanship.toledo.katangapp.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
