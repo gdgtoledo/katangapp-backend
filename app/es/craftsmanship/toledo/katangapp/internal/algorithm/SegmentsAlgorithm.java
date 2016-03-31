@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * @author mdelapenya
  */
-public class KatangappAlgorithm implements ClosestPointsAlgorithm {
+public class SegmentsAlgorithm implements ClosestPointsAlgorithm {
 
 	public static final int DEFAULT_MAX_ELEMENTS = 5;
 

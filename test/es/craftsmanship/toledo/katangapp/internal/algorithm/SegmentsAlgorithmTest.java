@@ -21,12 +21,12 @@ import play.test.WithApplication;
 /**
  * @author mdelapenya
  */
-public class KatangappAlgorithmTest extends WithApplication {
+public class SegmentsAlgorithmTest extends WithApplication {
 
 	@Test
 	public void testClosest() {
 		testGetMaxElementsReturnedByClosestSegments(
-			KatangappAlgorithm.DEFAULT_MAX_ELEMENTS, 2000);
+			SegmentsAlgorithm.DEFAULT_MAX_ELEMENTS, 2000);
 	}
 
 	@Test
@@ -56,10 +56,10 @@ public class KatangappAlgorithmTest extends WithApplication {
 		Set<ReferenceablePoint> points = new HashSet<ReferenceablePoint>(
 			store.values());
 
-		KatangappAlgorithm katangappAlgorithm = new KatangappAlgorithm();
+		SegmentsAlgorithm segmentsAlgorithm = new SegmentsAlgorithm();
 
 		List<Segment> referenceablePoints =
-			katangappAlgorithm.closestSegments(
+			segmentsAlgorithm.closestSegments(
 				current, points, radius, maxElements);
 
 		assertThat(referenceablePoints).hasSize(maxElements);
