@@ -80,26 +80,32 @@ public class BusStopsFinder implements Finder {
 			busStopResultPromises.add(processSegment(segment));
 		}
 
+		return processBusStopResultsPromise(busStopResultPromises);
+	}
+
+	private Promise<QueryResult> processBusStopResultsPromise(
+		List<Promise<BusStopResult>> busStopResultPromises) {
+
 		Promise<List<BusStopResult>> sequence = Promise.sequence(
 			busStopResultPromises);
 
 		Promise<QueryResult> queryResultPromise = sequence.flatMap(
 			new Function<List<BusStopResult>, Promise<QueryResult>>() {
 
-			@Override
-			public Promise<QueryResult> apply(
-				final List<BusStopResult> busStopResults) throws Throwable {
+				@Override
+				public Promise<QueryResult> apply(
+					final List<BusStopResult> busStopResults) throws Throwable {
 
-				return Promise.promise(new Function0<QueryResult>() {
+					return Promise.promise(new Function0<QueryResult>() {
 
-					@Override
-					public QueryResult apply() throws Throwable {
-						return new QueryResult(busStopResults);
-					}
+						@Override
+						public QueryResult apply() throws Throwable {
+							return new QueryResult(busStopResults);
+						}
 
-				});
-			}
-		});
+					});
+				}
+			});
 
 		return queryResultPromise;
 	}
