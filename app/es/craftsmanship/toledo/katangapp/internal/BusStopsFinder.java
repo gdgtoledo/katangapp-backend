@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
+import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.business.store.Store;
@@ -42,6 +44,22 @@ public class BusStopsFinder implements Finder {
 		this.algorithm = closestPointsAlgorithm;
 		this.httpService = httpService;
 		this.parser = parser;
+	}
+
+	public Promise<QueryResult> findRoutes(String busStopId)
+		throws APIElementNotFoundException, InterruptedException,
+			UnreferenceablePointException {
+
+		final BusStop busStop = katangappStore.getBusStop(busStopId);
+
+		Segment segment = new Segment(busStop, busStop);
+
+		List<Promise<BusStopResult>> busStopResultPromises =
+			new ArrayList<>();
+
+		busStopResultPromises.add(processSegment(segment));
+
+		return processBusStopResultsPromise(busStopResultPromises);
 	}
 
 	public Promise<QueryResult> findRoutes(
