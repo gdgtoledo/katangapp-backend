@@ -77,39 +77,7 @@ public class BusStopsFinder implements Finder {
 			new ArrayList<>();
 
 		for (final Segment segment : segments) {
-			ReferenceablePoint to = segment.getTo();
-
-			final BusStop busStop = (BusStop) to;
-
-			Promise<String> responseHtml = httpService.get(
-				busStop.getRouteId(), busStop.getId(), busStop.getOrder());
-
-			Calendar calendar = Calendar.getInstance();
-
-			calendar.setTimeZone(Constants.TZ_TOLEDO);
-
-			Promise<List<RouteResult>> routesPromise =
-				parser.parseResponse(
-					busStop.getRouteId(), calendar.getTime(), responseHtml);
-
-			Promise<BusStopResult> busStopResultPromise = routesPromise.map(
-				new Function<List<RouteResult>, BusStopResult>() {
-
-					@Override
-					public BusStopResult apply(List<RouteResult> routeResults)
-						throws Throwable {
-
-						Collections.sort(routeResults);
-
-						BusStopResult busStopResult = new BusStopResult(
-							segment.getDistance(), busStop, routeResults);
-
-						return busStopResult;
-					}
-
-				});
-
-			busStopResultPromises.add(busStopResultPromise);
+			busStopResultPromises.add(processSegment(segment));
 		}
 
 		Promise<List<BusStopResult>> sequence = Promise.sequence(
@@ -134,6 +102,42 @@ public class BusStopsFinder implements Finder {
 		});
 
 		return queryResultPromise;
+	}
+
+	private Promise<BusStopResult> processSegment(final Segment segment) {
+		ReferenceablePoint to = segment.getTo();
+
+		final BusStop busStop = (BusStop) to;
+
+		Promise<String> responseHtml = httpService.get(
+			busStop.getRouteId(), busStop.getId(), busStop.getOrder());
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTimeZone(Constants.TZ_TOLEDO);
+
+		Promise<List<RouteResult>> routesPromise =
+			parser.parseResponse(
+				busStop.getRouteId(), calendar.getTime(), responseHtml);
+
+		Promise<BusStopResult> busStopResultPromise = routesPromise.map(
+			new Function<List<RouteResult>, BusStopResult>() {
+
+				@Override
+				public BusStopResult apply(List<RouteResult> routeResults)
+					throws Throwable {
+
+					Collections.sort(routeResults);
+
+					BusStopResult busStopResult = new BusStopResult(
+						segment.getDistance(), busStop, routeResults);
+
+					return busStopResult;
+				}
+
+			});
+
+		return busStopResultPromise;
 	}
 
 	private static Store katangappStore = KatangappStore.getInstance();
