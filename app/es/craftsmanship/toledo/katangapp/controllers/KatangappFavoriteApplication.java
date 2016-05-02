@@ -10,11 +10,7 @@ import play.mvc.Result;
  */
 public class KatangappFavoriteApplication extends Controller {
 
-    public F.Promise<Result> favorite(
-        final String routeId) {
-
-
-
+    public F.Promise<Result> favorite(final String routeId) {
         return null;
     }
 
