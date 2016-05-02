@@ -13,7 +13,7 @@ GET     /paradas                    @es.craftsmanship.toledo.katangapp.controlle
 
 GET     /unauto                     @es.craftsmanship.toledo.katangapp.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
 
-GET     /favorites/:idRoute/:idBusStop/:idOrder   @es.craftsmanship.toledo.katangapp.controllers.KatangappFavoriteApplication.favorite(idRoute: String, idBusStop: String, idOrder: String)
+GET     /favorites/:routeId/:busStopId/:orderId   @es.craftsmanship.toledo.katangapp.controllers.KatangappFavoriteApplication.favorite(routeId: String, busStopId: String, orderId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
