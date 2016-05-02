@@ -11,7 +11,9 @@ import play.mvc.Result;
 public class KatangappFavoriteApplication extends Controller {
 
     public F.Promise<Result> favorite(
-        final String routeId, final String busStopId, final String orderId) {
+        final String routeId) {
+
+
 
         return null;
     }

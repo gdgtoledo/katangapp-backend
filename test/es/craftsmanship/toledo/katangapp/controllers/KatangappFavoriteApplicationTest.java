@@ -23,9 +23,7 @@ public class KatangappFavoriteApplicationTest extends WithApplication {
 
 	@Test
 	public void testFavorite() {
-		String routeId = null;
 		String busStopId = null;
-		String orderId = null;
 
 		MockController.mockRequest(true);
 
@@ -33,7 +31,7 @@ public class KatangappFavoriteApplicationTest extends WithApplication {
 			new KatangappFavoriteApplication();
 
 		F.Promise<Result> resultPromise = katangappFavoriteApplication.favorite(
-			routeId, busStopId, orderId);
+			busStopId);
 
 		Result result = resultPromise.get(SpecsContants.TIMEOUT);
 
