@@ -23,7 +23,7 @@ public class KatangappFavoriteApplicationTest extends WithApplication {
 
 	@Test
 	public void testFavorite() {
-		String busStopId = null;
+		String busStopId = "294";
 
 		MockController.mockRequest(true);
 
