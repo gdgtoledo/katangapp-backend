@@ -52,6 +52,15 @@ following parameters to work:
 
 In example: `http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500`
 
+To verify the business logic for the `favorite bus stop` feature of the
+application, go to `http://localhost:9000/favorite`, that represents the
+endpoint of the service that calculates the routes of a specific bus
+stop. It needs the following parameters to work:
+
+ - busStopId: The identifier of the bus top
+
+In example: `http://localhost:9000/favorite/P001`
+
 ## Available Stores
 The application offers four endpoints to retrieve the data it uses, in JSON
 format, two for the bus routes, describing each route and its bus stops, and
