@@ -21,6 +21,7 @@ public class KatangappFavoriteApplication extends Controller {
     public F.Promise<Result> favorite(final String busStopId) {
         return F.Promise.promise(
             new F.Function0<Result>() {
+
                 @Override
                 public Result apply() throws Throwable {
                     BusStop busStop = store.getBusStop(busStopId);
@@ -32,6 +33,7 @@ public class KatangappFavoriteApplication extends Controller {
 
                     return prettyPrinter.prettyPrint();
                 }
+
             }
         );
 
