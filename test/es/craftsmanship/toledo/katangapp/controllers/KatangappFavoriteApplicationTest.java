@@ -5,9 +5,15 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
+import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
+import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;
+import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
+import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import play.test.WithApplication;
@@ -21,14 +27,22 @@ import play.mvc.Result;
  */
 public class KatangappFavoriteApplicationTest extends WithApplication {
 
+	@Before
+	public void setUp() {
+		final MockHttpService mockHttpService = new MockHttpService("P001");
+
+		Finder busStopFinder = new BusStopsFinder(
+			new SegmentsAlgorithm(), new HTMLParser(), mockHttpService);
+
+		katangappFavoriteApplication = new KatangappFavoriteApplication(
+			busStopFinder);
+	}
+
 	@Test
 	public void testFavorite() {
 		String busStopId = "294";
 
 		MockController.mockRequest(true);
-
-		KatangappFavoriteApplication katangappFavoriteApplication =
-			new KatangappFavoriteApplication();
 
 		F.Promise<Result> resultPromise = katangappFavoriteApplication.favorite(
 			busStopId);
@@ -38,5 +52,7 @@ public class KatangappFavoriteApplicationTest extends WithApplication {
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
 	}
+
+	private KatangappFavoriteApplication katangappFavoriteApplication;
 
 }
