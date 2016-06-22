@@ -1,0 +1,51 @@
+package es.craftsmanship.toledo.katangapp.internal.services;
+
+import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+import es.craftsmanship.toledo.katangapp.services.StatusCheckService;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import com.google.inject.Inject;
+
+import play.libs.F.Function;
+import play.libs.F.Promise;
+import play.libs.Json;
+
+/**
+ * @author mdelapenya
+ */
+public class UnautoStatusService implements StatusCheckService {
+
+	@Inject
+	public UnautoStatusService(HttpService httpService, Object payload) {
+		this.httpService = httpService;
+		this.payload = payload;
+	}
+
+	@Override
+	public Promise<JsonNode> healthCheck() {
+		String[] params = (String[])payload;
+
+		Promise<String> httpPromise = httpService.get(params);
+
+		Promise<JsonNode> resultPromise = httpPromise.map(
+			new Function<String, JsonNode>() {
+
+				public JsonNode apply(String result) {
+					if (result == null || result.isEmpty()) {
+						return Json.toJson("Unauto: KO");
+					}
+
+					return Json.toJson("Unauto: OK");
+				}
+
+			}
+		);
+
+		return resultPromise;
+	}
+
+	private HttpService httpService;
+	private Object payload;
+
+}
