@@ -11,6 +11,8 @@ GET     /favicon.ico                controllers.Assets.at(path="/public/images",
 
 GET     /paradas                    @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 
+GET     /status                     @es.craftsmanship.toledo.katangapp.controllers.StatusApplication.status()
+
 GET     /unauto                     @es.craftsmanship.toledo.katangapp.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
 
 GET     /favorite/:busStopId       @es.craftsmanship.toledo.katangapp.controllers.KatangappFavoriteApplication.favorite(busStopId:String)
