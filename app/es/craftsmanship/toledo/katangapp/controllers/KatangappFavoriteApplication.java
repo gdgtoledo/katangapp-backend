@@ -69,11 +69,11 @@ public class KatangappFavoriteApplication extends Controller {
     
                 @Override
                 public Result apply() throws Throwable {
-                        return notFound(apiException.getApiError());
-                    }
+                    return notFound(apiException.getApiError());
+                }
 
-                });
-            }
+            });
+        }
 
     }
 
