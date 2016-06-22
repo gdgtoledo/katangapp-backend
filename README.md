@@ -90,6 +90,19 @@ http://localhost:9000/api/busStops?prettyPrint=1
 http://localhost:9000/api/busStops/:busStopId?prettyPrint=true
 ```
 
+## Other endpoints
+The application offers an endpoint to check the status of every different
+service that the application uses. At this moment of the development, it
+only uses the former system, but it will add more health checks once more
+services are used.
+
+### Status / Health Check
+The status service will check that an specific query to the former system
+is returning a valid result.
+```
+http://localhost:9000/status
+```
+
 ## Backward compatibility
 To verify that the former system' business logic is working as expected, go to
 `http://localhost:9000/unauto`, that represents the endpoint of the former
