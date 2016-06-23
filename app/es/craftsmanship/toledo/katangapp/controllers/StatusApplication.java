@@ -2,6 +2,7 @@ package es.craftsmanship.toledo.katangapp.controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.internal.services.UnautoStatusService;
 import es.craftsmanship.toledo.katangapp.services.StatusCheckService;
 import es.craftsmanship.toledo.katangapp.services.StatusCheckServiceDiscoveryManager;
@@ -49,7 +50,10 @@ public class StatusApplication extends Controller {
 
             @Override
             public Result apply(List<JsonNode> jsonNodes) throws Throwable {
-                return ok(Json.toJson(jsonNodes));
+                PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+                    request(), Json.toJson(jsonNodes));
+
+                return prettyPrinter.prettyPrint();
             }
 
         });
