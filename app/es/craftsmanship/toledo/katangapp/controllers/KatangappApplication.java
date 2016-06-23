@@ -14,13 +14,12 @@ import play.libs.F.Function0;
 import play.libs.F.Promise;
 import play.libs.Json;
 
-import play.mvc.Controller;
 import play.mvc.Result;
 
 /**
  * @author mdelapenya
  */
-public class KatangappApplication extends Controller {
+public class KatangappApplication extends BaseKatangaApplication {
 
     @Inject
     public KatangappApplication(Finder busStopFinder) {
@@ -53,7 +52,7 @@ public class KatangappApplication extends Controller {
                     }
                 });
 
-            return resultPromise;
+            return recover(resultPromise);
         }
         catch (InterruptedException ie) {
             final APIException apiException = new APIException(ie.getMessage());

@@ -7,13 +7,12 @@ import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import play.libs.F.Function;
 import play.libs.F.Promise;
 
-import play.mvc.Controller;
 import play.mvc.Result;
 
 /**
  * @author mdelapenya
  */
-public class UnautoApplication extends Controller {
+public class UnautoApplication extends BaseKatangaApplication {
 
     @Inject
     public UnautoApplication(HttpService httpService) {
@@ -33,7 +32,7 @@ public class UnautoApplication extends Controller {
             }
         );
 
-        return promiseOfResult;
+        return recover(promiseOfResult);
     }
 
     private HttpService httpService;

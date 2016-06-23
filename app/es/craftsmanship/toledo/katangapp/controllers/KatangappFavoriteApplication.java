@@ -14,14 +14,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import play.libs.F;
 import play.libs.Json;
 
-import play.mvc.Controller;
 import play.mvc.Result;
 
 /**
  * @author manudevelopia
  * @author mdelapenya
  */
-public class KatangappFavoriteApplication extends Controller {
+public class KatangappFavoriteApplication extends BaseKatangaApplication {
 
     @Inject
     public KatangappFavoriteApplication(Finder busStopFinder) {
@@ -50,7 +49,7 @@ public class KatangappFavoriteApplication extends Controller {
 
                 });
 
-            return resultPromise;
+            return recover(resultPromise);
         }
         catch (final APIElementNotFoundException ae) {
             return F.Promise.promise(new F.Function0<Result>() {
