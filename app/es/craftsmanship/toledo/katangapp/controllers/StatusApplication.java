@@ -3,7 +3,7 @@ package es.craftsmanship.toledo.katangapp.controllers;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
-import es.craftsmanship.toledo.katangapp.internal.services.UnautoStatusService;
+import es.craftsmanship.toledo.katangapp.internal.services.KatangaServiceDiscoveryManager;
 import es.craftsmanship.toledo.katangapp.services.StatusCheckService;
 import es.craftsmanship.toledo.katangapp.services.StatusCheckServiceDiscoveryManager;
 
@@ -31,7 +31,9 @@ public class StatusApplication extends Controller {
     @Inject
     public StatusApplication(HttpService httpService) {
         this.httpService = httpService;
-        this.serviceDiscoveryManager = new KatangaServiceDiscoveryManager();
+
+        this.serviceDiscoveryManager =
+            new KatangaServiceDiscoveryManager(httpService);
     }
 
     public Promise<Result> status() {
@@ -90,25 +92,5 @@ public class StatusApplication extends Controller {
 
     private final HttpService httpService;
     private final StatusCheckServiceDiscoveryManager serviceDiscoveryManager;
-
-    private class KatangaServiceDiscoveryManager
-        implements StatusCheckServiceDiscoveryManager {
-
-        public KatangaServiceDiscoveryManager() {
-            statusCheckServices = new ArrayList<>();
-
-            statusCheckServices.add(
-                new UnautoStatusService(
-                    httpService, new String[]{"L94", "P001", "208.00000"}));
-        }
-
-        @Override
-        public List<StatusCheckService> getServices() {
-            return statusCheckServices;
-        }
-
-        private List<StatusCheckService> statusCheckServices;
-
-    }
 
 }
