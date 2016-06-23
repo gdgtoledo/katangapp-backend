@@ -1,12 +1,9 @@
 package es.craftsmanship.toledo.katangapp.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import com.google.inject.Inject;
 
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.exception.APIException;
-import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import play.libs.F.Function;
@@ -43,12 +40,7 @@ public class KatangappApplication extends BaseKatangaApplication {
                     public Result apply(QueryResult queryResult)
                         throws Throwable {
 
-                        JsonNode node = Json.toJson(queryResult);
-
-                        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
-                            request(), node);
-
-                        return prettyPrinter.prettyPrint();
+                        return prettyPrint(Json.toJson(queryResult));
                     }
                 });
 

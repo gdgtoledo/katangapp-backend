@@ -4,12 +4,9 @@ import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
 import es.craftsmanship.toledo.katangapp.business.exception.APIException;
-import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import com.google.inject.Inject;
-
-import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.F;
 import play.libs.Json;
@@ -39,12 +36,7 @@ public class KatangappFavoriteApplication extends BaseKatangaApplication {
                     public Result apply(QueryResult queryResult)
                         throws Throwable {
 
-                        JsonNode node = Json.toJson(queryResult);
-            
-                        PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
-                            request(), node);
-            
-                        return prettyPrinter.prettyPrint();
+                        return prettyPrint(Json.toJson(queryResult));
                     }
 
                 });

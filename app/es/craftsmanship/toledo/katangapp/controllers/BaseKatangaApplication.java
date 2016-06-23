@@ -1,6 +1,9 @@
 package es.craftsmanship.toledo.katangapp.controllers;
 
 import es.craftsmanship.toledo.katangapp.business.exception.APIException;
+import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.F;
 
@@ -11,6 +14,13 @@ import play.mvc.Result;
  * @author mdelapenya
  */
 public abstract class BaseKatangaApplication extends Controller {
+
+	protected Result prettyPrint(JsonNode jsonNode) {
+		PrettyPrinter prettyPrinter = new JsonPrettyPrinter(
+			request(), jsonNode);
+
+		return prettyPrinter.prettyPrint();
+	}
 
 	protected F.Promise<Result> recover(F.Promise<Result> promise) {
 		return promise.recover(new F.Function<Throwable, Result>() {
