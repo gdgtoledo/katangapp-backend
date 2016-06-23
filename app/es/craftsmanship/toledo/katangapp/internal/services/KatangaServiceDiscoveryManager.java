@@ -28,9 +28,7 @@ public class KatangaServiceDiscoveryManager
 
 		this.statusCheckServices = new ArrayList<>();
 
-		statusCheckServices.add(
-			new UnautoStatusService(
-				this.httpService, new String[]{"L94", "P001", "208.00000"}));
+		statusCheckServices.add(new UnautoStatusService(this.httpService));
 	}
 
 	public Promise<JsonNode> processServices() {

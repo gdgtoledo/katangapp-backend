@@ -17,9 +17,10 @@ import play.libs.Json;
 public class UnautoStatusService implements StatusCheckService {
 
 	@Inject
-	public UnautoStatusService(HttpService httpService, Object payload) {
+	public UnautoStatusService(HttpService httpService) {
 		this.httpService = httpService;
-		this.payload = payload;
+
+		this.payload = new String[]{"L94", "P001", "208.00000"};
 	}
 
 	@Override
