@@ -1,12 +1,14 @@
 package es.craftsmanship.toledo.katangapp.services;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import play.libs.F.Promise;
 
 /**
  * @author mdelapenya
  */
 public interface StatusCheckServiceDiscoveryManager {
 
-	List<StatusCheckService> getServices();
+	Promise<JsonNode> processServices();
 
 }
