@@ -1,11 +1,11 @@
 package es.craftsmanship.toledo.katangapp.internal.controllers;
 
+import es.craftsmanship.toledo.katangapp.controllers.PrettyPrinter;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-
-import es.craftsmanship.toledo.katangapp.controllers.PrettyPrinter;
 
 import java.nio.charset.Charset;
 

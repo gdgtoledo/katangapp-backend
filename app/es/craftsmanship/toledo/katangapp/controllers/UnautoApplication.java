@@ -1,8 +1,8 @@
 package es.craftsmanship.toledo.katangapp.controllers;
 
-import com.google.inject.Inject;
-
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+
+import com.google.inject.Inject;
 
 import play.libs.F.Function;
 import play.libs.F.Promise;

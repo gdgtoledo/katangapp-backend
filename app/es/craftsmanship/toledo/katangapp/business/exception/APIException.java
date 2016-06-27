@@ -1,8 +1,8 @@
 package es.craftsmanship.toledo.katangapp.business.exception;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import es.craftsmanship.toledo.katangapp.business.JsonNodeFactory;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * @author mdelapenya

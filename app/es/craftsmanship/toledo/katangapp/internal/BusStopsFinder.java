@@ -1,7 +1,5 @@
 package es.craftsmanship.toledo.katangapp.internal;
 
-import com.google.inject.Inject;
-
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
@@ -18,6 +16,8 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.models.Segment;
+
+import com.google.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.Calendar;

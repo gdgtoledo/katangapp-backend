@@ -1,9 +1,9 @@
 package es.craftsmanship.toledo.katangapp.guice;
 
-import com.google.inject.AbstractModule;
-
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
+
+import com.google.inject.AbstractModule;
 
 /**
  * @author mdelapenya
