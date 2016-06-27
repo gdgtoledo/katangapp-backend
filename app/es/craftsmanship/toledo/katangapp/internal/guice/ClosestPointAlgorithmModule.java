@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.guice;
+package es.craftsmanship.toledo.katangapp.internal.guice;
 
 import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;

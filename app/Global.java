@@ -1,5 +1,5 @@
 import es.craftsmanship.toledo.katangapp.business.exception.APIException;
-import es.craftsmanship.toledo.katangapp.guice.GuiceInjector;
+import es.craftsmanship.toledo.katangapp.internal.guice.GuiceInjector;
 
 import play.*;
 import play.mvc.*;

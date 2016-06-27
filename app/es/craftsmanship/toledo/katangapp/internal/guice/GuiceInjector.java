@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.guice;
+package es.craftsmanship.toledo.katangapp.internal.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

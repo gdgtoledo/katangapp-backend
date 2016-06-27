@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.guice;
+package es.craftsmanship.toledo.katangapp.internal.guice;
 
 import es.craftsmanship.toledo.katangapp.business.parser.Parser;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
