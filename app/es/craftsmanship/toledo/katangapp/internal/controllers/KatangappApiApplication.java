@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.controllers;
+package es.craftsmanship.toledo.katangapp.internal.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

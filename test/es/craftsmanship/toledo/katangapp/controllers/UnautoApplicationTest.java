@@ -6,6 +6,7 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.internal.controllers.UnautoApplication;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.models.BusStop;

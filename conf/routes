@@ -2,20 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /api/busStops               @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.busStops()
-GET     /api/busStops/:id           @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.busStop(id: String)
-GET     /api/routes                 @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.routes()
-GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.controllers.KatangappApiApplication.route(id: String)
+GET     /api/busStops               @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApiApplication.busStops()
+GET     /api/busStops/:id           @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApiApplication.busStop(id: String)
+GET     /api/routes                 @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApiApplication.routes()
+GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApiApplication.route(id: String)
 
 GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.ico")
 
-GET     /paradas                    @es.craftsmanship.toledo.katangapp.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
+GET     /paradas                    @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 
-GET     /status                     @es.craftsmanship.toledo.katangapp.controllers.StatusApplication.status()
+GET     /status                     @es.craftsmanship.toledo.katangapp.internal.controllers.StatusApplication.status()
 
-GET     /unauto                     @es.craftsmanship.toledo.katangapp.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
+GET     /unauto                     @es.craftsmanship.toledo.katangapp.internal.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
 
-GET     /favorite/:busStopId       @es.craftsmanship.toledo.katangapp.controllers.KatangappFavoriteApplication.favorite(busStopId:String)
+GET     /favorite/:busStopId       @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappFavoriteApplication.favorite(busStopId:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

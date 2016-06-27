@@ -8,6 +8,7 @@ import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
+import es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApiApplication;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 
 import org.junit.Before;
