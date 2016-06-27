@@ -1,8 +1,9 @@
 package es.craftsmanship.toledo.katangapp.business.exception;
 
-import es.craftsmanship.toledo.katangapp.business.JsonNodeFactory;
-
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import play.libs.Json;
 
 /**
  * @author mdelapenya
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class APIException extends Exception {
 
 	public APIException(String apiMesage) {
-		apiError = JsonNodeFactory.getTextNode("message", apiMesage);
+		apiError = Json.newObject().set("message", new TextNode(apiMesage));
 	}
 
 	public JsonNode getApiError() {
