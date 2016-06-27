@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.controllers;
+package es.craftsmanship.toledo.katangapp.business.controllers;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.mvc.Http.Status.OK;

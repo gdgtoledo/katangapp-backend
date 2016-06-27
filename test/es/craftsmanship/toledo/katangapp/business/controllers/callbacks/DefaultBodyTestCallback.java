@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.controllers.callbacks;
+package es.craftsmanship.toledo.katangapp.business.controllers.callbacks;
 
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 import play.libs.F;
