@@ -2,7 +2,7 @@ package es.craftsmanship.toledo.katangapp.internal.controllers;
 
 import es.craftsmanship.toledo.katangapp.business.http.HttpService;
 import es.craftsmanship.toledo.katangapp.internal.services.KatangaServiceDiscoveryManager;
-import es.craftsmanship.toledo.katangapp.services.StatusCheckServiceDiscoveryManager;
+import es.craftsmanship.toledo.katangapp.business.services.StatusCheckServiceDiscoveryManager;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
