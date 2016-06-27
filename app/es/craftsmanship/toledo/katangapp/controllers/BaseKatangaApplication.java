@@ -1,5 +1,6 @@
 package es.craftsmanship.toledo.katangapp.controllers;
 
+import es.craftsmanship.toledo.katangapp.business.controllers.PrettyPrinter;
 import es.craftsmanship.toledo.katangapp.business.exception.APIException;
 import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 
