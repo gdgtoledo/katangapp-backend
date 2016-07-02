@@ -9,7 +9,6 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.controllers.PrettyPrinter;
-import es.craftsmanship.toledo.katangapp.internal.controllers.JsonPrettyPrinter;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;

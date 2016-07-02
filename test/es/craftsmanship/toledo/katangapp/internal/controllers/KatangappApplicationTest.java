@@ -10,7 +10,6 @@ import static play.test.Helpers.status;
 import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;
-import es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApplication;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
 import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
