@@ -1,7 +1,8 @@
-package es.craftsmanship.toledo.katangapp.business;
+package es.craftsmanship.toledo.katangapp.internal;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import es.craftsmanship.toledo.katangapp.business.Finder;
 import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
