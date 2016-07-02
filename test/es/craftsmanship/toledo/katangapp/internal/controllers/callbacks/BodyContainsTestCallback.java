@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.controllers.callbacks;
+package es.craftsmanship.toledo.katangapp.internal.controllers.callbacks;
 
 import static org.fest.assertions.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.controllers;
+package es.craftsmanship.toledo.katangapp.internal.controllers;
 
 import static org.fest.assertions.Assertions.assertThat;
 

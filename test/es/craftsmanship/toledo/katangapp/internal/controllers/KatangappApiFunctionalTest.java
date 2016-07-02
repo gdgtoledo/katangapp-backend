@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.controllers;
+package es.craftsmanship.toledo.katangapp.internal.controllers;
 
 import static play.test.Helpers.HTMLUNIT;
 import static play.test.Helpers.fakeApplication;
@@ -6,7 +6,7 @@ import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
-import es.craftsmanship.toledo.katangapp.business.controllers.callbacks.BodyContainsTestCallback;
+import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyContainsTestCallback;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;
