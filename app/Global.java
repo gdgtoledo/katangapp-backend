@@ -28,6 +28,13 @@ public class Global extends GlobalSettings {
 		return badRequest(badRequest.getApiError());
 	}
 
+	@Override
+	public Action<?> onRequest(
+		Http.Request request, java.lang.reflect.Method actionMethod) {
+
+		return new ActionCORSWrapper(super.onRequest(request, actionMethod));
+	}
+
 	public void onStart(Application application) {
 		guiceInjector = GuiceInjector.getInstance();
 	}
@@ -40,5 +47,22 @@ public class Global extends GlobalSettings {
 	}
 
 	private GuiceInjector guiceInjector;
+
+	private class ActionCORSWrapper extends Action.Simple {
+		public ActionCORSWrapper(Action<?> action) {
+			this.delegate = action;
+		}
+
+		@Override
+		public Promise<Result> call(Http.Context ctx) throws Throwable {
+			Promise<Result> result = this.delegate.call(ctx);
+
+			Http.Response response = ctx.response();
+
+			response.setHeader(HeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+
+			return result;
+		}
+	}
 
 }
