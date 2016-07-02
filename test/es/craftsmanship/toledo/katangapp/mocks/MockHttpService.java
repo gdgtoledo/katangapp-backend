@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.mocks;
 
-import es.craftsmanship.toledo.katangapp.business.IOTestUtils;
+import es.craftsmanship.toledo.katangapp.test.IOTestUtils;
 import es.craftsmanship.toledo.katangapp.internal.http.UnautoHttpService;
 
 import play.libs.F.Promise;
