@@ -6,11 +6,13 @@ import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.OK;
 
 import static play.test.Helpers.contentType;
+import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.GET;
+import static play.test.Helpers.route;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.mocks.MockController;
+import es.craftsmanship.toledo.katangapp.test.AssertUtils;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import play.mvc.Result;
@@ -22,101 +24,96 @@ import play.test.WithApplication;
  */
 public class KatangappApiApplicationTest extends WithApplication {
 
-	@Before
-	public void setUp() {
-		katangappApiApplication = new KatangappApiApplication();
-
-		MockController.mockRequest(false);
-	}
-
 	@Test
 	public void testBusStop() {
-		Result result = katangappApiApplication.busStop("P003");
+		Result result = route(fakeRequest(GET, "/api/busStops/P003"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testBusStopNotFound() {
-		Result result = katangappApiApplication.busStop("notfound");
+		Result result = route(fakeRequest(GET, "/api/busStops/notfound"));
 
 		assertThat(status(result)).isEqualTo(NOT_FOUND);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testBusStops() {
-		Result result = katangappApiApplication.busStops();
+		Result result = route(fakeRequest(GET, "/api/busStops"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testBusStopsWithPrettyPrint() {
-		MockController.mockRequest(true);
-
-		Result result = katangappApiApplication.busStops();
+		Result result = route(fakeRequest(GET, "/api/busStops?prettyPrint=1"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testBusStopWithPrettyPrint() {
-		MockController.mockRequest(true);
-
-		Result result = katangappApiApplication.busStop("P003");
+		Result result = route(fakeRequest(
+			GET, "/api/busStops/P003?prettyPrint=1"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testRoute() {
-		Result result = katangappApiApplication.route("L02");
+		Result result = route(fakeRequest(GET, "/api/routes/L02"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testRouteNotFound() {
-		Result result = katangappApiApplication.route("notfound");
+		Result result = route(fakeRequest(GET, "/api/routes/notfound"));
 
 		assertThat(status(result)).isEqualTo(NOT_FOUND);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testRoutes() {
-		Result result = katangappApiApplication.routes();
+		Result result = route(fakeRequest(GET, "/api/routes"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testRoutesWithPrettyPrint() {
-		MockController.mockRequest(true);
-
-		Result result = katangappApiApplication.routes();
+		Result result = route(fakeRequest(GET, "/api/routes?prettyPrint=1"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
 	public void testRouteWithPrettyPrint() {
-		MockController.mockRequest(true);
-
-		Result result = katangappApiApplication.route("L02");
+		Result result = route(
+			fakeRequest(GET, "/api/routes/L02?prettyPrint=1"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
-
-	private KatangappApiApplication katangappApiApplication;
 
 }

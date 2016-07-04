@@ -5,22 +5,16 @@ import static org.fest.assertions.Assertions.assertThat;
 import static play.mvc.Http.Status.OK;
 
 import static play.test.Helpers.contentType;
+import static play.test.Helpers.GET;
+import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.route;
 import static play.test.Helpers.status;
 
-import es.craftsmanship.toledo.katangapp.business.Finder;
-import es.craftsmanship.toledo.katangapp.internal.BusStopsFinder;
-import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;
-import es.craftsmanship.toledo.katangapp.internal.parser.HTMLParser;
-import es.craftsmanship.toledo.katangapp.mocks.MockController;
-import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
-import es.craftsmanship.toledo.katangapp.test.SpecsContants;
+import es.craftsmanship.toledo.katangapp.test.AssertUtils;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import play.libs.F.Promise;
 
 import play.mvc.Result;
 
@@ -31,16 +25,6 @@ import play.test.WithApplication;
  */
 public class KatangappApplicationTest extends WithApplication {
 
-	@Before
-	public void setUp() {
-		final MockHttpService mockHttpService = new MockHttpService("P001");
-
-		Finder busStopFinder = new BusStopsFinder(
-			new SegmentsAlgorithm(), new HTMLParser(), mockHttpService);
-
-		katangappApplication = new KatangappApplication(busStopFinder);
-	}
-
 	@Test
 	public void testMain() {
 		Point puertaBisagra = TestPointFactory.getPuertaBisagra();
@@ -49,15 +33,15 @@ public class KatangappApplicationTest extends WithApplication {
 		String longitude = String.valueOf(puertaBisagra.getLongitude());
 		int radius = 1000;
 
-		MockController.mockRequest(false);
-
-		Promise<Result> resultPromise = katangappApplication.main(
-			latitude, longitude, radius);
-
-		Result result = resultPromise.get(SpecsContants.TIMEOUT);
+		Result result = route(
+			fakeRequest(
+				GET,
+				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
+					radius));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
 
 	@Test
@@ -68,17 +52,15 @@ public class KatangappApplicationTest extends WithApplication {
 		String longitude = String.valueOf(puertaBisagra.getLongitude());
 		int radius = 1000;
 
-		MockController.mockRequest(true);
-
-		Promise<Result> resultPromise = katangappApplication.main(
-			latitude, longitude, radius);
-
-		Result result = resultPromise.get(SpecsContants.TIMEOUT);
+		Result result = route(
+			fakeRequest(
+				GET,
+				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
+					radius + "&prettyPrint=1"));
 
 		assertThat(status(result)).isEqualTo(OK);
 		assertThat(contentType(result)).isEqualTo("application/json");
+		AssertUtils.assertCORS(result);
 	}
-
-	private KatangappApplication katangappApplication;
 
 }
