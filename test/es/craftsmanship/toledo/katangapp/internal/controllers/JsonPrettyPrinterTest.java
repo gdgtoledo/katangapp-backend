@@ -35,7 +35,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testDoNotPrettyPrint() throws Exception {
-		Http.Request request = requestMocker.mockRequest(false);
+		Http.Request request = requestMocker.mock(false);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -53,7 +53,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testPrettyPrint() throws Exception {
-		Http.Request request = requestMocker.mockRequest(true);
+		Http.Request request = requestMocker.mock(true);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -87,7 +87,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 		 *
 		 * @return the mocked request
 		 */
-		public Http.Request mockRequest(boolean prettyPrint) {
+		public Http.Request mock(boolean prettyPrint) {
 			Long id = 2L;
 
 			play.api.mvc.RequestHeader header = Mockito.mock(
