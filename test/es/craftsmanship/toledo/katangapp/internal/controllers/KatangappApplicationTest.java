@@ -1,14 +1,10 @@
 package es.craftsmanship.toledo.katangapp.internal.controllers;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import static play.mvc.Http.Status.OK;
 
-import static play.test.Helpers.contentType;
 import static play.test.Helpers.GET;
 import static play.test.Helpers.fakeRequest;
 import static play.test.Helpers.route;
-import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.TestPointFactory;
@@ -39,9 +35,7 @@ public class KatangappApplicationTest extends WithApplication {
 				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
 					radius));
 
-		assertThat(status(result)).isEqualTo(OK);
-		assertThat(contentType(result)).isEqualTo("application/json");
-		AssertUtils.assertCORS(result);
+		AssertUtils.assertTCK(result, OK);
 	}
 
 	@Test
@@ -58,9 +52,7 @@ public class KatangappApplicationTest extends WithApplication {
 				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
 					radius + "&prettyPrint=1"));
 
-		assertThat(status(result)).isEqualTo(OK);
-		assertThat(contentType(result)).isEqualTo("application/json");
-		AssertUtils.assertCORS(result);
+		AssertUtils.assertTCK(result, OK);
 	}
 
 }
