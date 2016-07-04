@@ -35,7 +35,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testDoNotPrettyPrint() throws Exception {
-		Http.Request request = mockController.mockRequest(false);
+		Http.Request request = requestMocker.mockRequest(false);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -53,7 +53,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testPrettyPrint() throws Exception {
-		Http.Request request = mockController.mockRequest(true);
+		Http.Request request = requestMocker.mockRequest(true);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -69,14 +69,14 @@ public class JsonPrettyPrinterTest extends WithApplication {
 			isEqualTo(SpecsContants.BUS_STOP_PRETTIFIED_JSON);
 	}
 
-	private MockController mockController = new MockController();
+	private RequestMocker requestMocker = new RequestMocker();
 
 	/**
 	 * This class offers methods to mock an HTTP request.
 	 *
 	 * @author mdelapenya
 	 */
-	private class MockController {
+	private class RequestMocker {
 
 		/**
 		 * Mocks an HTTP request adding a queryString parameter based on input
