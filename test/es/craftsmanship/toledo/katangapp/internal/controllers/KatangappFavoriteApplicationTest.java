@@ -28,4 +28,14 @@ public class KatangappFavoriteApplicationTest extends WithApplication {
 		AssertUtils.assertTCK(result, OK);
 	}
 
+	@Test
+	public void testFavoriteWithPrettyPrint() {
+		String busStopId = "294";
+
+		Result result = route(
+			fakeRequest(GET, "/favorite/" + busStopId + "?prettyPrint=1"));
+
+		AssertUtils.assertTCK(result, OK);
+	}
+
 }
