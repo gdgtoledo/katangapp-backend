@@ -9,12 +9,17 @@ import static play.test.Helpers.contentType;
 import static play.test.Helpers.status;
 
 import es.craftsmanship.toledo.katangapp.business.controllers.PrettyPrinter;
-import es.craftsmanship.toledo.katangapp.mocks.MockController;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
+
+import org.mockito.Mockito;
 
 import play.libs.Json;
 
@@ -30,7 +35,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testDoNotPrettyPrint() throws Exception {
-		Http.Request request = MockController.mockRequest(false);
+		Http.Request request = mockController.mockRequest(false);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -48,7 +53,7 @@ public class JsonPrettyPrinterTest extends WithApplication {
 
 	@Test
 	public void testPrettyPrint() throws Exception {
-		Http.Request request = MockController.mockRequest(true);
+		Http.Request request = mockController.mockRequest(true);
 
 		BusStop busStop = KatangappStore.getInstance().getBusStop("P001");
 
@@ -64,4 +69,50 @@ public class JsonPrettyPrinterTest extends WithApplication {
 			isEqualTo(SpecsContants.BUS_STOP_PRETTIFIED_JSON);
 	}
 
+	private MockController mockController = new MockController();
+
+	/**
+	 * This class offers methods to mock an HTTP request.
+	 *
+	 * @author mdelapenya
+	 */
+	private class MockController {
+
+		/**
+		 * Mocks an HTTP request adding a queryString parameter based on input
+		 * parameter.
+		 *
+		 * @param prettyPrint Whether a <code>prettyPrint</code> HTTP parameter
+		 *                    is added or not to the HTTP request.
+		 *
+		 * @return the mocked request
+		 */
+		public Http.Request mockRequest(boolean prettyPrint) {
+			Long id = 2L;
+
+			play.api.mvc.RequestHeader header = Mockito.mock(
+				play.api.mvc.RequestHeader.class);
+
+			Http.Request request = Mockito.mock(Http.Request.class);
+
+			if (prettyPrint) {
+				Map<String, String[]> mockQueryString = new HashMap<>();
+
+				mockQueryString.put("prettyPrint", new String[] {"true"});
+
+				Mockito.when(request.queryString()).thenReturn(mockQueryString);
+			}
+
+			Map<String, String> flashData = Collections.emptyMap();
+			Map<String, Object> argData = Collections.emptyMap();
+
+			Http.Context context = new Http.Context(
+				id, header, request, flashData, flashData, argData);
+
+			Http.Context.current.set(context);
+
+			return request;
+		}
+
+	}
 }
