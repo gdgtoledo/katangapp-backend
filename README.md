@@ -42,7 +42,7 @@ test the application: open a browser and go to `http://localhost:9000`. It
 should display the default `Play! Framework` main page.
 
 To verify the business logic of the application, go to
-`http://localhost:9000/paradas`, that represents the endpoint of the service
+`http://localhost:9000/main`, that represents the endpoint of the service
 that calculates the closest bus stops to a specific point. It needs the
 following parameters to work:
 
@@ -50,7 +50,7 @@ following parameters to work:
  - ln: Longitude of a location (Double)
  - r: Radius to use when searching for the closest bus stops (Integer)
 
-In example: `http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500`
+In example: `http://localhost:9000/main?lt=39.862658&ln=-4.025088&r=500`
 
 To verify the business logic for the `favorite bus stop` feature of the
 application, go to `http://localhost:9000/favorite`, that represents the
@@ -83,7 +83,7 @@ Adding the parameter `prettyPrint` with value `true` or `1`, will return a
 prettified JSON.
 
 ```
-http://localhost:9000/paradas?lt=39.862658&ln=-4.025088&r=500?prettyPrint=1
+http://localhost:9000/main?lt=39.862658&ln=-4.025088&r=500?prettyPrint=1
 http://localhost:9000/api/routes?prettyPrint=1
 http://localhost:9000/api/routes/:routeId?prettyPrint=true
 http://localhost:9000/api/busStops?prettyPrint=1
