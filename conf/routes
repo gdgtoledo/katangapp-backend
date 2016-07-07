@@ -9,7 +9,7 @@ GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.internal.
 
 GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.ico")
 
-GET     /paradas                    @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
+GET     /main                    @es.craftsmanship.toledo.katangapp.internal.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 
 GET     /status                     @es.craftsmanship.toledo.katangapp.internal.controllers.StatusApplication.status()
 
