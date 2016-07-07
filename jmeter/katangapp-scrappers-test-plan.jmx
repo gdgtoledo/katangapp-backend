@@ -100,7 +100,7 @@
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="TestPlan.comments">/paradas&amp;lt=39.862658&amp;ln=-4.025088&amp;r=1000&amp;prettyPrint=1</stringProp>
+          <stringProp name="TestPlan.comments">/main&amp;lt=39.862658&amp;ln=-4.025088&amp;r=1000&amp;prettyPrint=1</stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Ask for bus stops" enabled="true">
@@ -121,7 +121,7 @@
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="TestPlan.comments">/paradas&amp;lt=39.862658&amp;ln=-4.025088&amp;r=1000&amp;prettyPrint=1</stringProp>
+          <stringProp name="TestPlan.comments">/main&amp;lt=39.862658&amp;ln=-4.025088&amp;r=1000&amp;prettyPrint=1</stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
         <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
