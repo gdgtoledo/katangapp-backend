@@ -32,8 +32,7 @@ public class KatangappApplicationTest extends WithApplication {
 		Result result = route(
 			fakeRequest(
 				GET,
-				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
-					radius));
+				"/main?lt=" + latitude + "&ln=" + longitude + "&r=" + radius));
 
 		AssertUtils.assertTCK(result, OK);
 	}
@@ -49,7 +48,7 @@ public class KatangappApplicationTest extends WithApplication {
 		Result result = route(
 			fakeRequest(
 				GET,
-				"/paradas?lt=" + latitude + "&ln=" + longitude + "&r=" +
+				"/main?lt=" + latitude + "&ln=" + longitude + "&r=" +
 					radius + "&prettyPrint=1"));
 
 		AssertUtils.assertTCK(result, OK);

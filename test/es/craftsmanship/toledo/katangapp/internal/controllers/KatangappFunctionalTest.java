@@ -24,7 +24,7 @@ public class KatangappFunctionalTest {
         Point puertaBisagra = TestPointFactory.getPuertaBisagra();
 
         String url =
-            "/paradas?lt=" + puertaBisagra.getLatitude() + "&ln=" +
+            "/main?lt=" + puertaBisagra.getLatitude() + "&ln=" +
                 puertaBisagra.getLongitude() + "&r=1000";
 
         String[] expectedMessages = {
