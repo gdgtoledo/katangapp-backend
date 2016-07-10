@@ -100,15 +100,15 @@ public final class KatangappStore implements Store {
 	private void populateBusStops() {
 		final JsonNode busStops = busStopsJsonStore.getJson();
 
+		ObjectMapper mapper = new ObjectMapper();
+
+		SimpleModule module = new SimpleModule();
+
+		module.addDeserializer(BusStop.class, new BusStopDeserializer());
+
+		mapper.registerModule(module);
+
 		for (JsonNode busStopsArray : busStops) {
-			ObjectMapper mapper = new ObjectMapper();
-
-			SimpleModule module = new SimpleModule();
-
-			module.addDeserializer(BusStop.class, new BusStopDeserializer());
-
-			mapper.registerModule(module);
-
 			try {
 				BusStop[] busStopModels = mapper.treeToValue(
 					busStopsArray, BusStop[].class);
