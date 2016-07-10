@@ -1,7 +1,8 @@
-package es.craftsmanship.toledo.katangapp.internal.controllers;
+package es.craftsmanship.toledo.katangapp.api.controllers;
 
 import es.craftsmanship.toledo.katangapp.api.Finder;
 import es.craftsmanship.toledo.katangapp.api.exception.APIException;
+import es.craftsmanship.toledo.katangapp.internal.controllers.BaseKatangaApplication;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import com.google.inject.Inject;

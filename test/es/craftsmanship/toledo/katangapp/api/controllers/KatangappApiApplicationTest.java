@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.internal.controllers;
+package es.craftsmanship.toledo.katangapp.api.controllers;
 
 import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.OK;
