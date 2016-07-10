@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.store;
 
-import es.craftsmanship.toledo.katangapp.business.store.JsonStore;
+import es.craftsmanship.toledo.katangapp.api.store.JsonStore;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

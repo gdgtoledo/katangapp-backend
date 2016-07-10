@@ -2,7 +2,7 @@ package es.craftsmanship.toledo.katangapp.internal.http;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+import es.craftsmanship.toledo.katangapp.api.http.HttpService;
 import es.craftsmanship.toledo.katangapp.mocks.MockHttpService;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 

@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.controllers;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+import es.craftsmanship.toledo.katangapp.api.http.HttpService;
 
 import com.google.inject.Inject;
 

@@ -1,12 +1,12 @@
 package es.craftsmanship.toledo.katangapp.internal;
 
-import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
-import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.api.ClosestPointsAlgorithm;
+import es.craftsmanship.toledo.katangapp.api.Finder;
+import es.craftsmanship.toledo.katangapp.api.exception.APIElementNotFoundException;
+import es.craftsmanship.toledo.katangapp.api.http.HttpService;
+import es.craftsmanship.toledo.katangapp.api.parser.Parser;
+import es.craftsmanship.toledo.katangapp.api.store.Store;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
-import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
-import es.craftsmanship.toledo.katangapp.business.parser.Parser;
-import es.craftsmanship.toledo.katangapp.business.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.BusStopResult;

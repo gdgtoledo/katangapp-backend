@@ -2,7 +2,7 @@ package es.craftsmanship.toledo.katangapp.internal.algorithm;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.api.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;

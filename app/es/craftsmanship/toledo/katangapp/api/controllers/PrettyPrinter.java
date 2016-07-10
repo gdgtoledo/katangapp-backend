@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.controllers;
+package es.craftsmanship.toledo.katangapp.api.controllers;
 
 import play.mvc.Result;
 

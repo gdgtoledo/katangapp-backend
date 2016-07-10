@@ -1,9 +1,9 @@
 package es.craftsmanship.toledo.katangapp.internal.controllers;
 
-import es.craftsmanship.toledo.katangapp.business.Finder;
+import es.craftsmanship.toledo.katangapp.api.Finder;
+import es.craftsmanship.toledo.katangapp.api.exception.APIElementNotFoundException;
+import es.craftsmanship.toledo.katangapp.api.exception.APIException;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
-import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
-import es.craftsmanship.toledo.katangapp.business.exception.APIException;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import com.google.inject.Inject;

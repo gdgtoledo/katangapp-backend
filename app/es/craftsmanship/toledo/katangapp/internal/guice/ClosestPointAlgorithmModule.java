@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.guice;
 
-import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
+import es.craftsmanship.toledo.katangapp.api.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.internal.algorithm.SegmentsAlgorithm;
 
 import com.google.inject.AbstractModule;

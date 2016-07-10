@@ -1,6 +1,6 @@
-package es.craftsmanship.toledo.katangapp.business.store;
+package es.craftsmanship.toledo.katangapp.api.store;
 
-import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
+import es.craftsmanship.toledo.katangapp.api.exception.APIElementNotFoundException;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
 

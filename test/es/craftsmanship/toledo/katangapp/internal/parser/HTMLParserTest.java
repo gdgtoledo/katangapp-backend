@@ -2,9 +2,9 @@ package es.craftsmanship.toledo.katangapp.internal.parser;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import es.craftsmanship.toledo.katangapp.test.IOTestUtils;
-import es.craftsmanship.toledo.katangapp.business.parser.Parser;
+import es.craftsmanship.toledo.katangapp.api.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
+import es.craftsmanship.toledo.katangapp.test.IOTestUtils;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import java.io.IOException;

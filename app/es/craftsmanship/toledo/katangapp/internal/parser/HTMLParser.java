@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.parser;
 
-import es.craftsmanship.toledo.katangapp.business.parser.Parser;
+import es.craftsmanship.toledo.katangapp.api.parser.Parser;
 import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 

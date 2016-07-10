@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business;
+package es.craftsmanship.toledo.katangapp.api;
 
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
 import es.craftsmanship.toledo.katangapp.models.Segment;

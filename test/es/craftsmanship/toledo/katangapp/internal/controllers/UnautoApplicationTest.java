@@ -6,7 +6,7 @@ import static play.test.Helpers.GET;
 import static play.test.Helpers.fakeRequest;
 import static play.test.Helpers.route;
 
-import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.api.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.test.AssertUtils;

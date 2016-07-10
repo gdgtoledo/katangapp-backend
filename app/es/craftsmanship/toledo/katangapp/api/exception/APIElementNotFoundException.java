@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.exception;
+package es.craftsmanship.toledo.katangapp.api.exception;
 
 /**
  * @author mdelapenya

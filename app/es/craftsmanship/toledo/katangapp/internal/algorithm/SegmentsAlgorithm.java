@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.algorithm;
 
-import es.craftsmanship.toledo.katangapp.business.ClosestPointsAlgorithm;
+import es.craftsmanship.toledo.katangapp.api.ClosestPointsAlgorithm;
 import es.craftsmanship.toledo.katangapp.business.UnreferenceablePointException;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
 import es.craftsmanship.toledo.katangapp.models.Segment;

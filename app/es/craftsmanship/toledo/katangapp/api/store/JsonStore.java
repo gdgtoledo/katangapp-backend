@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.store;
+package es.craftsmanship.toledo.katangapp.api.store;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

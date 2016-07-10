@@ -1,4 +1,4 @@
-package es.craftsmanship.toledo.katangapp.business.http;
+package es.craftsmanship.toledo.katangapp.api.http;
 
 import play.libs.F.Promise;
 

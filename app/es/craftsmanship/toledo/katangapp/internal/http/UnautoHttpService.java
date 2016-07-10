@@ -1,6 +1,6 @@
 package es.craftsmanship.toledo.katangapp.internal.http;
 
-import es.craftsmanship.toledo.katangapp.business.http.HttpService;
+import es.craftsmanship.toledo.katangapp.api.http.HttpService;
 
 import java.nio.charset.Charset;
 

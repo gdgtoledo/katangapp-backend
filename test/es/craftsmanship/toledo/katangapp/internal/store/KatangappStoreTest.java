@@ -1,7 +1,7 @@
 package es.craftsmanship.toledo.katangapp.internal.store;
 
-import es.craftsmanship.toledo.katangapp.business.exception.APIElementNotFoundException;
-import es.craftsmanship.toledo.katangapp.business.store.Store;
+import es.craftsmanship.toledo.katangapp.api.exception.APIElementNotFoundException;
+import es.craftsmanship.toledo.katangapp.api.store.Store;
 
 import org.junit.Before;
 import org.junit.Rule;
