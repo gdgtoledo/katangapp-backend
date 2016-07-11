@@ -159,7 +159,6 @@ public final class KatangappStore implements Store {
 			}
 
 			busStop.setRouteId(route.getId());
-			storedBusStop.setOrder(busStop.getOrder());
 
 			purgedBusStops.add(busStop);
 		}
