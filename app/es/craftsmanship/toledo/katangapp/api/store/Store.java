@@ -26,6 +26,8 @@ public interface Store {
 
 	JsonStore getBusStopsJsonStore();
 
+	BusStop getBusStopRoute(String id);
+
 	Map<String, BusStop> getBusStopStore();
 
 	/**

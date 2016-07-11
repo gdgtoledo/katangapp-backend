@@ -51,6 +51,11 @@ public final class KatangappStore implements Store {
 		return busStop;
 	}
 
+	@Override
+	public BusStop getBusStopRoute(String id) {
+		return busStopRoutesStore.get(id);
+	}
+
 	public JsonStore getBusStopsJsonStore() {
 		return busStopsJsonStore;
 	}
@@ -116,6 +121,13 @@ public final class KatangappStore implements Store {
 
 				for (BusStop busStop : busStopModels) {
 					busStopStore.put(busStop.getId(), busStop);
+
+					BusStop routeBusStop = new BusStop(
+						busStop.getRouteId(), busStop.getId(),
+						busStop.getOrder(), busStop.getLatitude(),
+						busStop.getLongitude(), busStop.getAddress());
+
+					busStopRoutesStore.put(busStop.getId(), routeBusStop);
 				}
 			}
 			catch (JsonProcessingException e) {
@@ -165,6 +177,11 @@ public final class KatangappStore implements Store {
 				storedBusStop.getAddress());
 
 			purgedBusStops.add(routeBusStop);
+
+			BusStop busStopRoute = busStopRoutesStore.get(busStop.getId());
+
+			busStopRoute.setRouteId(route.getId());
+			busStopRoute.setOrder(busStop.getOrder());
 		}
 
 		Collections.sort(purgedBusStops, new BusStopOrderComparator());
@@ -172,6 +189,8 @@ public final class KatangappStore implements Store {
 		route.setBusStops(purgedBusStops);
 	}
 
+	private static Map<String, BusStop> busStopRoutesStore =
+		new ConcurrentHashMap<>();
 	private static Map<String, BusStop> busStopStore =
 		new ConcurrentHashMap<>();
 	private static Map<String, Route> routeStore = new ConcurrentHashMap<>();
