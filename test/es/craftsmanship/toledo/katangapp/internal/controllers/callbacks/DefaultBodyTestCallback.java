@@ -12,8 +12,7 @@ import play.test.TestBrowser;
 public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser> {
 
 	public DefaultBodyTestCallback(String endPoint, String message) {
-		this.endPoint = endPoint;
-		this.messages = new String[] {message};
+		this(endPoint, new String[] {message});
 	}
 
 	public DefaultBodyTestCallback(String endPoint, String[] messages) {
