@@ -56,10 +56,6 @@ public final class KatangappStore implements Store {
 		return busStopRoutesStore.get(id);
 	}
 
-	public JsonStore getBusStopsJsonStore() {
-		return busStopsJsonStore;
-	}
-
 	@Override
 	public Map<String, BusStop> getBusStopStore() {
 		return busStopStore;
@@ -87,10 +83,6 @@ public final class KatangappStore implements Store {
 		}
 
 		return route;
-	}
-
-	public JsonStore getRoutesJsonStore() {
-		return routesJsonStore;
 	}
 
 	@Override

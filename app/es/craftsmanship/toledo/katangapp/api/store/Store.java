@@ -24,8 +24,6 @@ public interface Store {
 	 */
 	BusStop getBusStop(String id) throws APIElementNotFoundException;
 
-	JsonStore getBusStopsJsonStore();
-
 	BusStop getBusStopRoute(String id);
 
 	Map<String, BusStop> getBusStopStore();
@@ -42,8 +40,6 @@ public interface Store {
 	 *                           with provided id
 	 */
 	Route getRoute(String id) throws APIElementNotFoundException;
-
-	JsonStore getRoutesJsonStore();
 
 	Map<String, Route> getRouteStore();
 

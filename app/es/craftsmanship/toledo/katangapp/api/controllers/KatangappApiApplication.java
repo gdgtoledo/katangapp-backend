@@ -1,14 +1,14 @@
 package es.craftsmanship.toledo.katangapp.api.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import es.craftsmanship.toledo.katangapp.api.exception.APIElementNotFoundException;
-import es.craftsmanship.toledo.katangapp.api.store.JsonStore;
 import es.craftsmanship.toledo.katangapp.api.store.Store;
 import es.craftsmanship.toledo.katangapp.internal.controllers.BaseKatangaApplication;
 import es.craftsmanship.toledo.katangapp.internal.store.KatangappStore;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
+
+import java.util.Collection;
+import java.util.Map;
 
 import play.libs.Json;
 
@@ -31,9 +31,11 @@ public class KatangappApiApplication extends BaseKatangaApplication {
     }
 
     public Result busStops() {
-        JsonStore busStopsJsonStore = store.getBusStopsJsonStore();
+        Map<String, BusStop> busStops = store.getBusStopStore();
 
-        return prettyPrint(busStopsJsonStore.getJson());
+        Collection<BusStop> values = busStops.values();
+
+        return prettyPrint(Json.toJson(values.toArray()));
     }
 
     public Result route(String id) {
@@ -48,11 +50,11 @@ public class KatangappApiApplication extends BaseKatangaApplication {
     }
 
     public Result routes() {
-        JsonStore routesJsonStore = store.getRoutesJsonStore();
+        Map<String, Route> routes = store.getRouteStore();
 
-        JsonNode jsonNode = routesJsonStore.getJson();
+        Collection<Route> values = routes.values();
 
-        return prettyPrint(Json.toJson(jsonNode));
+        return prettyPrint(Json.toJson(values.toArray()));
     }
 
     private static Store store = KatangappStore.getInstance();
