@@ -133,8 +133,11 @@ public class BusStopsFinder implements Finder {
 
 		final BusStop busStop = (BusStop) to;
 
+		BusStop busStopRoute = katangappStore.getBusStopRoute(busStop.getId());
+
 		Promise<String> responseHtml = httpService.get(
-			busStop.getRouteId(), busStop.getId(), busStop.getOrder());
+			busStopRoute.getRouteId(), busStop.getId(),
+			busStopRoute.getOrder());
 
 		Calendar calendar = Calendar.getInstance();
 
