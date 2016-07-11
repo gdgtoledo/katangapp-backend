@@ -133,7 +133,8 @@ public class BusStopsFinder implements Finder {
 
 		final BusStop busStop = (BusStop) to;
 
-		BusStop busStopRoute = katangappStore.getBusStopRoute(busStop.getId());
+		final BusStop busStopRoute = katangappStore.getBusStopRoute(
+			busStop.getId());
 
 		Promise<String> responseHtml = httpService.get(
 			busStopRoute.getRouteId(), busStop.getId(),
@@ -145,7 +146,7 @@ public class BusStopsFinder implements Finder {
 
 		Promise<List<RouteResult>> routesPromise =
 			parser.parseResponse(
-				busStop.getRouteId(), calendar.getTime(), responseHtml);
+				busStopRoute.getRouteId(), calendar.getTime(), responseHtml);
 
 		Promise<BusStopResult> busStopResultPromise = routesPromise.map(
 			new Function<List<RouteResult>, BusStopResult>() {
@@ -157,7 +158,7 @@ public class BusStopsFinder implements Finder {
 					Collections.sort(routeResults);
 
 					BusStopResult busStopResult = new BusStopResult(
-						segment.getDistance(), busStop, routeResults);
+						segment.getDistance(), busStopRoute, routeResults);
 
 					return busStopResult;
 				}
