@@ -7,9 +7,12 @@ import static play.test.Helpers.running;
 import static play.test.Helpers.testServer;
 
 import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyContainsTestCallback;
+import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyCountsJsonTestCallback;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;
+
+import play.libs.F;
 
 /**
  * @author mdelapenya
@@ -56,7 +59,8 @@ public class KatangappApiFunctionalTest {
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback("/api/busStops", "{\"busStops\":[")
+            new BodyCountsJsonTestCallback(
+                "/api/busStops", new F.Tuple(132, "address"))
         );
     }
 
@@ -99,7 +103,8 @@ public class KatangappApiFunctionalTest {
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback("/api/routes", "{\"routes\":[")
+            new BodyCountsJsonTestCallback(
+                "/api/routes", new F.Tuple(23, "busStops"))
         );
     }
 
