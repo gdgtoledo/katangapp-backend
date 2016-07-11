@@ -15,7 +15,9 @@ public class BodyEqualsTestCallback extends DefaultBodyTestCallback {
 
 	@Override
 	protected void verifyAssertion(TestBrowser browser) {
-		assertThat(browser.pageSource()).isEqualTo(messages[0]);
+		String message = (String) payload;
+
+		assertThat(browser.pageSource()).isEqualTo(message);
 	}
 
 }

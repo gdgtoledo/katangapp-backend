@@ -15,7 +15,9 @@ public final class BodyContainsTestCallback extends DefaultBodyTestCallback {
 
 	@Override
 	protected void verifyAssertion(TestBrowser browser) {
-		assertThat(browser.pageSource()).contains(messages[0]);
+		String message = (String) payload;
+
+		assertThat(browser.pageSource()).contains(message);
 	}
 
 }

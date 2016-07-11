@@ -18,6 +18,8 @@ public final class BodyContainsMultipleTestCallback
 
 	@Override
 	protected void verifyAssertion(TestBrowser browser) {
+		String[] messages = (String[]) payload;
+
 		for (String message : messages) {
 			assertThat(browser.pageSource()).contains(message);
 		}

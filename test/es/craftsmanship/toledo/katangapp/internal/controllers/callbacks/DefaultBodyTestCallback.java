@@ -11,13 +11,9 @@ import play.test.TestBrowser;
  */
 public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser> {
 
-	public DefaultBodyTestCallback(String endPoint, String message) {
-		this(endPoint, new String[] {message});
-	}
-
-	public DefaultBodyTestCallback(String endPoint, String[] messages) {
+	public DefaultBodyTestCallback(String endPoint, Object payload) {
 		this.endPoint = endPoint;
-		this.messages = messages;
+		this.payload = payload;
 	}
 
 	@Override
@@ -31,6 +27,6 @@ public abstract class DefaultBodyTestCallback implements F.Callback<TestBrowser>
 	protected abstract void verifyAssertion(TestBrowser browser);
 
 	protected String endPoint;
-	protected String[] messages;
+	protected Object payload;
 
 }
