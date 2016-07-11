@@ -158,11 +158,12 @@ public final class KatangappStore implements Store {
 				continue;
 			}
 
-			busStop.setRouteId(route.getId());
-			busStop.setCoordinates(
-				storedBusStop.getLatitude(), storedBusStop.getLongitude());
+			BusStop routeBusStop = new BusStop(
+				route.getId(), storedBusStop.getId(), busStop.getOrder(),
+				storedBusStop.getLatitude(), storedBusStop.getLongitude(),
+				storedBusStop.getAddress());
 
-			purgedBusStops.add(busStop);
+			purgedBusStops.add(routeBusStop);
 		}
 
 		route.setBusStops(purgedBusStops);
