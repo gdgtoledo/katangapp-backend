@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -165,6 +166,8 @@ public final class KatangappStore implements Store {
 
 			purgedBusStops.add(routeBusStop);
 		}
+
+		Collections.sort(purgedBusStops, new BusStopOrderComparator());
 
 		route.setBusStops(purgedBusStops);
 	}
