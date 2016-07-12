@@ -106,6 +106,8 @@ public final class KatangappStore implements Store {
 
 		mapper.registerModule(module);
 
+		String apiBusStopsUrl = "/api/busStops/";
+
 		for (JsonNode busStopsArray : busStops) {
 			try {
 				BusStop[] busStopModels = mapper.treeToValue(
@@ -118,6 +120,8 @@ public final class KatangappStore implements Store {
 						busStop.getRouteId(), busStop.getId(),
 						busStop.getOrder(), busStop.getLatitude(),
 						busStop.getLongitude(), busStop.getAddress());
+
+					busStop.setSelf(apiBusStopsUrl + busStop.getId());
 
 					busStopRoutesStore.put(busStop.getId(), routeBusStop);
 				}
@@ -178,7 +182,31 @@ public final class KatangappStore implements Store {
 
 		Collections.sort(purgedBusStops, new BusStopOrderComparator());
 
+		setLinks(purgedBusStops);
+
 		route.setBusStops(purgedBusStops);
+	}
+
+	private void setLinks(List<BusStop> busStops) {
+		String apiBusStopsUrl = "/api/busStops/";
+
+		for (int i = 0; i < busStops.size(); i++) {
+			BusStop busStop = busStops.get(i);
+
+			busStop.setSelf(apiBusStopsUrl + busStop.getId());
+
+			if (i != 0) {
+				BusStop prevBusStop = busStops.get(i - 1);
+
+				busStop.setPrev(apiBusStopsUrl + prevBusStop.getId());
+			}
+
+			if (i < (busStops.size() - 1)) {
+				BusStop nextBusStop = busStops.get(i + 1);
+
+				busStop.setNext(apiBusStopsUrl + nextBusStop.getId());
+			}
+		}
 	}
 
 	private static Map<String, BusStop> busStopRoutesStore =
