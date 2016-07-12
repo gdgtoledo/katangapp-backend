@@ -8,6 +8,7 @@ import static play.test.Helpers.testServer;
 
 import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyContainsTestCallback;
 import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyCountsJsonTestCallback;
+import es.craftsmanship.toledo.katangapp.internal.controllers.callbacks.BodyCountsMultipleJsonTestCallback;
 import es.craftsmanship.toledo.katangapp.test.SpecsContants;
 
 import org.junit.Test;
@@ -77,12 +78,17 @@ public class KatangappApiFunctionalTest {
 
     @Test
     public void testRouteById() {
+        Integer[] counts = new Integer[] {1, 1, 1, 34};
+        String[] keys = new String[] {
+            "\"id\":\"L02\"", "name", "busStops", "address"
+        };
+
         running(
             testServer(
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
-            new BodyContainsTestCallback(
-                "/api/routes/L02", "\"routeId\":\"L02\"")
+            new BodyCountsMultipleJsonTestCallback(
+                "/api/routes/L02", new F.Tuple(counts, keys))
         );
     }
 
