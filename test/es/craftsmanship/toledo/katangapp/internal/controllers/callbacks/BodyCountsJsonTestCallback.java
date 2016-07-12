@@ -11,8 +11,7 @@ import play.test.TestBrowser;
 /**
  * @author mdelapenya
  */
-public final class BodyCountsJsonTestCallback
-	extends DefaultBodyTestCallback {
+public class BodyCountsJsonTestCallback extends DefaultBodyTestCallback {
 
 	public BodyCountsJsonTestCallback(
 		String endPoint, F.Tuple tuple) {
