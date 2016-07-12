@@ -80,7 +80,7 @@ public class KatangappApiFunctionalTest {
     public void testRouteById() {
         Integer[] counts = new Integer[] {1, 1, 1, 34};
         String[] keys = new String[] {
-            "\"id\":\"L02\"", "name", "busStops", "address"
+            "\"id\":\"L02\"", "name", "\"busStops\"", "address"
         };
 
         running(
@@ -110,7 +110,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyCountsJsonTestCallback(
-                "/api/routes", new F.Tuple(23, "busStops"))
+                "/api/routes", new F.Tuple(23, "\"busStops\""))
         );
     }
 
