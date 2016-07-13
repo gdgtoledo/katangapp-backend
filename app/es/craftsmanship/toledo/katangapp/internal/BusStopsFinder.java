@@ -138,17 +138,19 @@ public class BusStopsFinder implements Finder {
 
 		RouteBusStopInfo busStopInfo = routes.get(0);
 
+		String routeId = busStopInfo.getRouteId();
+
+		routeId = routeId.substring(routeId.lastIndexOf("/") + 1);
+
 		Promise<String> responseHtml = httpService.get(
-			busStopInfo.getRouteId(), busStop.getId(),
-			busStopInfo.getOrderId());
+			routeId, busStop.getId(), busStopInfo.getOrderId());
 
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.setTimeZone(Constants.TZ_TOLEDO);
 
 		Promise<List<RouteResult>> routesPromise =
-			parser.parseResponse(
-				busStopInfo.getRouteId(), calendar.getTime(), responseHtml);
+			parser.parseResponse(routeId, calendar.getTime(), responseHtml);
 
 		Promise<BusStopResult> busStopResultPromise = routesPromise.map(
 			new Function<List<RouteResult>, BusStopResult>() {
