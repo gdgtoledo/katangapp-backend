@@ -5,6 +5,7 @@ import es.craftsmanship.toledo.katangapp.api.store.JsonStore;
 import es.craftsmanship.toledo.katangapp.api.store.Store;
 import es.craftsmanship.toledo.katangapp.models.BusStop;
 import es.craftsmanship.toledo.katangapp.models.Route;
+import es.craftsmanship.toledo.katangapp.models.RouteBusStopInfo;
 import es.craftsmanship.toledo.katangapp.models.json.BusStopDeserializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -111,14 +112,7 @@ public final class KatangappStore implements Store {
 				for (BusStop busStop : busStopModels) {
 					busStopStore.put(busStop.getId(), busStop);
 
-					BusStop routeBusStop = new BusStop(
-						busStop.getRouteId(), busStop.getId(),
-						busStop.getOrder(), busStop.getLatitude(),
-						busStop.getLongitude(), busStop.getAddress());
-
 					busStop.setSelf(apiBusStopsUrl + busStop.getId());
-
-					busStopRoutesStore.put(busStop.getId(), routeBusStop);
 				}
 			}
 			catch (JsonProcessingException e) {
@@ -158,6 +152,8 @@ public final class KatangappStore implements Store {
 
 		List<BusStop> purgedBusStops = new ArrayList<>();
 
+		String apiRoutessUrl = "/api/routes/";
+
 		for (BusStop busStop : busStops) {
 			BusStop storedBusStop = busStopStore.get(
 				busStop.getId());
@@ -171,12 +167,15 @@ public final class KatangappStore implements Store {
 				storedBusStop.getLatitude(), storedBusStop.getLongitude(),
 				storedBusStop.getAddress());
 
+			List<RouteBusStopInfo> routes = storedBusStop.getRoutes();
+
+			routes.add(
+				new RouteBusStopInfo(
+					apiRoutessUrl + route.getId(), busStop.getOrder()));
+
+			routeBusStop.setRoutes(routes);
+
 			purgedBusStops.add(routeBusStop);
-
-			BusStop busStopRoute = busStopRoutesStore.get(busStop.getId());
-
-			busStopRoute.setRouteId(route.getId());
-			busStopRoute.setOrder(busStop.getOrder());
 		}
 
 		Collections.sort(purgedBusStops, new BusStopOrderComparator());
@@ -208,8 +207,6 @@ public final class KatangappStore implements Store {
 		}
 	}
 
-	private static Map<String, BusStop> busStopRoutesStore =
-		new ConcurrentHashMap<>();
 	private static Map<String, BusStop> busStopStore =
 		new ConcurrentHashMap<>();
 	private static Map<String, Route> routeStore = new ConcurrentHashMap<>();
