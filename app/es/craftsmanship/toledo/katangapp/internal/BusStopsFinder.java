@@ -14,6 +14,7 @@ import es.craftsmanship.toledo.katangapp.models.Constants;
 import es.craftsmanship.toledo.katangapp.models.Point;
 import es.craftsmanship.toledo.katangapp.models.QueryResult;
 import es.craftsmanship.toledo.katangapp.models.ReferenceablePoint;
+import es.craftsmanship.toledo.katangapp.models.RouteBusStopInfo;
 import es.craftsmanship.toledo.katangapp.models.RouteResult;
 import es.craftsmanship.toledo.katangapp.models.Segment;
 
@@ -133,12 +134,13 @@ public class BusStopsFinder implements Finder {
 
 		final BusStop busStop = (BusStop) to;
 
-		final BusStop busStopRoute = katangappStore.getBusStopRoute(
-			busStop.getId());
+		List<RouteBusStopInfo> routes = busStop.getRoutes();
+
+		RouteBusStopInfo busStopInfo = routes.get(0);
 
 		Promise<String> responseHtml = httpService.get(
-			busStopRoute.getRouteId(), busStop.getId(),
-			busStopRoute.getOrder());
+			busStopInfo.getRouteId(), busStop.getId(),
+			busStopInfo.getOrderId());
 
 		Calendar calendar = Calendar.getInstance();
 
@@ -146,7 +148,7 @@ public class BusStopsFinder implements Finder {
 
 		Promise<List<RouteResult>> routesPromise =
 			parser.parseResponse(
-				busStopRoute.getRouteId(), calendar.getTime(), responseHtml);
+				busStopInfo.getRouteId(), calendar.getTime(), responseHtml);
 
 		Promise<BusStopResult> busStopResultPromise = routesPromise.map(
 			new Function<List<RouteResult>, BusStopResult>() {
@@ -158,7 +160,7 @@ public class BusStopsFinder implements Finder {
 					Collections.sort(routeResults);
 
 					BusStopResult busStopResult = new BusStopResult(
-						segment.getDistance(), busStopRoute, routeResults);
+						segment.getDistance(), busStop, routeResults);
 
 					return busStopResult;
 				}

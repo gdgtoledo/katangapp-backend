@@ -52,11 +52,6 @@ public final class KatangappStore implements Store {
 	}
 
 	@Override
-	public BusStop getBusStopRoute(String id) {
-		return busStopRoutesStore.get(id);
-	}
-
-	@Override
 	public Map<String, BusStop> getBusStopStore() {
 		return busStopStore;
 	}

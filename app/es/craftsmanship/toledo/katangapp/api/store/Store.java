@@ -18,13 +18,11 @@ public interface Store {
 	 * @param id the identifier of the bus stop
 	 *
 	 * @return the bus stop identified by the id
-	 * 
+	 *
 	 * @throws APIElementNotFoundException when no bus stop exists in the store
 	 *                           with provided id
 	 */
 	BusStop getBusStop(String id) throws APIElementNotFoundException;
-
-	BusStop getBusStopRoute(String id);
 
 	Map<String, BusStop> getBusStopStore();
 
