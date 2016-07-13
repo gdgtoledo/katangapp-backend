@@ -135,6 +135,8 @@ public final class KatangappStore implements Store {
 	private void populateRoutes() {
 		final JsonNode routes = routesJsonStore.getJson();
 
+		String apiBusStopsUrl = "/api/routes/";
+
 		for (JsonNode routesArray : routes) {
 			ObjectMapper mapper = new ObjectMapper();
 
@@ -143,6 +145,8 @@ public final class KatangappStore implements Store {
 					routesArray, Route[].class);
 
 				for (Route route : routeModels) {
+					route.setSelf(apiBusStopsUrl + route.getId());
+
 					purgeBusStopsWithoutCoordinates(route);
 
 					routeStore.put(route.getId(), route);
