@@ -10,6 +10,7 @@ GET     /api/routes/:id             @es.craftsmanship.toledo.katangapp.api.contr
 GET     /favicon.ico                controllers.Assets.at(path="/public/images", file="favicon.ico")
 
 GET     /api-docs                   controllers.ApiHelpController.getResources
+GET     /api-docs/main              controllers.ApiHelpController.getResource(path = "/main") 
 
 GET     /main                    @es.craftsmanship.toledo.katangapp.api.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 

@@ -7,6 +7,13 @@ import es.craftsmanship.toledo.katangapp.models.QueryResult;
 
 import com.google.inject.Inject;
 
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiImplicitParam;
+import com.wordnik.swagger.annotations.ApiImplicitParams;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
+
 import play.libs.F.Function;
 import play.libs.F.Function0;
 import play.libs.F.Promise;
@@ -17,6 +24,12 @@ import play.mvc.Result;
 /**
  * @author mdelapenya
  */
+@Api(
+    value = "/main",
+    description = "Main endpoint of the application, which will return the " +
+        "estimated bus routes timetable for the closest bus stops to a " +
+        "location within a radius, all passed as arguments"
+)
 public class KatangappApplication extends BaseKatangaApplication {
 
     @Inject
@@ -24,6 +37,52 @@ public class KatangappApplication extends BaseKatangaApplication {
         this.busStopFinder = busStopFinder;
     }
 
+    @ApiImplicitParams({
+        @ApiImplicitParam(
+            name = "lt",
+            dataType = "String",
+            required = false,
+            paramType = "query",
+            value = "Latitude of current location"
+        ),
+        @ApiImplicitParam(
+            name = "ln",
+            dataType = "String",
+            required = false,
+            paramType = "query",
+            value = "Longitude of current location"
+        ),
+        @ApiImplicitParam(
+            name = "r",
+            dataType = "String",
+            required = false,
+            paramType = "query",
+            value = "Radius to perform the bus stop search"
+        )
+    })
+    @ApiOperation(
+        httpMethod = "GET",
+        notes = "It uses the closest point algorithm (based on Earth Radius)," +
+            " to get the points representing the bus stops stored in the" +
+            " database, and for each bus stops, uses the UNAUTO service to" +
+            " get HTML representing the timetable for the routes passing by" +
+            " that bus stop. That HTML is parsed using regular expressions and" +
+            " converted into JSON.",
+        produces = "application/json",
+        responseContainer = "Array",
+        value = "Returns the routes timetable for the bus stops that are" +
+            " closer than radius to current location"
+    )
+    @ApiResponses(
+        value = {
+            @ApiResponse(
+                code = 200, message = "Bus stops present.",
+                response = Result.class),
+            @ApiResponse(
+                code = 400, message = "Don't try to hack the URI!",
+                response = Result.class),
+        }
+    )
     public Promise<Result> main(
         final String lt, final String ln, final int r) {
         
