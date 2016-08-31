@@ -41,6 +41,7 @@ public class KatangappApplication extends BaseKatangaApplication {
         @ApiImplicitParam(
             name = "lt",
             dataType = "String",
+            defaultValue = "39.862658",
             required = false,
             paramType = "query",
             value = "Latitude of current location"
@@ -48,6 +49,7 @@ public class KatangappApplication extends BaseKatangaApplication {
         @ApiImplicitParam(
             name = "ln",
             dataType = "String",
+            defaultValue = "-4.025088",
             required = false,
             paramType = "query",
             value = "Longitude of current location"
@@ -55,6 +57,7 @@ public class KatangappApplication extends BaseKatangaApplication {
         @ApiImplicitParam(
             name = "r",
             dataType = "String",
+            defaultValue = "1000",
             required = false,
             paramType = "query",
             value = "Radius to perform the bus stop search"
