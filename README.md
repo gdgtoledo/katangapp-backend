@@ -120,4 +120,4 @@ Katanga's RESTful API. With a Swagger-enabled API, we get an interactive
 documentation, client SDK generation and discoverability. To visit the
 endpoints documentation, please visit following URL:
 
-`http://localhost:9000/assets/lib/swagger-ui/index.html?/url=http://localhost:9000/api-docs
+`http://localhost:9000/assets/lib/swagger-ui/index.html?/url=http://localhost:9000/api-docs`
