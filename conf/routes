@@ -12,6 +12,7 @@ GET     /favicon.ico                controllers.Assets.at(path="/public/images",
 GET     /api-docs                   controllers.ApiHelpController.getResources
 GET     /api-docs/api               controllers.ApiHelpController.getResource(path = "/api") 
 GET     /api-docs/katanga           controllers.ApiHelpController.getResource(path = "/katanga") 
+GET     /api-docs/status            controllers.ApiHelpController.getResource(path = "/status") 
 GET     /api-docs/unauto            controllers.ApiHelpController.getResource(path = "/unauto") 
 
 GET     /main                       @es.craftsmanship.toledo.katangapp.api.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
