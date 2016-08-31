@@ -14,13 +14,13 @@ GET     /api-docs/api               controllers.ApiHelpController.getResource(pa
 GET     /api-docs/katanga           controllers.ApiHelpController.getResource(path = "/katanga") 
 GET     /api-docs/unauto            controllers.ApiHelpController.getResource(path = "/unauto") 
 
-GET     /main                    @es.craftsmanship.toledo.katangapp.api.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
+GET     /main                       @es.craftsmanship.toledo.katangapp.api.controllers.KatangappApplication.main(lt:String, ln:String, r:Integer)
 
 GET     /status                     @es.craftsmanship.toledo.katangapp.api.controllers.StatusApplication.status()
 
 GET     /unauto                     @es.craftsmanship.toledo.katangapp.api.controllers.UnautoApplication.unauto(idl:String, idp:String, ido:String)
 
-GET     /favorite/:busStopId       @es.craftsmanship.toledo.katangapp.api.controllers.KatangappFavoriteApplication.favorite(busStopId:String)
+GET     /favorite/:busStopId        @es.craftsmanship.toledo.katangapp.api.controllers.KatangappFavoriteApplication.favorite(busStopId:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
