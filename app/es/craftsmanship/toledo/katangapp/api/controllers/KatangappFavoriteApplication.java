@@ -49,6 +49,7 @@ public class KatangappFavoriteApplication extends BaseKatangaApplication {
             " the timetable for the routes passing by this bus stop. That" +
             " HTML is parsed using regular expressions and converted into JSON.",
         produces = "application/json",
+        response = QueryResult.class,
         value = "Returns the estimated bus routes timetable for this bus stop"
     )
     @ApiResponses(

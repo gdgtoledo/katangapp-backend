@@ -46,6 +46,7 @@ public class KatangappApiApplication extends BaseKatangaApplication {
         notes = "Returns the information stored for the bus stop identified" +
             " by the id path argument.",
         produces = "application/json",
+        response = BusStop.class,
         value = "Returns the bus stop information"
     )
     @ApiResponses(
@@ -76,6 +77,8 @@ public class KatangappApiApplication extends BaseKatangaApplication {
         httpMethod = "GET",
         notes = "Returns the information stored for all bus stops.",
         produces = "application/json",
+        response = BusStop.class,
+        responseContainer = "Array",
         value = "Returns all bus stops information"
     )
     @ApiResponses(
@@ -111,6 +114,7 @@ public class KatangappApiApplication extends BaseKatangaApplication {
         notes = "Returns the information stored for the route identified" +
             " by the id path argument.",
         produces = "application/json",
+        response = Route.class,
         value = "Returns the route information"
     )
     @ApiResponses(
@@ -141,6 +145,8 @@ public class KatangappApiApplication extends BaseKatangaApplication {
         httpMethod = "GET",
         notes = "Returns the information stored for all bus routes.",
         produces = "application/json",
+        response = Route.class,
+        responseContainer = "Array",
         value = "Returns all bus routes information"
     )
     @ApiResponses(

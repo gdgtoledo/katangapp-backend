@@ -72,7 +72,7 @@ public class KatangappApplication extends BaseKatangaApplication {
             " that bus stop. That HTML is parsed using regular expressions and" +
             " converted into JSON.",
         produces = "application/json",
-        responseContainer = "Array",
+        response = QueryResult.class,
         value = "Returns the routes timetable for the bus stops that are" +
             " closer than radius to current location"
     )

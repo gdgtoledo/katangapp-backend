@@ -64,6 +64,7 @@ public class UnautoApplication extends BaseKatangaApplication {
         notes = "It uses the UNAUTO service to get HTML representing the" +
             " timetable for the routes passing by that bus stop.",
         produces = "text/plain",
+        response = String.class,
         value = "Returns the HTML representing the estimated timetable for a" +
             " bus stop in a route and with an order."
     )
