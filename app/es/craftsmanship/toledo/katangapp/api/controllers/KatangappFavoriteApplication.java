@@ -25,7 +25,7 @@ import play.mvc.Result;
  * @author manudevelopia
  * @author mdelapenya
  */
-@Api(value = "/main")
+@Api(value = "/katanga")
 public class KatangappFavoriteApplication extends BaseKatangaApplication {
 
     @Inject

@@ -25,8 +25,8 @@ import play.mvc.Result;
  * @author mdelapenya
  */
 @Api(
-    value = "/main",
-    description = "Main endpoint of the application, which will return the " +
+    value = "/katanga",
+    description = "Main endpoints of the application, which will return the " +
         "estimated bus routes timetable for the closest bus stops to a " +
         "location within a radius, all passed as arguments"
 )
