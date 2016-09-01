@@ -52,6 +52,8 @@ following parameters to work:
 
 In example: `http://localhost:9000/main?lt=39.862658&ln=-4.025088&r=500`
 
+#### Favorite Bus stops
+
 To verify the business logic for the `favorite bus stop` feature of the
 application, go to `http://localhost:9000/favorite`, that represents the
 endpoint of the service that calculates the routes of a specific bus
