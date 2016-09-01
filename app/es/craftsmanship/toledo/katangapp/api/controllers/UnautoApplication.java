@@ -16,6 +16,7 @@ import play.libs.F.Function;
 import play.libs.F.Promise;
 
 import play.mvc.Result;
+import play.mvc.Results;
 
 /**
  * @author mdelapenya
@@ -80,13 +81,7 @@ public class UnautoApplication extends BaseKatangaApplication {
         Promise<String> httpPromise = httpService.get(idl, idp, ido);
 
         Promise<Result> promiseOfResult = httpPromise.map(
-            new Function<String, Result>() {
-
-                public Result apply(String result) {
-                    return ok(result);
-                }
-
-            }
+            (Function<String, Result>) Results::ok
         );
 
         return recover(promiseOfResult);

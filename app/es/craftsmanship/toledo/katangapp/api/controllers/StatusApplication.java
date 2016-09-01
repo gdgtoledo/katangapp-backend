@@ -14,7 +14,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
-import play.libs.F.Function;
 import play.libs.F.Promise;
 
 import play.mvc.Result;
@@ -62,14 +61,7 @@ public class StatusApplication extends BaseKatangaApplication {
 		Promise<JsonNode> jsonNodePromise =
 			serviceDiscoveryManager.processServices();
 
-		return jsonNodePromise.map(new Function<JsonNode, Result>() {
-
-			@Override
-			public Result apply(JsonNode jsonNode) throws Throwable {
-				return prettyPrint(jsonNode);
-			}
-
-		});
+		return jsonNodePromise.map(jsonNode -> prettyPrint(jsonNode));
 	}
 
     private final StatusCheckServiceDiscoveryManager serviceDiscoveryManager;

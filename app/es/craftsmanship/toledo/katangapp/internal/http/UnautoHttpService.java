@@ -9,7 +9,6 @@ import java.text.MessageFormat;
 import play.libs.ws.WS;
 import play.libs.ws.WSRequestHolder;
 import play.libs.ws.WSResponse;
-import play.libs.F.Function;
 import play.libs.F.Promise;
 
 /**
@@ -89,14 +88,10 @@ public class UnautoHttpService implements HttpService {
 		Promise<WSResponse> responsePromise = wsRequestHolder.get();
 
 		Promise<String> documentPromise = responsePromise.map(
-			new Function<WSResponse, String>() {
+			response -> {
+				byte[] bytes = response.asByteArray();
 
-				public String apply(WSResponse response) {
-					byte[] bytes = response.asByteArray();
-
-					return new String(bytes, Charset.forName("UTF-8"));
-				}
-
+				return new String(bytes, Charset.forName("UTF-8"));
 			}
 		);
 

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import com.google.inject.Inject;
 
-import play.libs.F.Function;
 import play.libs.F.Promise;
 import play.libs.Json;
 
@@ -29,18 +28,15 @@ public class UnautoStatusService implements StatusCheckService {
 
 		Promise<String> httpPromise = httpService.get(params);
 
-		Promise<JsonNode> resultPromise = httpPromise.map(
-			new Function<String, JsonNode>() {
-
-				public JsonNode apply(String result) {
+		Promise<JsonNode> resultPromise =
+			httpPromise.map(
+				result -> {
 					if (result == null || result.isEmpty()) {
 						return Json.toJson("Unauto: KO");
 					}
 
 					return Json.toJson("Unauto: OK");
 				}
-
-			}
 		);
 
 		return resultPromise;

@@ -28,8 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import play.libs.F.Function;
-import play.libs.F.Function0;
 import play.libs.F.Promise;
 
 /**
@@ -79,15 +77,7 @@ public class BusStopsFinder implements Finder {
 
 		if (segments.isEmpty()) {
 			Promise<QueryResult> queryResultPromise = Promise.promise(
-				new Function0<QueryResult>() {
-
-					@Override
-					public QueryResult apply() throws Throwable {
-						return new QueryResult(
-							Collections.<BusStopResult>emptyList());
-					}
-
-				});
+				() -> new QueryResult(Collections.<BusStopResult>emptyList()));
 
 			return queryResultPromise;
 		}
@@ -109,22 +99,8 @@ public class BusStopsFinder implements Finder {
 			busStopResultPromises);
 
 		Promise<QueryResult> queryResultPromise = sequence.flatMap(
-			new Function<List<BusStopResult>, Promise<QueryResult>>() {
-
-				@Override
-				public Promise<QueryResult> apply(
-					final List<BusStopResult> busStopResults) throws Throwable {
-
-					return Promise.promise(new Function0<QueryResult>() {
-
-						@Override
-						public QueryResult apply() throws Throwable {
-							return new QueryResult(busStopResults);
-						}
-
-					});
-				}
-			});
+			busStopResults ->
+				Promise.promise(() -> new QueryResult(busStopResults)));
 
 		return queryResultPromise;
 	}
@@ -153,20 +129,14 @@ public class BusStopsFinder implements Finder {
 			parser.parseResponse(routeId, calendar.getTime(), responseHtml);
 
 		Promise<BusStopResult> busStopResultPromise = routesPromise.map(
-			new Function<List<RouteResult>, BusStopResult>() {
+			routeResults -> {
 
-				@Override
-				public BusStopResult apply(List<RouteResult> routeResults)
-					throws Throwable {
+				Collections.sort(routeResults);
 
-					Collections.sort(routeResults);
+				BusStopResult busStopResult = new BusStopResult(
+					segment.getDistance(), busStop, routeResults);
 
-					BusStopResult busStopResult = new BusStopResult(
-						segment.getDistance(), busStop, routeResults);
-
-					return busStopResult;
-				}
-
+				return busStopResult;
 			});
 
 		return busStopResultPromise;

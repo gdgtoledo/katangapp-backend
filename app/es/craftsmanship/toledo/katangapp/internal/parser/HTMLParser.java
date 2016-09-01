@@ -16,7 +16,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import play.libs.F.Function;
 import play.libs.F.Promise;
 
 /**
@@ -29,11 +28,10 @@ public class HTMLParser implements Parser {
 
 		final List<RouteResult> results = new ArrayList<>();
 
-		Promise<List<RouteResult>> promiseOfRoutesResult = html.map(
-			new Function<String, List<RouteResult>>() {
-
-				public List<RouteResult> apply(String html) {
-					Document doc = Jsoup.parse(html);
+		Promise<List<RouteResult>> promiseOfRoutesResult =
+			html.map(
+				responseHtml -> {
+					Document doc = Jsoup.parse(responseHtml);
 
 					Element hour = doc.getElementById("hora");
 
@@ -70,8 +68,6 @@ public class HTMLParser implements Parser {
 
 					return results;
 				}
-
-			}
 		);
 
 		return promiseOfRoutesResult;

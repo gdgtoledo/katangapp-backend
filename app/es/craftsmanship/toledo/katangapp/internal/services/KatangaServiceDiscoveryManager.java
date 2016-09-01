@@ -40,14 +40,7 @@ public class KatangaServiceDiscoveryManager
 
 		Promise<List<JsonNode>> sequence = Promise.sequence(resultsPromiseList);
 
-		return sequence.map(new Function<List<JsonNode>, JsonNode>() {
-
-			@Override
-			public JsonNode apply(List<JsonNode> jsonNodes) throws Throwable {
-				return Json.toJson(jsonNodes);
-			}
-
-		});
+		return sequence.map(Json::toJson);
 	}
 
 	private Promise<JsonNode> observeEllapsedTime(StatusCheckService service) {
@@ -55,10 +48,8 @@ public class KatangaServiceDiscoveryManager
 
 		Promise<JsonNode> healthCheckPromise = service.healthCheck();
 
-		return healthCheckPromise.map(new Function<JsonNode, JsonNode>() {
-
-			@Override
-			public JsonNode apply(JsonNode jsonNode) throws Throwable {
+		return healthCheckPromise.map(
+			(Function<JsonNode, JsonNode>) jsonNode -> {
 				stopwatch.stop();
 
 				ObjectNode objectNode = Json.newObject();
@@ -75,8 +66,7 @@ public class KatangaServiceDiscoveryManager
 
 				return objectNode;
 			}
-
-		});
+		);
 	}
 
 	private List<StatusCheckService> statusCheckServices;

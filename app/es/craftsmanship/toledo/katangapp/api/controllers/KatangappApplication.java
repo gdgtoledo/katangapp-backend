@@ -14,7 +14,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
-import play.libs.F.Function;
 import play.libs.F.Function0;
 import play.libs.F.Promise;
 import play.libs.Json;
@@ -97,29 +96,15 @@ public class KatangappApplication extends BaseKatangaApplication {
                 dLatitude, dLongitude, r);
 
             Promise<Result> resultPromise = queryResultPromise.map(
-                new Function<QueryResult, Result>() {
-
-                    @Override
-                    public Result apply(QueryResult queryResult)
-                        throws Throwable {
-
-                        return prettyPrint(Json.toJson(queryResult));
-                    }
-                });
+                queryResult -> prettyPrint(Json.toJson(queryResult)));
 
             return recover(resultPromise);
         }
         catch (InterruptedException ie) {
             final APIException apiException = new APIException(ie.getMessage());
 
-            return Promise.promise(new Function0<Result>() {
-
-                @Override
-                public Result apply() throws Throwable {
-                    return notFound(apiException.getApiError());
-                }
-
-            });
+            return Promise.promise(
+                (Function0<Result>) () -> notFound(apiException.getApiError()));
         }
     }
 
