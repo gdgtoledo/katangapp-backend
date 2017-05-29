@@ -121,7 +121,6 @@
 	{ "id": "P332", "address": "Hospital Tres Culturas (vta)", "lat": "39.884179", "long": "-4.041106" },
 	{ "id": "P338", "address": "Montesion - Rotonda", "lat": "39.862845", "long": "-4.058866" },
 	{ "id": "P340", "address": "Airen 2", "lat": "39.862400", "long": "-4.052371" },
-	{ "id": "P341", "address": "Ctra Navalpino (Fte Camping)", "lat": "39.862050", "long": "-4.046817" },
 	{ "id": "P342", "address": "C/ Guadarrama Fte. Casa La Carne", "lat": "39.869967", "long": "-3.946899" },
 	{ "id": "P343", "address": "Avda Boladiez (Fte Television)", "lat": "39.861752", "long": "-3.956237" },
 	{ "id": "P343a", "address": "SESCAM", "lat": "39.860301", "long": "-3.963263" },
