@@ -61,7 +61,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyCountsJsonTestCallback(
-                "/api/busStops", new F.Tuple(132, "address"))
+                "/api/busStops", new F.Tuple(131, "address"))
         );
     }
 
@@ -110,7 +110,7 @@ public class KatangappApiFunctionalTest {
                 SpecsContants.SERVER_PORT, fakeApplication(inMemoryDatabase())),
             HTMLUNIT,
             new BodyCountsJsonTestCallback(
-                "/api/routes", new F.Tuple(23, "\"busStops\""))
+                "/api/routes", new F.Tuple(24, "\"busStops\""))
         );
     }
 
