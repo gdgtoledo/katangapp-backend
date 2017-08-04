@@ -1,6 +1,6 @@
 # Katanga Backend Application
 
-[![Build Status](https://travis-ci.org/craftsmanship-toledo/katangapp-backend.svg)](https://travis-ci.org/craftsmanship-toledo/katangapp-backend)
+[![Build Status](https://travis-ci.org/swcraftersclm/katangapp-backend.svg)](https://travis-ci.org/swcraftersclm/katangapp-backend)
 
 # Contributing
 In order to contribute to the project, please fork the repository, add the
